@@ -1,0 +1,47 @@
+body {
+    margin: 0px;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.contentStyle {
+    background-color: white;
+    display: flex;
+    padding: 0 16px;
+}
+
+.footerStyle {
+    text-align: center;
+    /* color: white; */
+    background-color: #f9f9f9;
+    border-top: 0.8px solid #e6e6e6;
+    margin-top: auto;
+}
+
+.boldFont {
+    font-weight: bold;
+}
+
+.fontSize16 {
+    font-size: 16px !important;
+}
+
+.fontSize20 {
+    font-size: 20px;
+}
+
+.fontSize24 {
+    font-size: 24px;
+}
+
+.fontSize28 {
+    font-size: 28px;
+}
+
+.fontSize30 {
+    font-size: 30px;
+}

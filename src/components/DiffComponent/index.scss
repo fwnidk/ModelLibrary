@@ -1,0 +1,73 @@
+#diff-ui-mult {
+    width: 100%;
+}
+
+.d2h-code-line-ctn, .d2h-code-side-linenumber, .d2h-code-side-line {
+    font-size: 14px !important;
+    height: 20px;
+    line-height: 20px;
+    padding: auto;
+    /* white-space: pre; */
+    /* font-family: IBMPlexMono; */
+    /* font-weight: lighter; */
+}
+
+.d2h-info {
+    background-color: rgb(239, 246, 255);
+}
+
+.d2h-del, .d2h-ins .d2h-code-line-ctn {
+    font-family: IBMPlexMono;
+    font-weight: lighter;
+}
+
+.d2h-icon {
+    margin-top: -2px;
+}
+
+.d2h-tag {
+    margin-left: 10px;
+    border-radius: 3px;
+}
+
+.diffTitle {
+    font-size: 16px;
+    line-height: 25.4px;
+    height: 25.4px;
+    margin-left: 3px;
+}
+
+.d2h-file-list {
+    border: 0.8px solid rgb(229 231 235);
+}
+
+.d2h-file-list-header {
+    margin-bottom: 10px;
+}
+
+.d2h-lines-added {
+    min-width: 30px;
+    text-align: center;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.d2h-lines-deleted {
+    text-align: center;
+    min-width: 30px;
+    border-radius: 5px;
+}
+
+.d2h-file-wrapper {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border: 0.1px solid #dddddd !important;
+}
+
+.d2h-file-header.d2h-sticky-header {
+    background: linear-gradient(to bottom, #ffffff, #f3f4f6) !important;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    height: 40px;
+    padding-left: 12px;
+}

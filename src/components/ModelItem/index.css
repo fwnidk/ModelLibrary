@@ -1,0 +1,43 @@
+.itemCard {
+    margin: 0px;
+    background: linear-gradient(to right, #F9FAFB, #ffffff);
+    height: 70px;
+    border: solid 0.8px rgb(235, 235, 235);
+    border-radius: 8px;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* style={{ margin: "10px 0px", background: linearGradient(to right,var(--tw-gradient-stops)) */
+}
+
+.itemCard:hover {
+    background: linear-gradient(to right, #fcfdfe, #f5f6f7) !important;
+}
+
+.itemCard:hover .modelIcon #a3 {
+    fill: #D2D3F7;
+}
+
+.itemCard:hover .modelIcon #a1 {
+    fill: #ADAFD5;
+}
+
+.itemCard:hover .modelIcon #a2 {
+    fill: #5356D1;
+}
+
+.itemTitle {
+    font-family: IBMPlexMono;
+    font-size: 16px;
+    display: flex;
+}
+
+.modelListItemCard:hover .itemTitle {
+    color: rgb(59, 130, 246);
+}
+
+.itemDescription {
+    color: rgb(150, 150, 150);
+}
+

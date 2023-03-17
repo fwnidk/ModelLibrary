@@ -1,0 +1,15 @@
+.datasetListItemCard:hover {
+    .itemTitle {
+        color: rgba(255, 60, 90, 0.8);
+    }
+
+    .databaseIcon {
+        color: rgba(255, 60, 90, 0.8);
+    }
+}
+
+.databaseIcon {
+    color: #dddddd;
+    font-size: 12px !important;
+    margin-right: 3px;
+}

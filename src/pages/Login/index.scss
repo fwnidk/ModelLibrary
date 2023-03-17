@@ -1,0 +1,54 @@
+.registerStyle {
+    color: rgb(16, 179, 255);
+}
+
+.loginBackground {
+    width: 120%;
+    padding-top: 65px;
+    height: auto;
+    background: linear-gradient(to bottom, #e0e7ff, #f9f9f9);
+    margin: 0 -16px;
+}
+
+.loginFormCard {
+    background-color: #ffffff;
+    width: 24rem;
+    height: 600;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    border-radius: 12px;
+    border: 0.8px solid rgb(229, 231, 235);
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1;
+    --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px -1px rgba(0, 0, 0, .1);
+    --tw-ring-shadow: 0 0 #0000;
+    --tw-ring-offset-shadow: 0 0 #0000;
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+
+}
+
+.passwordForm {
+    margin-bottom: 40px;
+}
+
+.usernameForm, .errorMessage {
+    margin-bottom: 10px !important;
+}
+
+.loginFormCard .ant-col {
+    padding-bottom: 0;
+}
+
+.loginButton {
+    width: 100%;
+}
+
+.loginForm {
+    width: 100%;
+}

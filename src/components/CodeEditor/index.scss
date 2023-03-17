@@ -1,0 +1,50 @@
+.codeEditorContainer {
+    border: 0.8px solid rgb(229 231 235);
+    padding-top: 20px;
+}
+
+.codeEditor {
+    width: 100% !important;
+    min-height: 1000px !important;
+    overflow: hidden;
+    font-family: IBMPlexMono !important;
+    line-height: 22px;
+}
+
+.codeToolbar {
+    height: 41px;
+    border-left: 0.8px solid rgb(229 231 235);
+    border-right: 0.8px solid rgb(229 231 235);
+    border-top: 0.8px solid rgb(229 231 235);
+}
+
+.codeToolbarButton {
+    height: 100%;
+    color: #000;
+
+    &:hover {
+        color: #3677e8 !important;
+    }
+}
+
+.ace_scroller {
+    font-weight: 100 !important;
+}
+
+.ace_layer.ace_gutter-layer.ace_folding-enabled {
+    background-color: #ffffff;
+    color: #c0c0c0;
+}
+
+.ace_print-margin {
+    display: none;
+}
+
+.ace_gutter-cell:hover {
+    color: #000;
+}
+
+.ace_gutter-active-line.ace_gutter-cell {
+    background-color: #eeeeee;
+    color: #000;
+}

@@ -1,0 +1,86 @@
+"filename", "language", "TypeScript", "JavaScript", "TypeScript JSX", "CSS", "Markdown", "comment", "blank", "total"
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\App.tsx", "TypeScript JSX", 0, 0, 37, 0, 0, 2, 6, 45
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\app\LabelConversionArray.ts", "TypeScript", 2, 0, 0, 0, 0, 0, 1, 3
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\app\displayNumberOfBytes.ts", "TypeScript", 8, 0, 0, 0, 0, 0, 1, 9
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\app\hooks.ts", "TypeScript", 4, 0, 0, 0, 0, 1, 2, 7
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\app\mock.ts", "TypeScript", 228, 0, 0, 0, 0, 20, 21, 269
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\CategoryLabel\index.css", "CSS", 0, 0, 0, 9, 0, 0, 2, 11
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\CategoryLabel\index.tsx", "TypeScript JSX", 0, 0, 34, 0, 0, 0, 8, 42
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\DatasetItem\index.css", "CSS", 0, 0, 0, 11, 0, 0, 2, 13
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\DatasetItem\index.tsx", "TypeScript JSX", 0, 0, 16, 0, 0, 0, 4, 20
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\GlobalHeader\index.css", "CSS", 0, 0, 0, 51, 0, 4, 8, 63
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\GlobalHeader\index.tsx", "TypeScript JSX", 0, 0, 42, 0, 0, 0, 7, 49
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\HomeLoggedInItem\index.css", "CSS", 0, 0, 0, 3, 0, 0, 0, 3
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\HomeLoggedInItem\index.tsx", "TypeScript JSX", 0, 0, 23, 0, 0, 0, 8, 31
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\HomeLoggedIn\index.css", "CSS", 0, 0, 0, 23, 0, 1, 2, 26
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\HomeLoggedIn\index.tsx", "TypeScript JSX", 0, 0, 50, 0, 0, 0, 2, 52
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\LabelBlock\index.tsx", "TypeScript JSX", 0, 0, 43, 0, 0, 3, 8, 54
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\ModelItem\index.css", "CSS", 0, 0, 0, 24, 0, 1, 4, 29
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\ModelItem\index.tsx", "TypeScript JSX", 0, 0, 16, 0, 0, 0, 3, 19
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\PersonalProfile\index.tsx", "TypeScript JSX", 0, 0, 10, 0, 0, 0, 2, 12
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\TasksMainPage\index.tsx", "TypeScript JSX", 0, 0, 28, 0, 0, 6, 4, 38
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\index.css", "CSS", 0, 0, 0, 8, 0, 0, 1, 9
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\index.tsx", "TypeScript JSX", 0, 0, 13, 0, 0, 5, 8, 26
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\models\dataset.d.ts", "TypeScript", 50, 0, 0, 0, 0, 1, 9, 60
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\models\datasetDetail.d.ts", "TypeScript", 36, 0, 0, 0, 0, 1, 9, 46
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\models\login.d.ts", "TypeScript", 22, 0, 0, 0, 0, 0, 7, 29
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\models\model.d.ts", "TypeScript", 53, 0, 0, 0, 0, 1, 9, 63
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\models\modelDetail.d.ts", "TypeScript", 36, 0, 0, 0, 0, 1, 9, 46
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\models\personalFiles.d.ts", "TypeScript", 5, 0, 0, 0, 0, 0, 0, 5
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\DatasetDetails\components\DatasetCard\hahaha.md", "Markdown", 0, 0, 0, 0, 80, 0, 34, 114
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\DatasetDetails\components\DatasetCard\index.tsx", "TypeScript JSX", 0, 0, 53, 0, 0, 2, 3, 58
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\DatasetDetails\components\DatasetFilesTable\index.tsx", "TypeScript JSX", 0, 0, 145, 0, 0, 6, 10, 161
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\DatasetDetails\index.tsx", "TypeScript JSX", 0, 0, 88, 0, 0, 9, 8, 105
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Dataset\DatasetLabel\index.css", "CSS", 0, 0, 0, 38, 0, 3, 7, 48
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Dataset\DatasetLabel\index.tsx", "TypeScript JSX", 0, 0, 102, 0, 0, 4, 10, 116
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Dataset\DatasetList\index.css", "CSS", 0, 0, 0, 6, 0, 0, 0, 6
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Dataset\DatasetList\index.tsx", "TypeScript JSX", 0, 0, 16, 0, 0, 0, 4, 20
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Dataset\ListHeader\index.tsx", "TypeScript JSX", 0, 0, 40, 0, 0, 3, 4, 47
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Dataset\ListItem\index.tsx", "TypeScript JSX", 0, 0, 20, 0, 0, 0, 3, 23
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Dataset\ListPagination\index.tsx", "TypeScript JSX", 0, 0, 24, 0, 0, 0, 7, 31
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Dataset\index.tsx", "TypeScript JSX", 0, 0, 34, 0, 0, 0, 2, 36
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Doc\index.css", "CSS", 0, 0, 0, 3, 0, 0, 0, 3
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Doc\index.tsx", "TypeScript JSX", 0, 0, 10, 0, 0, 2, 2, 14
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Home\index.tsx", "TypeScript JSX", 0, 0, 17, 0, 0, 1, 5, 23
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Login\index.css", "CSS", 0, 0, 0, 45, 0, 0, 8, 53
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Login\index.tsx", "TypeScript JSX", 0, 0, 77, 0, 0, 6, 8, 91
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\ModelDetails\components\ModelCard\hahaha.md", "Markdown", 0, 0, 0, 0, 80, 0, 34, 114
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\ModelDetails\components\ModelCard\index.css", "CSS", 0, 0, 0, 23, 0, 0, 6, 29
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\ModelDetails\components\ModelCard\index.tsx", "TypeScript JSX", 0, 0, 54, 0, 0, 3, 4, 61
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\ModelDetails\components\ModelFilesTable\index.css", "CSS", 0, 0, 0, 61, 0, 0, 18, 79
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\ModelDetails\components\ModelFilesTable\index.tsx", "TypeScript JSX", 0, 0, 146, 0, 0, 6, 9, 161
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\ModelDetails\index.css", "CSS", 0, 0, 0, 23, 0, 0, 4, 27
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\ModelDetails\index.tsx", "TypeScript JSX", 0, 0, 88, 0, 0, 1, 9, 98
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ListHeader\index.css", "CSS", 0, 0, 0, 16, 0, 1, 3, 20
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ListHeader\index.tsx", "TypeScript JSX", 0, 0, 41, 0, 0, 3, 4, 48
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ListItem\index.tsx", "TypeScript JSX", 0, 0, 20, 0, 0, 0, 3, 23
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ListPagination\index.css", "CSS", 0, 0, 0, 6, 0, 0, 0, 6
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ListPagination\index.tsx", "TypeScript JSX", 0, 0, 25, 0, 0, 0, 6, 31
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ModelLabel\index.css", "CSS", 0, 0, 0, 30, 0, 3, 6, 39
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ModelLabel\index.tsx", "TypeScript JSX", 0, 0, 102, 0, 0, 4, 9, 115
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ModelList\index.css", "CSS", 0, 0, 0, 5, 0, 0, 0, 5
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ModelList\index.tsx", "TypeScript JSX", 0, 0, 17, 0, 0, 0, 3, 20
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\index.css", "CSS", 0, 0, 0, 23, 0, 0, 5, 28
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\index.tsx", "TypeScript JSX", 0, 0, 35, 0, 0, 1, 2, 38
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\User\index.tsx", "TypeScript JSX", 0, 0, 11, 0, 0, 0, 2, 13
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Welcome\index.tsx", "TypeScript JSX", 0, 0, 6, 0, 0, 0, 2, 8
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\react-app-env.d.ts", "TypeScript", 54, 0, 0, 0, 0, 3, 15, 72
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\routes\index.tsx", "TypeScript JSX", 0, 0, 54, 0, 0, 29, 5, 88
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\setupProxy.js", "JavaScript", 0, 10, 0, 0, 0, 0, 1, 11
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\setupTests.ts", "TypeScript", 1, 0, 0, 0, 0, 4, 1, 6
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\datasetDetail\datasetDetailAPI.ts", "TypeScript", 5, 0, 0, 0, 0, 1, 2, 8
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\datasetDetail\datasetDetailSlice.ts", "TypeScript", 51, 0, 0, 0, 0, 45, 9, 105
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\dataset\datasetAPI.ts", "TypeScript", 14, 0, 0, 0, 0, 3, 6, 23
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\dataset\datasetSlice.ts", "TypeScript", 134, 0, 0, 0, 0, 42, 17, 193
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\login\loginAPI.ts", "TypeScript", 6, 0, 0, 0, 0, 1, 2, 9
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\login\loginSlice.ts", "TypeScript", 31, 0, 0, 0, 0, 32, 13, 76
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\modelDetail\modelDetailAPI.ts", "TypeScript", 5, 0, 0, 0, 0, 1, 6, 12
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\modelDetail\modelDetailSlice.ts", "TypeScript", 51, 0, 0, 0, 0, 45, 9, 105
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\model\modelAPI.ts", "TypeScript", 14, 0, 0, 0, 0, 3, 6, 23
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\model\modelSlice.ts", "TypeScript", 136, 0, 0, 0, 0, 43, 13, 192
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\personalFiles\personalFilesAPI.ts", "TypeScript", 5, 0, 0, 0, 0, 1, 3, 9
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\personalFiles\personalFilesSlice.ts", "TypeScript", 33, 0, 0, 0, 0, 13, 9, 55
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\search\searchAPI.ts", "TypeScript", 5, 0, 0, 0, 0, 1, 1, 7
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\search\searchSlice.ts", "TypeScript", 39, 0, 0, 0, 0, 29, 10, 78
+"f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\store.ts", "TypeScript", 27, 0, 0, 0, 0, 0, 3, 30
+"Total", "-", 1055, 10, 1537, 408, 160, 401, 522, 4093

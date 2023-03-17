@@ -1,0 +1,46 @@
+.leftStyle {
+    background: linear-gradient(to right, #ffffff, #f7f9fa);
+    border-right-color: #e9e9e9 !important;
+    border-right: solid;
+    border-right-width: 0.8px;
+    min-height: 100%;
+    padding: 35px 20px;
+}
+
+.activeFiltersButton {
+    display: flex;
+    align-items: center;
+}
+
+.activeFilterNumber-active {
+    color: #000000;
+    margin: 0 -5px 0 5px;
+    background-color: #e9e9e9;
+    z-index: 110;
+    border-radius: 999px;
+    height: 80%;
+    padding: 0 5px;
+    line-height: 120%;
+
+}
+
+.activeFilterNumber-inactive {
+    color: #ffffff;
+    margin: 0 -5px 0 5px;
+    background-color: #4c4e6e;
+    z-index: 110;
+    border-radius: 999px;
+    height: 80%;
+    padding: 0 5px;
+    line-height: 120%;
+
+}
+
+.searchDiv {
+    display: flex;
+}
+
+
+.resetButtonStyle {
+    margin-left: 10px;
+}

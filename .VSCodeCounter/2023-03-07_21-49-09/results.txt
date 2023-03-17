@@ -1,0 +1,166 @@
+Date : 2023-03-07 21:49:09
+Directory : f:\研究生学习\编程学习\my_projects\model_library_ts\src
+Total : 84 files,  3170 codes, 401 comments, 522 blanks, all 4093 lines
+
+Languages
++----------------+------------+------------+------------+------------+------------+
+| language       | files      | code       | comment    | blank      | total      |
++----------------+------------+------------+------------+------------+------------+
+| TypeScript JSX |         35 |      1,537 |         96 |        184 |      1,817 |
+| TypeScript     |         27 |      1,055 |        292 |        193 |      1,540 |
+| CSS            |         19 |        408 |         13 |         76 |        497 |
+| Markdown       |          2 |        160 |          0 |         68 |        228 |
+| JavaScript     |          1 |         10 |          0 |          1 |         11 |
++----------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                       | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                          |         84 |      3,170 |        401 |        522 |      4,093 |
+| . (Files)                                                                                                  |          6 |        123 |         14 |         32 |        169 |
+| app                                                                                                        |          4 |        242 |         21 |         25 |        288 |
+| components                                                                                                 |         15 |        383 |         15 |         64 |        462 |
+| components\CategoryLabel                                                                                   |          2 |         43 |          0 |         10 |         53 |
+| components\DatasetItem                                                                                     |          2 |         27 |          0 |          6 |         33 |
+| components\GlobalHeader                                                                                    |          2 |         93 |          4 |         15 |        112 |
+| components\HomeLoggedIn                                                                                    |          2 |         73 |          1 |          4 |         78 |
+| components\HomeLoggedInItem                                                                                |          2 |         26 |          0 |          8 |         34 |
+| components\LabelBlock                                                                                      |          1 |         43 |          3 |          8 |         54 |
+| components\ModelItem                                                                                       |          2 |         40 |          1 |          7 |         48 |
+| components\PersonalProfile                                                                                 |          1 |         10 |          0 |          2 |         12 |
+| components\TasksMainPage                                                                                   |          1 |         28 |          6 |          4 |         38 |
+| models                                                                                                     |          6 |        202 |          4 |         43 |        249 |
+| pages                                                                                                      |         37 |      1,610 |         58 |        244 |      1,912 |
+| pages\Dataset                                                                                              |          8 |        280 |         10 |         37 |        327 |
+| pages\Dataset (Files)                                                                                      |          1 |         34 |          0 |          2 |         36 |
+| pages\DatasetDetails                                                                                       |          4 |        366 |         17 |         55 |        438 |
+| pages\DatasetDetails (Files)                                                                               |          1 |         88 |          9 |          8 |        105 |
+| pages\DatasetDetails\components                                                                            |          3 |        278 |          8 |         47 |        333 |
+| pages\DatasetDetails\components\DatasetCard                                                                |          2 |        133 |          2 |         37 |        172 |
+| pages\DatasetDetails\components\DatasetFilesTable                                                          |          1 |        145 |          6 |         10 |        161 |
+| pages\Dataset\DatasetLabel                                                                                 |          2 |        140 |          7 |         17 |        164 |
+| pages\Dataset\DatasetList                                                                                  |          2 |         22 |          0 |          4 |         26 |
+| pages\Dataset\ListHeader                                                                                   |          1 |         40 |          3 |          4 |         47 |
+| pages\Dataset\ListItem                                                                                     |          1 |         20 |          0 |          3 |         23 |
+| pages\Dataset\ListPagination                                                                               |          1 |         24 |          0 |          7 |         31 |
+| pages\Doc                                                                                                  |          2 |         13 |          2 |          2 |         17 |
+| pages\Home                                                                                                 |          1 |         17 |          1 |          5 |         23 |
+| pages\Login                                                                                                |          2 |        122 |          6 |         16 |        144 |
+| pages\Model                                                                                                |         11 |        320 |         12 |         41 |        373 |
+| pages\Model (Files)                                                                                        |          2 |         58 |          1 |          7 |         66 |
+| pages\ModelDetails                                                                                         |          7 |        475 |         10 |         84 |        569 |
+| pages\ModelDetails (Files)                                                                                 |          2 |        111 |          1 |         13 |        125 |
+| pages\ModelDetails\components                                                                              |          5 |        364 |          9 |         71 |        444 |
+| pages\ModelDetails\components\ModelCard                                                                    |          3 |        157 |          3 |         44 |        204 |
+| pages\ModelDetails\components\ModelFilesTable                                                              |          2 |        207 |          6 |         27 |        240 |
+| pages\Model\ListHeader                                                                                     |          2 |         57 |          4 |          7 |         68 |
+| pages\Model\ListItem                                                                                       |          1 |         20 |          0 |          3 |         23 |
+| pages\Model\ListPagination                                                                                 |          2 |         31 |          0 |          6 |         37 |
+| pages\Model\ModelLabel                                                                                     |          2 |        132 |          7 |         15 |        154 |
+| pages\Model\ModelList                                                                                      |          2 |         22 |          0 |          3 |         25 |
+| pages\User                                                                                                 |          1 |         11 |          0 |          2 |         13 |
+| pages\Welcome                                                                                              |          1 |          6 |          0 |          2 |          8 |
+| routes                                                                                                     |          1 |         54 |         29 |          5 |         88 |
+| store                                                                                                      |         15 |        556 |        260 |        109 |        925 |
+| store (Files)                                                                                              |          1 |         27 |          0 |          3 |         30 |
+| store\features                                                                                             |         14 |        529 |        260 |        106 |        895 |
+| store\features\dataset                                                                                     |          2 |        148 |         45 |         23 |        216 |
+| store\features\datasetDetail                                                                               |          2 |         56 |         46 |         11 |        113 |
+| store\features\login                                                                                       |          2 |         37 |         33 |         15 |         85 |
+| store\features\model                                                                                       |          2 |        150 |         46 |         19 |        215 |
+| store\features\modelDetail                                                                                 |          2 |         56 |         46 |         15 |        117 |
+| store\features\personalFiles                                                                               |          2 |         38 |         14 |         12 |         64 |
+| store\features\search                                                                                      |          2 |         44 |         30 |         11 |         85 |
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| filename                                                                                                   | language       | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\App.tsx                                                     | TypeScript JSX |         37 |          2 |          6 |         45 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\app\LabelConversionArray.ts                                 | TypeScript     |          2 |          0 |          1 |          3 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\app\displayNumberOfBytes.ts                                 | TypeScript     |          8 |          0 |          1 |          9 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\app\hooks.ts                                                | TypeScript     |          4 |          1 |          2 |          7 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\app\mock.ts                                                 | TypeScript     |        228 |         20 |         21 |        269 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\CategoryLabel\index.css                          | CSS            |          9 |          0 |          2 |         11 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\CategoryLabel\index.tsx                          | TypeScript JSX |         34 |          0 |          8 |         42 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\DatasetItem\index.css                            | CSS            |         11 |          0 |          2 |         13 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\DatasetItem\index.tsx                            | TypeScript JSX |         16 |          0 |          4 |         20 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\GlobalHeader\index.css                           | CSS            |         51 |          4 |          8 |         63 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\GlobalHeader\index.tsx                           | TypeScript JSX |         42 |          0 |          7 |         49 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\HomeLoggedInItem\index.css                       | CSS            |          3 |          0 |          0 |          3 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\HomeLoggedInItem\index.tsx                       | TypeScript JSX |         23 |          0 |          8 |         31 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\HomeLoggedIn\index.css                           | CSS            |         23 |          1 |          2 |         26 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\HomeLoggedIn\index.tsx                           | TypeScript JSX |         50 |          0 |          2 |         52 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\LabelBlock\index.tsx                             | TypeScript JSX |         43 |          3 |          8 |         54 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\ModelItem\index.css                              | CSS            |         24 |          1 |          4 |         29 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\ModelItem\index.tsx                              | TypeScript JSX |         16 |          0 |          3 |         19 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\PersonalProfile\index.tsx                        | TypeScript JSX |         10 |          0 |          2 |         12 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\TasksMainPage\index.tsx                          | TypeScript JSX |         28 |          6 |          4 |         38 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\index.css                                                   | CSS            |          8 |          0 |          1 |          9 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\index.tsx                                                   | TypeScript JSX |         13 |          5 |          8 |         26 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\models\dataset.d.ts                                         | TypeScript     |         50 |          1 |          9 |         60 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\models\datasetDetail.d.ts                                   | TypeScript     |         36 |          1 |          9 |         46 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\models\login.d.ts                                           | TypeScript     |         22 |          0 |          7 |         29 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\models\model.d.ts                                           | TypeScript     |         53 |          1 |          9 |         63 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\models\modelDetail.d.ts                                     | TypeScript     |         36 |          1 |          9 |         46 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\models\personalFiles.d.ts                                   | TypeScript     |          5 |          0 |          0 |          5 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\DatasetDetails\components\DatasetCard\hahaha.md       | Markdown       |         80 |          0 |         34 |        114 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\DatasetDetails\components\DatasetCard\index.tsx       | TypeScript JSX |         53 |          2 |          3 |         58 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\DatasetDetails\components\DatasetFilesTable\index.tsx | TypeScript JSX |        145 |          6 |         10 |        161 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\DatasetDetails\index.tsx                              | TypeScript JSX |         88 |          9 |          8 |        105 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Dataset\DatasetLabel\index.css                        | CSS            |         38 |          3 |          7 |         48 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Dataset\DatasetLabel\index.tsx                        | TypeScript JSX |        102 |          4 |         10 |        116 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Dataset\DatasetList\index.css                         | CSS            |          6 |          0 |          0 |          6 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Dataset\DatasetList\index.tsx                         | TypeScript JSX |         16 |          0 |          4 |         20 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Dataset\ListHeader\index.tsx                          | TypeScript JSX |         40 |          3 |          4 |         47 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Dataset\ListItem\index.tsx                            | TypeScript JSX |         20 |          0 |          3 |         23 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Dataset\ListPagination\index.tsx                      | TypeScript JSX |         24 |          0 |          7 |         31 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Dataset\index.tsx                                     | TypeScript JSX |         34 |          0 |          2 |         36 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Doc\index.css                                         | CSS            |          3 |          0 |          0 |          3 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Doc\index.tsx                                         | TypeScript JSX |         10 |          2 |          2 |         14 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Home\index.tsx                                        | TypeScript JSX |         17 |          1 |          5 |         23 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Login\index.css                                       | CSS            |         45 |          0 |          8 |         53 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Login\index.tsx                                       | TypeScript JSX |         77 |          6 |          8 |         91 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\ModelDetails\components\ModelCard\hahaha.md           | Markdown       |         80 |          0 |         34 |        114 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\ModelDetails\components\ModelCard\index.css           | CSS            |         23 |          0 |          6 |         29 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\ModelDetails\components\ModelCard\index.tsx           | TypeScript JSX |         54 |          3 |          4 |         61 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\ModelDetails\components\ModelFilesTable\index.css     | CSS            |         61 |          0 |         18 |         79 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\ModelDetails\components\ModelFilesTable\index.tsx     | TypeScript JSX |        146 |          6 |          9 |        161 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\ModelDetails\index.css                                | CSS            |         23 |          0 |          4 |         27 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\ModelDetails\index.tsx                                | TypeScript JSX |         88 |          1 |          9 |         98 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ListHeader\index.css                            | CSS            |         16 |          1 |          3 |         20 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ListHeader\index.tsx                            | TypeScript JSX |         41 |          3 |          4 |         48 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ListItem\index.tsx                              | TypeScript JSX |         20 |          0 |          3 |         23 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ListPagination\index.css                        | CSS            |          6 |          0 |          0 |          6 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ListPagination\index.tsx                        | TypeScript JSX |         25 |          0 |          6 |         31 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ModelLabel\index.css                            | CSS            |         30 |          3 |          6 |         39 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ModelLabel\index.tsx                            | TypeScript JSX |        102 |          4 |          9 |        115 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ModelList\index.css                             | CSS            |          5 |          0 |          0 |          5 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ModelList\index.tsx                             | TypeScript JSX |         17 |          0 |          3 |         20 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\index.css                                       | CSS            |         23 |          0 |          5 |         28 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\index.tsx                                       | TypeScript JSX |         35 |          1 |          2 |         38 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\User\index.tsx                                        | TypeScript JSX |         11 |          0 |          2 |         13 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Welcome\index.tsx                                     | TypeScript JSX |          6 |          0 |          2 |          8 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\react-app-env.d.ts                                          | TypeScript     |         54 |          3 |         15 |         72 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\routes\index.tsx                                            | TypeScript JSX |         54 |         29 |          5 |         88 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\setupProxy.js                                               | JavaScript     |         10 |          0 |          1 |         11 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\setupTests.ts                                               | TypeScript     |          1 |          4 |          1 |          6 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\datasetDetail\datasetDetailAPI.ts            | TypeScript     |          5 |          1 |          2 |          8 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\datasetDetail\datasetDetailSlice.ts          | TypeScript     |         51 |         45 |          9 |        105 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\dataset\datasetAPI.ts                        | TypeScript     |         14 |          3 |          6 |         23 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\dataset\datasetSlice.ts                      | TypeScript     |        134 |         42 |         17 |        193 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\login\loginAPI.ts                            | TypeScript     |          6 |          1 |          2 |          9 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\login\loginSlice.ts                          | TypeScript     |         31 |         32 |         13 |         76 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\modelDetail\modelDetailAPI.ts                | TypeScript     |          5 |          1 |          6 |         12 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\modelDetail\modelDetailSlice.ts              | TypeScript     |         51 |         45 |          9 |        105 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\model\modelAPI.ts                            | TypeScript     |         14 |          3 |          6 |         23 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\model\modelSlice.ts                          | TypeScript     |        136 |         43 |         13 |        192 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\personalFiles\personalFilesAPI.ts            | TypeScript     |          5 |          1 |          3 |          9 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\personalFiles\personalFilesSlice.ts          | TypeScript     |         33 |         13 |          9 |         55 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\search\searchAPI.ts                          | TypeScript     |          5 |          1 |          1 |          7 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\search\searchSlice.ts                        | TypeScript     |         39 |         29 |         10 |         78 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\store.ts                                              | TypeScript     |         27 |          0 |          3 |         30 |
+| Total                                                                                                      |                |      3,170 |        401 |        522 |      4,093 |
++------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+

@@ -1,0 +1,66 @@
+.createItem0 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+    margin-top: 64px;
+    width: 640px;
+
+    .modelIcon {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 10px;
+    }
+}
+
+.createDatasetIcon {
+    font-size: 36px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    color: rgba(255, 60, 90, 0.8)
+}
+
+
+.createItemInput {
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
+    width: 100%;
+}
+
+.createItemSubtitle {
+    color: rgb(107 114 128);
+    margin: 5px 0 30px 0;
+    font-size: 18px;
+}
+
+.splitLine {
+    color: #c0c0c0;
+    font-size: 28px;
+    font-weight: 200;
+}
+
+.radioGroup {
+    border-top: 0.8px solid #e5e7eb;
+    border-bottom: 0.8px solid #e5e7eb;
+    width: 100%;
+    padding: 20px 0 20px 0;
+    margin-top: -20px;
+}
+
+.radioItem {
+    display: flex;
+    gap: 12px;
+    margin-left: 5px;
+    align-items: normal
+}
+
+.radioIcon {
+    font-size: 24px;
+}
+
+.radioBoldFont {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: -10px;
+}
