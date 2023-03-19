@@ -11,7 +11,7 @@ import md from './hahaha.md'
 import MarkdownNavbar from 'markdown-navbar';
 import { Col, Row } from 'antd'
 import 'markdown-navbar/dist/navbar.css';
-import "./index.css"
+import './index.scss'
 // import '../../../../app/mock'
 
 //详情页面的模型/数据集简介，主要内容为readme.md的渲染

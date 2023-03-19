@@ -6,7 +6,7 @@ import {  useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import ModelIcon from '../../components/ModelIcon'
 import { RootState } from '../../store/store';
-import './index.css'
+import './index.scss'
 
 export default function CreateItem(props: { type: string }) {
     // radio存储公有私有信息

@@ -1,6 +1,6 @@
 import { Col, Row } from 'antd'
 import ModelItem from '../ModelItem'
-import './index.css'
+import './index.scss'
 
 export default function ModelListItem(props: { list: Array<ModelType.ModelItem> }) {
     return (

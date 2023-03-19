@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { clearAllModelList, setModelListAsync } from '../../store/features/model/modelSlice'
 import ModelLabel from './ModelLabel'
 import ModelList from './ModelList'
-import "./index.css"
+import './index.scss'
 import { useLocation } from 'react-router-dom'
 
 export default function Model() {

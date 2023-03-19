@@ -2,7 +2,7 @@ import { ArrowDownOutlined, DatabaseFilled } from '@ant-design/icons'
 import React, { useCallback } from 'react'
 import { useNavigate } from 'react-router'
 import { getTimeYMD } from '../../app/getTimeYMD'
-import './index.css'
+import './index.scss'
 
 export default function DatasetItem(props: { item: DatasetType.DatasetItem }) {
     const navigate = useNavigate()

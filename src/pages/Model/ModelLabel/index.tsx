@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react"
 import { Space, Button, Input } from "antd"
 import axios from "axios"
-import "./index.css"
+import './index.scss'
 import TasksMainPage from "../../../components/TasksMainPage"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../store/store"

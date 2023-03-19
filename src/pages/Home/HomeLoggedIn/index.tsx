@@ -10,7 +10,7 @@ import { RootState } from '../../../store/store'
 import DatasetItem from '../../../components/DatasetItem'
 import ModelItem from '../../../components/ModelItem'
 import UpdateMessage from '../../../components/UpdateMessage'
-import './index.css'
+import './index.scss'
 import { ReactComponent as ProfileIcon } from "./profile.svg"
 
 export default function HomeLoggedIn() {

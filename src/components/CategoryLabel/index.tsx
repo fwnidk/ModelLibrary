@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setDatasetListAsync, removeDatasetListAsync } from '../../store/features/dataset/datasetSlice';
 import { setModelListAsync, removeModelListAsync } from '../../store/features/model/modelSlice';
-import "./index.css"
+import './index.scss'
 
 export default function CategoryLabel(props: { value: any, type: string }) {
     const active = props.value.active

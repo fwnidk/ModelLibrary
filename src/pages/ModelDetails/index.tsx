@@ -7,7 +7,7 @@ import { modelLabelConversionArray } from '../../app/LabelConversionArray';
 import { getModelDetailAsync } from '../../store/features/modelDetail/modelDetailSlice';
 import { RootState } from '../../store/store';
 
-import './index.css'
+import './index.scss'
 
 export default function Details() {
     // const [activeMenu, setActiveMenu] = useState("modelcard")

@@ -3,7 +3,7 @@ import "diff2html/bundles/css/diff2html.min.css";
 import { createTwoFilesPatch } from "diff";
 import { parse } from "diff2html";
 import { Diff2HtmlUI } from "diff2html/lib/ui/js/diff2html-ui";
-import './index.css'
+import './index.scss'
 
 export default function DiffComponent(props: { diffDataList: Array<any> }) {
     const { diffDataList } = props;

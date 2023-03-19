@@ -1,5 +1,5 @@
 import { Space } from 'antd'
-import "./index.css"
+import './index.scss'
 import React from 'react'
 
 import ModelListItem from '../../../components/ModelListItem'

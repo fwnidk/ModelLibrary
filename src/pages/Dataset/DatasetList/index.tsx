@@ -2,7 +2,7 @@ import { Space } from 'antd'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../store/store'
-
+import './index.scss'
 
 import ListHeader from '../ListHeader'
 import DatasetListItem from '../../../components/DatasetListItem'

@@ -3,7 +3,7 @@ import { ColumnsType } from 'antd/es/table';
 import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import "./index.css"
+import './index.scss'
 import "../../../../app/mock"
 import { displayNumberOfBytes } from '../../../../app/displayNumberOfBytes';
 import { ArrowDownOutlined, FileOutlined, FolderFilled } from '@ant-design/icons';

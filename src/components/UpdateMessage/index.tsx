@@ -1,6 +1,6 @@
 import { DatabaseFilled } from '@ant-design/icons'
 import ModelIcon from '../ModelIcon'
-import './index.css'
+import './index.scss'
 
 //一行话，描述 模型/数据集 的更新时间
 export default function HomeLoggedInItem(props: { type: string, lastModified: string }) {

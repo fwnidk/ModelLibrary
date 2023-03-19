@@ -1,6 +1,6 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import { Alert, Button, Form, Input, Space, Typography, } from 'antd'
-import './index.css'
+import './index.scss'
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';

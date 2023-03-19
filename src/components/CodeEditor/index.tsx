@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import AceEditor from "react-ace";
-import './index.css'
+import './index.scss'
 import '../../app/mock'
 
 import "ace-builds/src-noconflict/mode-javascript";

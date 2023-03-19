@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './index.css'
+import './index.scss'
 import GlobalHeader from './components/GlobalHeader';
 import { ConfigProvider, Layout } from 'antd';
 import { Outlet } from 'react-router';

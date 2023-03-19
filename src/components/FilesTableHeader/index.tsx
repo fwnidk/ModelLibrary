@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { getTimeAgoString } from '../../app/getTimeAgoString'
 import { RootState } from '../../store/store'
 import PersonalIcon from '../PersonalIcon'
-import './index.css'
+import './index.scss'
 
 export default function FilesTableHeader(props: { lastModified: number, lastModifiedInformation: string }) {
     const { avatar, author, } = useSelector((state: RootState) => state.modelDetail.options)

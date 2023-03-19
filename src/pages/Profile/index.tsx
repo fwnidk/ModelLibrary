@@ -9,7 +9,7 @@ import ModelListItem from '../../components/ModelListItem';
 import PersonalIcon from '../../components/PersonalIcon';
 import { setPersonalFilesAsync } from '../../store/features/personalFiles/personalFilesSlice';
 import { RootState } from '../../store/store';
-import './index.css'
+import './index.scss'
 
 export default function Profile() {
     const dispatch = useDispatch()
