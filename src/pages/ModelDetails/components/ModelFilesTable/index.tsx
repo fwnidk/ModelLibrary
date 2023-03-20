@@ -86,7 +86,11 @@ export default function ModelFilesTable() {
                             navigate(`${location}/${encodeURI(record.fileName)}`)
                         } else {
                             let locationStr = location.split('/').slice(4).join('/');
-                            navigate(`../blob/${locationStr}`)
+                            if (locationStr === '') {
+                                navigate(`../blob/${encodeURI(record.fileName)}`)
+                            } else {
+                                navigate(`../blob/${locationStr}/${encodeURI(record.fileName)}`)
+                            }
                         }
                     }
                 }

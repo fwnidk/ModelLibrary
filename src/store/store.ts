@@ -7,6 +7,7 @@ import datasetDetailReducer from './features/datasetDetail/datasetDetailSlice';
 import loginReducer from './features/login/loginSlice';
 import personalFilesReducer from './features/personalFiles/personalFilesSlice';
 import trendingListReducer from './features/trendingList/trendingListSlice';
+import fileContentReducer from './features/fileContent/fileContentSlice';
 
 export const store: any = configureStore({
     reducer: {
@@ -18,6 +19,7 @@ export const store: any = configureStore({
         loginInformation: loginReducer,
         personalFiles: personalFilesReducer,
         trendingList: trendingListReducer,
+        fileContent: fileContentReducer,
     },
 });
 

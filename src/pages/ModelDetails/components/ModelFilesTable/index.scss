@@ -38,7 +38,7 @@
 .isAFolderIcon {
     font-size: 16px;
 
-    .folderFilled {
+    &.folderFilled {
         color: rgb(96, 165, 250);
     }
 }

@@ -1,18 +1,21 @@
 import React, { useEffect } from 'react'
 import AceEditor from "react-ace";
 import './index.scss'
-import '../../app/mock'
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-textmate";
 import "ace-builds/src-noconflict/ext-language_tools";
 import FilesTableHeader from '../FilesTableHeader';
 import { Button } from 'antd';
 import { DeleteOutlined, DownloadOutlined, EditOutlined, HistoryOutlined } from '@ant-design/icons';
-import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router';
 import { ReactComponent as RawIcon } from "../../app/icons/raw.svg"
 import { displayNumberOfBytes } from '../../app/displayNumberOfBytes';
 import FileBreadCrumb from '../FileBreadcrumb';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { fetchFileContentAsync } from '../../store/features/fileContent/fileContentSlice';
+import LoadingStatus from '../LoadingStatus';
+import ErrorStatus from '../ErrorStatus';
 
 
 //代码的展示
@@ -27,57 +30,45 @@ export default function CodeDisplay() {
     //     ?displayData
     // }
 
-    const reducer = (state: any, action: any) => {
-        switch (action.type) {
-            case 'setCode': {
-                return {
-                    ...state,
-                    displayData: action.payload
-                }
-            }
-            case 'initData': {
-                return {
-                    ...action.payload,
-                }
-            }
-        }
-    }
-
+    const { data, isLoading, isError } = useSelector((state: RootState) => state.fileContent)
+    const dispatch = useDispatch()
     const location = useLocation().pathname
-    const [state, dispatch] = React.useReducer(reducer, undefined)
     const aceEditorRef = React.useRef(null)
     const navigate = useNavigate()
 
     useEffect(() => {
-        const getData = async () => {
-            const response = await axios.post('/api/getBlob', location);
-            dispatch({ type: 'initData', payload: response.data })
-        }
-        getData().catch((err) => { console.log(err) });
-    }, [location])
+        dispatch(fetchFileContentAsync(location))
+    }, [dispatch, location])
 
-    const handleChange = (value: string) => {
-        dispatch({ type: 'setCode', payload: value })
+    // const handleChange = (value: string) => {
+    //     dispatch({ type: 'setCode', payload: value })
+    // }
+    if (isLoading) {
+        return <LoadingStatus />;
     }
+    if (isError) {
+        return <ErrorStatus />;
+    }
+
     return (
-        state === undefined ?
+        data === null ?
             <h1>loading</h1> :
             <>
                 <FileBreadCrumb />
-                <FilesTableHeader lastModified={state.lastModified} lastModifiedInformation={state.lastModifiedInformation} ></FilesTableHeader>
+                <FilesTableHeader lastModified={data.lastModified} lastModifiedInformation={data.lastModifiedInformation} ></FilesTableHeader>
                 <div className='codeToolbar'>
                     <Button
                         type='link'
                         className='codeToolbarButton'
                         onClick={() => {
-                            console.log(state.displayData);
+                            console.log(data.displayData);
                         }}
                     ><DownloadOutlined />下载</Button>
                     <Button
                         type='link'
                         className='codeToolbarButton'
                         onClick={() => {
-                            console.log(state.displayData);
+                            console.log(data.displayData);
                         }}>
                         <div className='rawButton'>
                             <RawIcon className='rawIcon' />
@@ -89,11 +80,14 @@ export default function CodeDisplay() {
                         className='codeToolbarButton'
 
                     ><HistoryOutlined />修改历史</Button>
-                    {!state.displayable || <Button
+                    {!data.displayable || <Button
                         type='link'
                         className='codeToolbarButton'
                         onClick={
-                            () => { navigate('../edit/') }
+                            () => {
+                                let locationStr = location.split('/').slice(4).join('/');
+                                navigate(`../edit/${locationStr}`)
+                            }
                         }
                     ><EditOutlined />编辑</Button>}
                     <Button
@@ -102,17 +96,17 @@ export default function CodeDisplay() {
 
                     ><DeleteOutlined />删除</Button>
                     <div className='codeToolbarFileSize'>
-                        {displayNumberOfBytes(state.size)}
+                        {displayNumberOfBytes(data.size)}
                     </div>
                 </div>
 
                 {
-                    state.displayable ?
+                    data.displayable ?
                         <div className='codeEditorContainer'>
                             <AceEditor
                                 ref={aceEditorRef}
                                 mode="javascript"
-                                defaultValue={state.displayData}
+                                defaultValue={data.displayData}
                                 theme="textmate"
                                 name="UNIQUE_ID_OF_DIV"
                                 editorProps={{ $blockScrolling: true }}
@@ -122,7 +116,6 @@ export default function CodeDisplay() {
                                 focus={true}
                                 enableLiveAutocompletion={true}
                                 debounceChangePeriod={500}
-                                onChange={handleChange}
                                 highlightActiveLine={false}
                                 readOnly={true}
                             />
