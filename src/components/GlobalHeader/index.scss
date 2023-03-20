@@ -3,15 +3,6 @@
     /* border-bottom: #000000 1px solid; */
 }
 
-.ant-menu-light.ant-menu-horizontal>.ant-menu-item-selected::after, .ant-menu-light.ant-menu-horizontal>.ant-menu-submenu-selected::after {
-    border: white;
-
-    .ant-menu-light.ant-menu-horizontal>.ant-menu-item-active::after, .ant-menu-light.ant-menu-horizontal>.ant-menu-submenu-active::after, .ant-menu-light.ant-menu-horizontal>.ant-menu-item-open::after, .ant-menu-light.ant-menu-horizontal>.ant-menu-submenu-open::after {
-        border: white;
-    }
-}
-
-
 
 .ant-layout-header {
     background-color: #FFFFFF !important;
@@ -31,6 +22,11 @@
     width: 100%;
     max-width: 1500px;
     margin: auto;
+
+}
+
+.globalHeader ::after {
+    border: none !important;
 }
 
 .globalHeaderShell {

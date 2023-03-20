@@ -31,7 +31,7 @@ export default function Details() {
             ),
         },
         {
-            key: 'tree/main',
+            key: 'tree',
             label: (
                 <span className='tabsFont'>
                     <ProfileOutlined />文件
@@ -44,7 +44,7 @@ export default function Details() {
         navigate(key)
     }, [navigate])
     const setActiveKey = useCallback(() => {
-        return location.pathname.length === 7 + encodeURI(search as string).length ? "" : 'tree/main'
+        return location.pathname.length === 7 + encodeURI(search as string).length ? "" : 'tree'
     }, [location.pathname, search])
     const handleClickLabel = useCallback((filter: string, label: string) => {
         navigate("/models", {

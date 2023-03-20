@@ -9,9 +9,10 @@ import FilesTableHeader from '../FilesTableHeader';
 import { Button } from 'antd';
 import { DeleteOutlined, DownloadOutlined, EditOutlined, HistoryOutlined } from '@ant-design/icons';
 import axios from 'axios';
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { ReactComponent as RawIcon } from "../../app/icons/raw.svg"
 import { displayNumberOfBytes } from '../../app/displayNumberOfBytes';
+import FileBreadCrumb from '../FileBreadcrumb';
 
 
 //代码的展示
@@ -45,6 +46,7 @@ export default function CodeDisplay() {
     const location = useLocation().pathname
     const [state, dispatch] = React.useReducer(reducer, undefined)
     const aceEditorRef = React.useRef(null)
+    const navigate = useNavigate()
 
     useEffect(() => {
         const getData = async () => {
@@ -61,6 +63,7 @@ export default function CodeDisplay() {
         state === undefined ?
             <h1>loading</h1> :
             <>
+                <FileBreadCrumb />
                 <FilesTableHeader lastModified={state.lastModified} lastModifiedInformation={state.lastModifiedInformation} ></FilesTableHeader>
                 <div className='codeToolbar'>
                     <Button
@@ -90,7 +93,7 @@ export default function CodeDisplay() {
                         type='link'
                         className='codeToolbarButton'
                         onClick={
-                            () => { console.log('编辑') }
+                            () => { navigate('../edit/') }
                         }
                     ><EditOutlined />编辑</Button>}
                     <Button

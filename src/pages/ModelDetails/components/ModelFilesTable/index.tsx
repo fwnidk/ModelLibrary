@@ -1,8 +1,8 @@
-import { Breadcrumb, Space, Table } from 'antd'
+import { Space, Table } from 'antd'
 import { ColumnsType } from 'antd/es/table';
 import axios from 'axios';
-import React, { useCallback, useEffect, useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom';
 import './index.scss'
 import "../../../../app/mock"
 import { displayNumberOfBytes } from '../../../../app/displayNumberOfBytes';
@@ -11,12 +11,13 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
 import { getTimeAgoString } from '../../../../app/getTimeAgoString';
 import FilesTableHeader from '../../../../components/FilesTableHeader';
+import FileBreadCrumb from '../../../../components/FileBreadcrumb';
 //详情页面的文件展示表格
 export default function ModelFilesTable() {
     const [filesTable, setFilesTable] = useState<ModelDetailType.FilesTable>()
     const navigate = useNavigate()
     const location = useLocation().pathname
-    const { name, lastModified, lastModifiedInformation  } = useSelector((state: RootState) => state.modelDetail.options)
+    const { lastModified, lastModifiedInformation } = useSelector((state: RootState) => state.modelDetail.options)
     useEffect(() => {
         //获取表格数据
         const getData = async () => {
@@ -35,21 +36,6 @@ export default function ModelFilesTable() {
         };
         getData().catch(console.error);
     }, [location])
-
-    //生成面包屑
-    const getBread = useCallback(() => {
-        const locationArr = decodeURI(location).split('/')
-        const breadcrumbContent: Array<string> = locationArr.slice(5);
-        let currRoute: string = `/model/${name}/tree/main`
-        const breadcrumbItems: Array<{ title: JSX.Element }> = breadcrumbContent.map((item) => {
-            currRoute = currRoute + '/' + item;
-            return { title: <Link to={currRoute} className='breadcrumb'>{item}</Link> }
-        })
-        breadcrumbItems.unshift(
-            { title: <Link to={`/model/${name}/tree/main`} className='breadcrumb'>{name}</Link> },
-        )
-        return breadcrumbItems
-    }, [name, location])
 
     const downloadFile = async (fileURL: string, fileName: string) => {
         console.log(fileURL);
@@ -72,22 +58,10 @@ export default function ModelFilesTable() {
         }
     }
 
-    // const onRow = useCallback((record: ModelDetailType.FilesItem) => {
-    //     return {
-    //         onClick: () => {
-    //             if (record.isAFolder) {
-    //                 navigate(location + '/' + encodeURI(record.fileName))
-    //             } else {
-    //                 downloadFile(record.fileURL as string, record.fileName)
-    //             }
-    //         },
-    //     };
-    // }, [location, navigate])
-
     const naviagteDiff = () => {
         return {
             onClick: () => {
-                navigate(`/model/${name}/commit`)
+                navigate(`../commit`)
             }
         }
     }
@@ -109,11 +83,11 @@ export default function ModelFilesTable() {
                 return {
                     onClick: () => {
                         if (record.isAFolder) {
-                            navigate(location + '/' + encodeURI(record.fileName))
+                            navigate(`${location}/${encodeURI(record.fileName)}`)
                         } else {
-                            navigate(`/model/${name}/blob/${record.fileName}`)
+                            let locationStr = location.split('/').slice(4).join('/');
+                            navigate(`../blob/${locationStr}`)
                         }
-
                     }
                 }
             }
@@ -153,24 +127,22 @@ export default function ModelFilesTable() {
         },]
 
     return (
-        <Space direction="vertical" className="filesTableSpace">
-            <Breadcrumb items={getBread()} />
-            <div>
-                <FilesTableHeader lastModified={lastModified} lastModifiedInformation={lastModifiedInformation} />
-                <Table
-                    columns={columns}
-                    dataSource={filesTable}
-                    className="filesTable"
-                    pagination={false}
-                    size="small"
-                    showHeader={false}
-                // bordered
-                // title={() =>
-                //     <FilesTableHeader />
-                // }
-                />
-            </div>
-
-        </Space >
+        <>
+            <FileBreadCrumb />
+            <FilesTableHeader lastModified={lastModified} lastModifiedInformation={lastModifiedInformation} />
+            <Table
+                columns={columns}
+                dataSource={filesTable}
+                className="filesTable"
+                pagination={false}
+                size="small"
+                showHeader={false}
+            // bordered
+            // title={() =>
+            //     <FilesTableHeader />
+            // }
+            />
+        </>
     )
+
 }
