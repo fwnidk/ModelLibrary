@@ -370,8 +370,9 @@ export const getBlob = Mock.mock("/api/getBlob",
         // let fileName = decodeURI(arr[arr.length - 1]);
         let size = Random.fileSize();
         // let fileType = fileName.split('.')[1];
-        let display = size > 5000000000 ? false : true;
-        let displayFileData = display ? { display, displayData: Random.paragraphNewLine() } : { display };
+        // let displayable = size > 5000000000 ? false : true;
+        let displayable = true;
+        let displayFileData = displayable ? { displayable, displayData: Random.paragraphNewLine() } : { displayable };
         let fileObj = Mock.mock({
             // fileName: fileName,
             // id: "@string",

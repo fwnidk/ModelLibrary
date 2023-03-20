@@ -16,7 +16,7 @@ import Setting from "../pages/Setting";
 import Profile from "../pages/Profile";
 import CreateItem from "../pages/CreateItem";
 import Commit from "../components/Commit";
-import CodeEditor from "../components/CodeEditor";
+import CodeDisplay from "../components/CodeDisplay";
 
 const router = createBrowserRouter(
     [
@@ -89,7 +89,7 @@ const router = createBrowserRouter(
                         },
                         {
                             path: "blob/*",
-                            element: <CodeEditor />
+                            element: <CodeDisplay />
                         }
                     ]
                 },

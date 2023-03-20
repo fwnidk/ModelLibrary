@@ -11,7 +11,7 @@ import DatasetItem from '../../../components/DatasetItem'
 import ModelItem from '../../../components/ModelItem'
 import UpdateMessage from '../../../components/UpdateMessage'
 import './index.scss'
-import { ReactComponent as ProfileIcon } from "./profile.svg"
+import { ReactComponent as ProfileIcon } from "../../../app/icons/profile.svg"
 
 export default function HomeLoggedIn() {
     const personalInformation: LoginType.PersonalInformation = useSelector((state: RootState) => state.loginInformation.personalInformation)

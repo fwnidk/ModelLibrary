@@ -1,0 +1,87 @@
+$grayborder : 0.8px solid rgb(229, 231, 235);
+
+.codeEditorContainer {
+    border: $grayborder;
+    padding-top: 20px;
+}
+
+.codeEditor {
+    width: 100% !important;
+    min-height: 1000px !important;
+    overflow: hidden;
+    font-family: IBMPlexMono !important;
+    line-height: 22px;
+}
+
+.codeToolbar {
+    height: 41px;
+    border-left: $grayborder;
+    border-right: $grayborder;
+    border-top: $grayborder;
+    display: flex;
+}
+
+.codeToolbarButton {
+    height: 100%;
+    color: #000;
+
+    &:hover {
+        color: #3677e8 !important;
+    }
+}
+
+.ace_scroller {
+    font-weight: 100 !important;
+}
+
+.ace_layer.ace_gutter-layer.ace_folding-enabled {
+    background-color: #ffffff;
+    color: #c0c0c0;
+}
+
+.ace_print-margin {
+    display: none;
+}
+
+.ace_gutter-cell:hover {
+    color: #000;
+}
+
+.ace_gutter-active-line.ace_gutter-cell {
+    background-color: #eeeeee;
+    color: #000;
+}
+
+.rawButton {
+    height: 100%;
+    display: flex;
+    margin-top: 0px;
+    gap: 8px;
+    padding-top: 1px;
+    // float: left;
+    // align-items: center !important;
+    // justify-content: center !important;
+}
+
+.rawSpan {
+    height: 100%;
+    line-height: 30.6px
+}
+
+.rawIcon {
+    width: 18px;
+    height: 100%;
+}
+
+.oversizedFileTip {
+    padding: 30px 0;
+    text-align: center;
+    font-size: 16px;
+    border: $grayborder;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.codeToolbarFileSize {
+    margin: auto 12px auto auto;
+}
