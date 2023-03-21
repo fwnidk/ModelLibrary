@@ -18,6 +18,6 @@ export default function Commit() {
     }, [])
 
     return (
-        fileDiffList ? <DiffComponent diffDataList={fileDiffList} /> : <></>
+        fileDiffList ? <DiffComponent diffDataList={fileDiffList} documentChangesOverview={true} /> : <></>
     )
 }

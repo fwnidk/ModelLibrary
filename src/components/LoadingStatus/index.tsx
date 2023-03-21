@@ -4,8 +4,8 @@ import './index.scss'
 
 export default function LoadingStatus() {
     return (
-        <div className='loadingStatus'>
-            <Spin />
+        <div className='loadingStatus' >
+            <Spin size='large' tip='Loading...' />
         </div>
     )
 }

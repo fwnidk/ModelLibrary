@@ -1,0 +1,239 @@
+Date : 2023-03-21 15:18:44
+Directory : f:\研究生学习\编程学习\my_projects\model_library_ts
+Total : 130 files,  38926 codes, 502 comments, 328 blanks, all 39756 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |          3 |     36,186 |          0 |          3 |     36,189 |
+| JavaScript         |         14 |      1,317 |        381 |        154 |      1,852 |
+| SCSS               |         29 |        745 |         13 |        143 |        901 |
+| TypeScript JSX     |         38 |        705 |         46 |         43 |        794 |
+| TypeScript         |         19 |        276 |         52 |         36 |        364 |
+| XML                |          3 |         30 |          0 |          0 |         30 |
+| JSON with Comments |          1 |         26 |          0 |          1 |         27 |
+| Markdown           |          1 |         26 |          0 |         21 |         47 |
+| HTML               |          1 |         18 |         23 |          3 |         44 |
+| Properties         |          1 |          1 |          0 |          0 |          1 |
+| CSS                |         20 |       -404 |        -13 |        -76 |       -493 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                       | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                          |        130 |     38,926 |        502 |        328 |     39,756 |
+| . (Files)                                                                                                  |          6 |     36,216 |          1 |         24 |     36,241 |
+| config                                                                                                     |         10 |        983 |        335 |        105 |      1,423 |
+| config (Files)                                                                                             |          6 |        911 |        328 |         88 |      1,327 |
+| config\jest                                                                                                |          3 |         65 |          7 |         14 |         86 |
+| config\webpack                                                                                             |          1 |          7 |          0 |          3 |         10 |
+| config\webpack\persistentCache                                                                             |          1 |          7 |          0 |          3 |         10 |
+| public                                                                                                     |          3 |         47 |         23 |          4 |         74 |
+| scripts                                                                                                    |          3 |        332 |         45 |         49 |        426 |
+| src                                                                                                        |        108 |      1,348 |         98 |        146 |      1,592 |
+| src (Files)                                                                                                |          3 |         29 |         -1 |          5 |         33 |
+| src\app                                                                                                    |          6 |        173 |          4 |          7 |        184 |
+| src\app (Files)                                                                                            |          3 |        143 |          4 |          7 |        154 |
+| src\app\icons                                                                                              |          3 |         30 |          0 |          0 |         30 |
+| src\components                                                                                             |         38 |        537 |         28 |         81 |        646 |
+| src\components\CategoryLabel                                                                               |          2 |         -1 |          0 |         -1 |         -2 |
+| src\components\CodeDisplay                                                                                 |          2 |        173 |         15 |         26 |        214 |
+| src\components\CodeEditor                                                                                  |          2 |         51 |          2 |         12 |         65 |
+| src\components\Commit                                                                                      |          1 |         20 |          0 |          4 |         24 |
+| src\components\DatasetItem                                                                                 |          3 |          3 |          0 |          0 |          3 |
+| src\components\DatasetListItem                                                                             |          1 |         15 |          0 |          3 |         18 |
+| src\components\DiffComponent                                                                               |          2 |        112 |          8 |         16 |        136 |
+| src\components\ErrorStatus                                                                                 |          1 |          6 |          0 |          2 |          8 |
+| src\components\FileBreadcrumb                                                                              |          2 |         37 |          1 |          3 |         41 |
+| src\components\FilesTableHeader                                                                            |          2 |         54 |          0 |          6 |         60 |
+| src\components\GlobalHeader                                                                                |          3 |         56 |         -2 |          2 |         56 |
+| src\components\HomeLoggedIn                                                                                |          2 |        -73 |         -1 |         -4 |        -78 |
+| src\components\HomeLoggedInItem                                                                            |          2 |        -26 |          0 |         -8 |        -34 |
+| src\components\LoadingStatus                                                                               |          2 |         15 |          1 |          2 |         18 |
+| src\components\ModelIcon                                                                                   |          2 |         23 |          0 |          6 |         29 |
+| src\components\ModelItem                                                                                   |          3 |         21 |          2 |          4 |         27 |
+| src\components\ModelListItem                                                                               |          2 |         19 |          0 |          2 |         21 |
+| src\components\PersonalIcon                                                                                |          1 |          7 |          1 |          2 |         10 |
+| src\components\PersonalProfile                                                                             |          1 |        -10 |          0 |         -2 |        -12 |
+| src\components\UpdateMessage                                                                               |          2 |         35 |          1 |          6 |         42 |
+| src\models                                                                                                 |          6 |         21 |          1 |          2 |         24 |
+| src\pages                                                                                                  |         44 |        454 |          7 |         24 |        485 |
+| src\pages\CreateItem                                                                                       |          2 |        157 |          3 |         14 |        174 |
+| src\pages\Dataset                                                                                          |          7 |        -13 |         -3 |         -3 |        -19 |
+| src\pages\DatasetDetails                                                                                   |          1 |          2 |          0 |          0 |          2 |
+| src\pages\DatasetDetails\components                                                                        |          1 |          2 |          0 |          0 |          2 |
+| src\pages\DatasetDetails\components\DatasetFilesTable                                                      |          1 |          2 |          0 |          0 |          2 |
+| src\pages\Dataset\DatasetLabel                                                                             |          2 |          0 |         -3 |          1 |         -2 |
+| src\pages\Dataset\DatasetList                                                                              |          3 |          7 |          0 |          0 |          7 |
+| src\pages\Dataset\ListItem                                                                                 |          1 |        -20 |          0 |         -3 |        -23 |
+| src\pages\Dataset\ListPagination                                                                           |          1 |          0 |          0 |         -1 |         -1 |
+| src\pages\Doc                                                                                              |          3 |         45 |         -1 |          2 |         46 |
+| src\pages\Home                                                                                             |          3 |        193 |          9 |         17 |        219 |
+| src\pages\Home (Files)                                                                                     |          1 |         -6 |          6 |         -1 |         -1 |
+| src\pages\Home\HomeLoggedIn                                                                                |          2 |        199 |          3 |         18 |        220 |
+| src\pages\Login                                                                                            |          3 |          4 |          0 |         -1 |          3 |
+| src\pages\Model                                                                                            |         14 |        -13 |         -3 |         -6 |        -22 |
+| src\pages\Model (Files)                                                                                    |          3 |          0 |          0 |         -2 |         -2 |
+| src\pages\ModelDetails                                                                                     |          8 |        -18 |          2 |         -9 |        -25 |
+| src\pages\ModelDetails (Files)                                                                             |          3 |          3 |          0 |         -1 |          2 |
+| src\pages\ModelDetails\components                                                                          |          5 |        -21 |          2 |         -8 |        -27 |
+| src\pages\ModelDetails\components\ModelCard                                                                |          2 |          0 |          0 |          0 |          0 |
+| src\pages\ModelDetails\components\ModelFilesTable                                                          |          3 |        -21 |          2 |         -8 |        -27 |
+| src\pages\Model\ListHeader                                                                                 |          3 |          0 |          0 |         -2 |         -2 |
+| src\pages\Model\ListItem                                                                                   |          1 |        -20 |          0 |         -3 |        -23 |
+| src\pages\Model\ListPagination                                                                             |          2 |          0 |          0 |          0 |          0 |
+| src\pages\Model\ModelLabel                                                                                 |          2 |          0 |         -3 |          0 |         -3 |
+| src\pages\Model\ModelList                                                                                  |          3 |          7 |          0 |          1 |          8 |
+| src\pages\Profile                                                                                          |          2 |         91 |          0 |          8 |         99 |
+| src\pages\Setting                                                                                          |          1 |          6 |          0 |          2 |          8 |
+| src\routes                                                                                                 |          1 |         22 |         12 |          0 |         34 |
+| src\store                                                                                                  |         10 |        112 |         47 |         27 |        186 |
+| src\store (Files)                                                                                          |          1 |          4 |          0 |          0 |          4 |
+| src\store\features                                                                                         |          9 |        108 |         47 |         27 |        182 |
+| src\store\features\dataset                                                                                 |          1 |          0 |         -2 |         -2 |         -4 |
+| src\store\features\fileContent                                                                             |          2 |         40 |         30 |         15 |         85 |
+| src\store\features\login                                                                                   |          1 |         22 |         -4 |          2 |         20 |
+| src\store\features\model                                                                                   |          1 |          9 |          8 |          0 |         17 |
+| src\store\features\modelDetail                                                                             |          1 |          1 |          0 |          0 |          1 |
+| src\store\features\personalFiles                                                                           |          1 |         -1 |          1 |          0 |          0 |
+| src\store\features\trendingList                                                                            |          2 |         37 |         14 |         12 |         63 |
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                                   | language           | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| f:\研究生学习\编程学习\my_projects\model_library_ts\.env                                                            | Properties         |          1 |          0 |          0 |          1 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\README.md                                                       | Markdown           |         26 |          0 |         21 |         47 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\config\env.js                                                   | JavaScript         |         59 |         35 |         11 |        105 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\config\getHttpsConfig.js                                        | JavaScript         |         51 |          7 |          9 |         67 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\config\jest\babelTransform.js                                   | JavaScript         |         25 |          0 |          5 |         30 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\config\jest\cssTransform.js                                     | JavaScript         |          9 |          3 |          3 |         15 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\config\jest\fileTransform.js                                    | JavaScript         |         31 |          4 |          6 |         41 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\config\modules.js                                               | JavaScript         |         80 |         30 |         25 |        135 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\config\paths.js                                                 | JavaScript         |         55 |         10 |         13 |         78 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\config\webpack.config.js                                        | JavaScript         |        603 |        188 |         23 |        814 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\config\webpackDevServer.config.js                               | JavaScript         |         63 |         58 |          7 |        128 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\config\webpack\persistentCache\createEnvironmentHash.js         | JavaScript         |          7 |          0 |          3 |         10 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\craco.config.js                                                 | JavaScript         |          2 |          1 |          0 |          3 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\package-lock.json                                               | JSON               |     35,974 |          0 |          1 |     35,975 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\package.json                                                    | JSON               |        187 |          0 |          1 |        188 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\public\font.css                                                 | CSS                |          4 |          0 |          0 |          4 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\public\index.html                                               | HTML               |         18 |         23 |          3 |         44 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\public\manifest.json                                            | JSON               |         25 |          0 |          1 |         26 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\scripts\build.js                                                | JavaScript         |        174 |         21 |         23 |        218 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\scripts\start.js                                                | JavaScript         |        122 |         17 |         16 |        155 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\scripts\test.js                                                 | JavaScript         |         36 |          7 |         10 |         53 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\App.tsx                                                     | TypeScript JSX     |         -1 |         -2 |         -3 |         -6 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\app\getTimeAgoString.ts                                     | TypeScript         |         27 |          0 |          2 |         29 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\app\getTimeYMD.ts                                           | TypeScript         |          7 |          0 |          0 |          7 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\app\icons\modelIcon.svg                                     | XML                |         12 |          0 |          0 |         12 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\app\icons\profile.svg                                       | XML                |         11 |          0 |          0 |         11 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\app\icons\raw.svg                                           | XML                |          7 |          0 |          0 |          7 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\app\mock.ts                                                 | TypeScript         |        109 |          4 |          5 |        118 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\CategoryLabel\index.css                          | CSS                |         -9 |          0 |         -2 |        -11 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\CategoryLabel\index.scss                         | SCSS               |          8 |          0 |          1 |          9 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\CodeDisplay\index.scss                           | SCSS               |         68 |          3 |         15 |         86 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\CodeDisplay\index.tsx                            | TypeScript JSX     |        105 |         12 |         11 |        128 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\CodeEditor\index.scss                            | SCSS               |          3 |          0 |          0 |          3 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\CodeEditor\index.tsx                             | TypeScript JSX     |         48 |          2 |         12 |         62 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\Commit\index.tsx                                 | TypeScript JSX     |         20 |          0 |          4 |         24 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\DatasetItem\index.css                            | CSS                |        -11 |          0 |         -2 |        -13 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\DatasetItem\index.scss                           | SCSS               |         13 |          0 |          2 |         15 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\DatasetItem\index.tsx                            | TypeScript JSX     |          1 |          0 |          0 |          1 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\DatasetListItem\index.tsx                        | TypeScript JSX     |         15 |          0 |          3 |         18 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\DiffComponent\index.scss                         | SCSS               |         58 |          3 |         12 |         73 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\DiffComponent\index.tsx                          | TypeScript JSX     |         54 |          5 |          4 |         63 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\ErrorStatus\index.tsx                            | TypeScript JSX     |          6 |          0 |          2 |          8 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\FileBreadcrumb\index.scss                        | SCSS               |          8 |          0 |          1 |          9 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\FileBreadcrumb\index.tsx                         | TypeScript JSX     |         29 |          1 |          2 |         32 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\FilesTableHeader\index.scss                      | SCSS               |         33 |          0 |          4 |         37 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\FilesTableHeader\index.tsx                       | TypeScript JSX     |         21 |          0 |          2 |         23 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\GlobalHeader\index.css                           | CSS                |        -51 |         -4 |         -8 |        -63 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\GlobalHeader\index.scss                          | SCSS               |         49 |          1 |          9 |         59 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\GlobalHeader\index.tsx                           | TypeScript JSX     |         58 |          1 |          1 |         60 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\HomeLoggedInItem\index.css                       | CSS                |         -3 |          0 |          0 |         -3 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\HomeLoggedInItem\index.tsx                       | TypeScript JSX     |        -23 |          0 |         -8 |        -31 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\HomeLoggedIn\index.css                           | CSS                |        -23 |         -1 |         -2 |        -26 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\HomeLoggedIn\index.tsx                           | TypeScript JSX     |        -50 |          0 |         -2 |        -52 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\LoadingStatus\index.scss                         | SCSS               |          5 |          1 |          0 |          6 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\LoadingStatus\index.tsx                          | TypeScript JSX     |         10 |          0 |          2 |         12 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\ModelIcon\index.scss                             | SCSS               |         15 |          0 |          4 |         19 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\ModelIcon\index.tsx                              | TypeScript JSX     |          8 |          0 |          2 |         10 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\ModelItem\index.css                              | CSS                |        -24 |         -1 |         -4 |        -29 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\ModelItem\index.scss                             | SCSS               |         36 |          0 |          8 |         44 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\ModelItem\index.tsx                              | TypeScript JSX     |          9 |          3 |          0 |         12 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\ModelListItem\index.scss                         | SCSS               |          3 |          0 |          0 |          3 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\ModelListItem\index.tsx                          | TypeScript JSX     |         16 |          0 |          2 |         18 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\PersonalIcon\index.tsx                           | TypeScript JSX     |          7 |          1 |          2 |         10 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\PersonalProfile\index.tsx                        | TypeScript JSX     |        -10 |          0 |         -2 |        -12 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\UpdateMessage\index.scss                         | SCSS               |         10 |          0 |          2 |         12 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\components\UpdateMessage\index.tsx                          | TypeScript JSX     |         25 |          1 |          4 |         30 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\index.css                                                   | CSS                |         -8 |          0 |         -1 |         -9 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\index.scss                                                  | SCSS               |         38 |          1 |          9 |         48 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\models\FileContent.d.ts                                     | TypeScript         |         11 |          1 |          2 |         14 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\models\dataset.d.ts                                         | TypeScript         |          1 |          0 |          0 |          1 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\models\login.d.ts                                           | TypeScript         |          2 |          0 |          0 |          2 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\models\model.d.ts                                           | TypeScript         |          1 |          0 |          0 |          1 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\models\modelDetail.d.ts                                     | TypeScript         |          1 |          0 |          0 |          1 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\models\trendingList.d.ts                                    | TypeScript         |          5 |          0 |          0 |          5 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\CreateItem\index.scss                                 | SCSS               |         56 |          0 |         10 |         66 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\CreateItem\index.tsx                                  | TypeScript JSX     |        101 |          3 |          4 |        108 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\DatasetDetails\components\DatasetFilesTable\index.tsx | TypeScript JSX     |          2 |          0 |          0 |          2 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Dataset\DatasetLabel\index.css                        | CSS                |        -38 |         -3 |         -7 |        -48 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Dataset\DatasetLabel\index.scss                       | SCSS               |         38 |          0 |          8 |         46 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Dataset\DatasetList\index.css                         | CSS                |         -6 |          0 |          0 |         -6 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Dataset\DatasetList\index.scss                        | SCSS               |          6 |          0 |          0 |          6 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Dataset\DatasetList\index.tsx                         | TypeScript JSX     |          7 |          0 |          0 |          7 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Dataset\ListItem\index.tsx                            | TypeScript JSX     |        -20 |          0 |         -3 |        -23 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Dataset\ListPagination\index.tsx                      | TypeScript JSX     |          0 |          0 |         -1 |         -1 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Doc\index.css                                         | CSS                |         -3 |          0 |          0 |         -3 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Doc\index.scss                                        | SCSS               |         10 |          0 |          1 |         11 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Doc\index.tsx                                         | TypeScript JSX     |         38 |         -1 |          1 |         38 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Home\HomeLoggedIn\index.scss                          | SCSS               |         39 |          2 |          8 |         49 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Home\HomeLoggedIn\index.tsx                           | TypeScript JSX     |        160 |          1 |         10 |        171 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Home\index.tsx                                        | TypeScript JSX     |         -6 |          6 |         -1 |         -1 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Login\index.css                                       | CSS                |        -45 |          0 |         -8 |        -53 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Login\index.scss                                      | SCSS               |         47 |          0 |          8 |         55 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Login\index.tsx                                       | TypeScript JSX     |          2 |          0 |         -1 |          1 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\ModelDetails\components\ModelCard\index.css           | CSS                |        -23 |          0 |         -6 |        -29 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\ModelDetails\components\ModelCard\index.scss          | SCSS               |         23 |          0 |          6 |         29 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\ModelDetails\components\ModelFilesTable\index.css     | CSS                |        -61 |          0 |        -18 |        -79 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\ModelDetails\components\ModelFilesTable\index.scss    | SCSS               |         45 |          0 |         13 |         58 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\ModelDetails\components\ModelFilesTable\index.tsx     | TypeScript JSX     |         -5 |          2 |         -3 |         -6 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\ModelDetails\index.css                                | CSS                |        -23 |          0 |         -4 |        -27 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\ModelDetails\index.scss                               | SCSS               |         28 |          0 |          5 |         33 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\ModelDetails\index.tsx                                | TypeScript JSX     |         -2 |          0 |         -2 |         -4 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ListHeader\index.css                            | CSS                |        -16 |         -1 |         -3 |        -20 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ListHeader\index.scss                           | SCSS               |         16 |          1 |          3 |         20 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ListHeader\index.tsx                            | TypeScript JSX     |          0 |          0 |         -2 |         -2 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ListItem\index.tsx                              | TypeScript JSX     |        -20 |          0 |         -3 |        -23 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ListPagination\index.css                        | CSS                |         -6 |          0 |          0 |         -6 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ListPagination\index.scss                       | SCSS               |          6 |          0 |          0 |          6 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ModelLabel\index.css                            | CSS                |        -30 |         -3 |         -6 |        -39 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ModelLabel\index.scss                           | SCSS               |         30 |          0 |          6 |         36 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ModelList\index.css                             | CSS                |         -5 |          0 |          0 |         -5 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ModelList\index.scss                            | SCSS               |          5 |          0 |          0 |          5 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\ModelList\index.tsx                             | TypeScript JSX     |          7 |          0 |          1 |          8 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\index.css                                       | CSS                |        -23 |          0 |         -5 |        -28 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\index.scss                                      | SCSS               |         23 |          1 |          3 |         27 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Model\index.tsx                                       | TypeScript JSX     |          0 |         -1 |          0 |         -1 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Profile\index.scss                                    | SCSS               |         26 |          0 |          5 |         31 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Profile\index.tsx                                     | TypeScript JSX     |         65 |          0 |          3 |         68 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\pages\Setting\index.tsx                                     | TypeScript JSX     |          6 |          0 |          2 |          8 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\routes\index.tsx                                            | TypeScript JSX     |         22 |         12 |          0 |         34 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\dataset\datasetSlice.ts                      | TypeScript         |          0 |         -2 |         -2 |         -4 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\fileContent\fileContentAPI.ts                | TypeScript         |          6 |          1 |          2 |          9 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\fileContent\fileContentSlice.ts              | TypeScript         |         34 |         29 |         13 |         76 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\login\loginSlice.ts                          | TypeScript         |         22 |         -4 |          2 |         20 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\modelDetail\modelDetailSlice.ts              | TypeScript         |          1 |          0 |          0 |          1 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\model\modelSlice.ts                          | TypeScript         |          9 |          8 |          0 |         17 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\personalFiles\personalFilesSlice.ts          | TypeScript         |         -1 |          1 |          0 |          0 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\trendingList\trendingListAPI.ts              | TypeScript         |          5 |          1 |          3 |          9 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\features\trendingList\trendingListSlice.ts            | TypeScript         |         32 |         13 |          9 |         54 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\src\store\store.ts                                              | TypeScript         |          4 |          0 |          0 |          4 |
+| f:\研究生学习\编程学习\my_projects\model_library_ts\tsconfig.json                                                   | JSON with Comments |         26 |          0 |          1 |         27 |
+| Total                                                                                                      |                    |     38,926 |        502 |        328 |     39,756 |
++------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

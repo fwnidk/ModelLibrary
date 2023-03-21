@@ -54,7 +54,7 @@ export default function Details() {
             }
         })
     }, [navigate])
-    
+
     const getConversionArray = (item: string) => {
         for (let arri of labelButtonArr) {
             if (arri[1] === item) {
@@ -67,28 +67,26 @@ export default function Details() {
     return (
         <>
             <div className='detail'>
-                <Space direction="vertical" size="large" className='detailSpace'>
-                    <Typography.Title level={2} style={{ margin: 0 }}>{search}</Typography.Title>
-                    <Space wrap size='large'>
-                        {Object.entries(activeFilters).map((item: [string, Array<string>], index1) => {
-                            return (
-                                <Space key={index1}>
-                                    <span>{getConversionArray(item[0])} :</span>
-                                    {item[1].map((label, index2) => {
-                                        return (<Button className='detailButton' key={index2} onClick={() => handleClickLabel(item[0], label)}>{label}</Button>)
-                                    })}
-                                </Space>
-                            )
-                        })}
-                    </Space>
-                    <Tabs
-                        items={items}
-                        className="modelDetailMenu"
-                        onTabClick={handleClick}
-                        activeKey={setActiveKey()}
-                    />
-                    <Outlet />
+                <Typography.Title level={2} style={{ margin: 0 }}>{search}</Typography.Title>
+                <Space wrap size='large'>
+                    {Object.entries(activeFilters).map((item: [string, Array<string>], index1) => {
+                        return (
+                            <Space key={index1}>
+                                <span>{getConversionArray(item[0])} :</span>
+                                {item[1].map((label, index2) => {
+                                    return (<Button className='detailButton' key={index2} onClick={() => handleClickLabel(item[0], label)}>{label}</Button>)
+                                })}
+                            </Space>
+                        )
+                    })}
                 </Space>
+                <Tabs
+                    items={items}
+                    className="modelDetailMenu"
+                    onTabClick={handleClick}
+                    activeKey={setActiveKey()}
+                />
+                <Outlet />
             </div>
         </>
     )

@@ -5,7 +5,9 @@ import { parse } from "diff2html";
 import { Diff2HtmlUI } from "diff2html/lib/ui/js/diff2html-ui";
 import './index.scss'
 
-export default function DiffComponent(props: { diffDataList: Array<any> }) {
+
+// 是否有文件更改总览
+export default function DiffComponent(props: { diffDataList: Array<any>, documentChangesOverview: boolean }) {
     const { diffDataList } = props;
     useEffect(() => {
         console.log('inDiffComponent', diffDataList);
@@ -30,25 +32,25 @@ export default function DiffComponent(props: { diffDataList: Array<any> }) {
             const diffJson = parse(diffStr);
             diffJsonList.push(diffJson[0]);
         })
-        console.log(diffJsonList);
+        // console.log(diffJsonList);
         const targetElement = document.getElementById('diff-ui-mult');
         const configuration = {
             // drawFileList: false,
             matching: "lines",
             highlight: true,
             outputFormat: 'side-by-side',//side-by-side | line-by-line
-            diffMaxChanges: 20,
-            diffMaxLineLength: 20,
+            // diffMaxChanges: 20,
+            // diffMaxLineLength: 20,
             rawTemplates: {
                 'generic-file-path': `<span class="d2h-file-name-wrapper">{{>fileIcon}}<span class="d2h-file-name">{{fileDiffName}}</span>{{>fileTag}}</span>`,
-                'file-summary-wrapper': `<div class="d2h-file-list-wrapper">
+                'file-summary-wrapper': props.documentChangesOverview ? `<div class="d2h-file-list-wrapper">
                     <div class="filesTableHeader">
                         <span class='diffTitle' >文件更改 ({{filesNumber}})</span>
                     </div>
                 <ol class="d2h-file-list">
                 {{{files}}}
                 </ol>
-            </div>`
+            </div>`: ''
             }
         };
         const diff2htmlUi = new Diff2HtmlUI(targetElement as HTMLElement, diffJsonList, configuration as any);

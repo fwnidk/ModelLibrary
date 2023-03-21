@@ -133,19 +133,21 @@ export default function ModelFilesTable() {
     return (
         <>
             <FileBreadCrumb />
-            <FilesTableHeader lastModified={lastModified} lastModifiedInformation={lastModifiedInformation} />
-            <Table
-                columns={columns}
-                dataSource={filesTable}
-                className="filesTable"
-                pagination={false}
-                size="small"
-                showHeader={false}
-            // bordered
-            // title={() =>
-            //     <FilesTableHeader />
-            // }
-            />
+            <div>
+                <FilesTableHeader lastModified={lastModified} lastModifiedInformation={lastModifiedInformation} />
+                <Table
+                    columns={columns}
+                    dataSource={filesTable}
+                    className="filesTable"
+                    pagination={false}
+                    size="small"
+                    showHeader={false}
+                // bordered
+                // title={() =>
+                //     <FilesTableHeader />
+                // }
+                />
+            </div>
         </>
     )
 

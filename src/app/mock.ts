@@ -43,7 +43,7 @@ Random.extend({
         return Random.capitalize(Random.string('abcdefghijklmnopqrstuvwxyz -', 3, 9)) + " " + Random.capitalize(Random.string('abcdefghijklmnopqrstuvwxyz -', 3, 9))
     }
 })
-const fileType = ['.txt', '.py', '.md', '.json', '.bin', '.ot']
+const fileType = ['.txt', '.py', '.md', '.json', '.bin', '.ot','.js','.ts','.java']
 Random.extend({
     fileNameWithType: function () {
         return Random.capitalize(Random.string('abcdefghijklmnopqrstuvwxyz-', 3, 9)) + Random.capitalize(Random.string('abcdefghijklmnopqrstuvwxyz-', 3, 9)) + this.pick(fileType)
@@ -51,7 +51,8 @@ Random.extend({
 })
 Random.extend({
     paragraphNewLine: function () {
-        let num = Random.integer(12, 18)
+        // let num = Random.integer(12, 18)
+        let num = Random.integer(1, 3)
         let str = Random.sentence()
         for (let i = 0; i < num; i++) {
             if (Random.boolean(2, 8, true)) {
@@ -107,6 +108,76 @@ Random.extend({
         }
     }
 })
+
+Random.extend({
+    getSomeCode: function (fileType) {
+        switch (fileType) {
+            case 'py':
+                return `class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        n = len(nums)
+        for i in range(n):
+            for j in range(i + 1, n):
+                if nums[i] + nums[j] == target:
+                    return [i, j]
+        
+        return []`;
+            case 'java':
+                return `class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int n = nums.length;
+        for (int i = 0; i < n; ++i) {
+            for (int j = i + 1; j < n; ++j) {
+                if (nums[i] + nums[j] == target) {
+                    return new int[]{i, j};
+                }
+            }
+        }
+        return new int[0];
+    }
+}`
+            case 'js':
+                return `var twoSum = function(nums, target) {
+    let map = new Map();
+    for(let i = 0, len = nums.length; i < len; i++){
+        if(map.has(target - nums[i])){
+            return [map.get(target - nums[i]), i];
+        }else{
+            map.set(nums[i], i);
+        }
+    }
+    return [];
+};`
+            case 'json':
+                return `{
+    "reihblzeqpg": [
+        [
+            "QdYFGfORzhwBOooGnLJ",
+            false,
+            538335045
+        ],
+        1782553011.9898276,
+        -1758639008.312018
+    ],
+    "cehgbpmyghe": {
+        "elyrci": {
+            "elpra": -1173064097.8641386
+        },
+        "nilxhro": 1231910590,
+        "fnbkkk": 45709824.09524655
+    },
+    "lthecwytuvz": -602658516
+}`
+            default:
+                return Random.paragraphNewLine();
+        }
+    }
+})
+
+
+
+
+
 
 export const createRandomModelLabelData = Mock.mock("/api/modelLabel",
     //返回多条条models数据 
@@ -364,42 +435,26 @@ export const getPrevAndNewFile = Mock.mock("/api/getPrevAndNewFile",
     }
 )
 
-// export const getBlob = Mock.mock("/api/getBlob",
-//     "post", function () {
-//         // let arr = postMessage.body.split('/');
-//         // let fileName = decodeURI(arr[arr.length - 1]);
-//         let size = Random.fileSize();
-//         // let fileType = fileName.split('.')[1];
-//         // let displayable = size > 5000000000 ? false : true;
-//         let displayable = true;
-//         let displayFileData = displayable ? { displayable, displayData: Random.paragraphNewLine() } : { displayable };
-//         let fileObj = Mock.mock({
-//             // fileName: fileName,
-//             // id: "@string",
-//             lastModified: "@timeInteger",
-//             lastModifiedInformation: "@lastModifiedInformation",
-//             size,
-//             fileURL: "@image(200x200)",
-//             ...displayFileData
-//         })
-//         return fileObj;
-//     }
-// )
-
 export const getBlob = Mock.mock("/api/getBlob",
-    "post", function () {
-        return setTimeout(() => {
-            let size = Random.fileSize();
-            let displayable = true;
-            let displayFileData = displayable ? { displayable, displayData: Random.paragraphNewLine() } : { displayable };
-            let fileObj = Mock.mock({
-                lastModified: "@timeInteger",
-                lastModifiedInformation: "@lastModifiedInformation",
-                size,
-                fileURL: "@image(200x200)",
-                ...displayFileData
-            })
-            return fileObj;
-        }, 2000)
+    "post", function (postMessage) {
+        console.log(postMessage.body);
+        let arr = postMessage.body.split('/');
+        let fileNameArr = arr[arr.length - 1].split('.');
+        let fileTpye = fileNameArr[fileNameArr.length - 1]
+        let size = Random.fileSize();
+        // let fileType = fileName.split('.')[1];
+        // let displayable = size > 5000000000 ? false : true;
+        let displayable = true;
+        let displayFileData = displayable ? { displayable, displayData: Random.getSomeCode(fileTpye) } : { displayable };
+        let fileObj = Mock.mock({
+            // fileName: fileName,
+            // id: "@string",
+            lastModified: "@timeInteger",
+            lastModifiedInformation: "@lastModifiedInformation",
+            size,
+            fileURL: "@image(200x200)",
+            ...displayFileData
+        })
+        return fileObj;
     }
 )

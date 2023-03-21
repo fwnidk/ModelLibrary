@@ -4,6 +4,11 @@
     width: 100%;
     max-width: 1500px;
     padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    flex-grow: 1;
+    flex-basis: 100%;
 }
 
 .detailButton {
@@ -22,9 +27,6 @@
     font-size: 16px;
 }
 
-.detailSpace {
-    width: 100%;
-}
 
 .modelDetailMenu {
     margin-bottom: -10px;

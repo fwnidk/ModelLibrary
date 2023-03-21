@@ -1,0 +1,70 @@
+$grayborder : 0.8px solid rgb(229, 231, 235);
+$background: linear-gradient(to bottom, #ffffff, #f3f4f6);
+
+.codeEditorItemName {
+    font-size: 16px;
+}
+
+.editTabs {
+    border-right: $grayborder;
+    border-left: $grayborder;
+    border-top: $grayborder;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+
+    .ant-tabs-nav-wrap {
+        height: 40px;
+        background: $background;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        border-bottom: $grayborder;
+
+        .ant-tabs-tab {
+            height: 40px;
+            padding: 0 20px !important;
+            margin: 0 !important;
+            border-right: $grayborder;
+        }
+
+        .ant-tabs-tab-active {
+            background-color: #ffffff;
+
+            .ant-tabs-tab-btn {
+                color: #000000 !important;
+            }
+        }
+
+        .ant-tabs-tab-btn {
+            line-height: 40px;
+            height: 40px;
+            text-align: center;
+        }
+
+        .ant-tabs-ink-bar {
+            display: none;
+        }
+    }
+}
+
+.codeEditorContainer {
+    margin-top: -16px !important;
+    .ace_layer.ace_gutter-layer.ace_folding-enabled {
+        color: #c0c0c0;
+    }
+
+    .ace_print-margin {
+        display: none;
+    }
+
+    .ace_gutter-cell:hover {
+        color: #000;
+    }
+
+    .ace_gutter-active-line.ace_gutter-cell {
+        color: #000;
+    }
+}
+
+.codeEditorDiff {
+    padding: 15px;
+}
