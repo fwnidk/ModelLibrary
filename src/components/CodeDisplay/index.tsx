@@ -51,77 +51,76 @@ export default function CodeDisplay() {
     }
 
     return (
-        data === null ?
-            <h1>loading</h1> :
-            <>
-                <FileBreadCrumb />
-                <FilesTableHeader lastModified={data.lastModified} lastModifiedInformation={data.lastModifiedInformation} ></FilesTableHeader>
-                <div className='codeToolbar'>
-                    <Button
-                        type='link'
-                        className='codeToolbarButton'
-                        onClick={() => {
-                            console.log(data.displayData);
-                        }}
-                    ><DownloadOutlined />下载</Button>
-                    <Button
-                        type='link'
-                        className='codeToolbarButton'
-                        onClick={() => {
-                            console.log(data.displayData);
-                        }}>
-                        <div className='rawButton'>
-                            <RawIcon className='rawIcon' />
-                            <div className='rawSpan'>原始文件</div>
-                        </div>
-                    </Button>
-                    <Button
-                        type='link'
-                        className='codeToolbarButton'
 
-                    ><HistoryOutlined />修改历史</Button>
-                    {!data.displayable || <Button
-                        type='link'
-                        className='codeToolbarButton'
-                        onClick={
-                            () => {
-                                let locationStr = location.split('/').slice(4).join('/');
-                                navigate(`../edit/${locationStr}`)
-                            }
-                        }
-                    ><EditOutlined />编辑</Button>}
-                    <Button
-                        type='link'
-                        className='codeToolbarButton'
-
-                    ><DeleteOutlined />删除</Button>
-                    <div className='codeToolbarFileSize'>
-                        {displayNumberOfBytes(data.size)}
+        <>
+            <FileBreadCrumb />
+            <FilesTableHeader lastModified={data.lastModified} lastModifiedInformation={data.lastModifiedInformation} ></FilesTableHeader>
+            <div className='codeToolbar'>
+                <Button
+                    type='link'
+                    className='codeToolbarButton'
+                    onClick={() => {
+                        console.log(data.displayData);
+                    }}
+                ><DownloadOutlined />下载</Button>
+                <Button
+                    type='link'
+                    className='codeToolbarButton'
+                    onClick={() => {
+                        console.log(data.displayData);
+                    }}>
+                    <div className='rawButton'>
+                        <RawIcon className='rawIcon' />
+                        <div className='rawSpan'>原始文件</div>
                     </div>
-                </div>
+                </Button>
+                <Button
+                    type='link'
+                    className='codeToolbarButton'
 
-                {
-                    data.displayable ?
-                        <div className='codeEditorContainer'>
-                            <AceEditor
-                                ref={aceEditorRef}
-                                mode="javascript"
-                                defaultValue={data.displayData}
-                                theme="textmate"
-                                name="UNIQUE_ID_OF_DIV"
-                                editorProps={{ $blockScrolling: true }}
-                                className="codeEditor"
-                                fontSize={14}
-                                width="100%"
-                                focus={true}
-                                enableLiveAutocompletion={true}
-                                debounceChangePeriod={500}
-                                highlightActiveLine={false}
-                                readOnly={true}
-                            />
-                        </div>
-                        : <div className='oversizedFileTip'>文件太大无法显示，可以查看原始文件</div>
-                }
-            </>
+                ><HistoryOutlined />修改历史</Button>
+                {!data.displayable || <Button
+                    type='link'
+                    className='codeToolbarButton'
+                    onClick={
+                        () => {
+                            let locationStr = location.split('/').slice(4).join('/');
+                            navigate(`../edit/${locationStr}`)
+                        }
+                    }
+                ><EditOutlined />编辑</Button>}
+                <Button
+                    type='link'
+                    className='codeToolbarButton'
+
+                ><DeleteOutlined />删除</Button>
+                <div className='codeToolbarFileSize'>
+                    {displayNumberOfBytes(data.size)}
+                </div>
+            </div>
+
+            {
+                data.displayable ?
+                    <div className='codeEditorContainer'>
+                        <AceEditor
+                            ref={aceEditorRef}
+                            mode="javascript"
+                            defaultValue={data.displayData}
+                            theme="textmate"
+                            name="UNIQUE_ID_OF_DIV"
+                            editorProps={{ $blockScrolling: true }}
+                            className="codeEditor"
+                            fontSize={14}
+                            width="100%"
+                            focus={true}
+                            enableLiveAutocompletion={true}
+                            debounceChangePeriod={500}
+                            highlightActiveLine={false}
+                            readOnly={true}
+                        />
+                    </div>
+                    : <div className='oversizedFileTip'>文件太大无法显示，可以查看原始文件</div>
+            }
+        </>
     );
 }

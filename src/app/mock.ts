@@ -364,24 +364,42 @@ export const getPrevAndNewFile = Mock.mock("/api/getPrevAndNewFile",
     }
 )
 
+// export const getBlob = Mock.mock("/api/getBlob",
+//     "post", function () {
+//         // let arr = postMessage.body.split('/');
+//         // let fileName = decodeURI(arr[arr.length - 1]);
+//         let size = Random.fileSize();
+//         // let fileType = fileName.split('.')[1];
+//         // let displayable = size > 5000000000 ? false : true;
+//         let displayable = true;
+//         let displayFileData = displayable ? { displayable, displayData: Random.paragraphNewLine() } : { displayable };
+//         let fileObj = Mock.mock({
+//             // fileName: fileName,
+//             // id: "@string",
+//             lastModified: "@timeInteger",
+//             lastModifiedInformation: "@lastModifiedInformation",
+//             size,
+//             fileURL: "@image(200x200)",
+//             ...displayFileData
+//         })
+//         return fileObj;
+//     }
+// )
+
 export const getBlob = Mock.mock("/api/getBlob",
     "post", function () {
-        // let arr = postMessage.body.split('/');
-        // let fileName = decodeURI(arr[arr.length - 1]);
-        let size = Random.fileSize();
-        // let fileType = fileName.split('.')[1];
-        // let displayable = size > 5000000000 ? false : true;
-        let displayable = true;
-        let displayFileData = displayable ? { displayable, displayData: Random.paragraphNewLine() } : { displayable };
-        let fileObj = Mock.mock({
-            // fileName: fileName,
-            // id: "@string",
-            lastModified: "@timeInteger",
-            lastModifiedInformation: "@lastModifiedInformation",
-            size,
-            fileURL: "@image(200x200)",
-            ...displayFileData
-        })
-        return fileObj;
+        return setTimeout(() => {
+            let size = Random.fileSize();
+            let displayable = true;
+            let displayFileData = displayable ? { displayable, displayData: Random.paragraphNewLine() } : { displayable };
+            let fileObj = Mock.mock({
+                lastModified: "@timeInteger",
+                lastModifiedInformation: "@lastModifiedInformation",
+                size,
+                fileURL: "@image(200x200)",
+                ...displayFileData
+            })
+            return fileObj;
+        }, 2000)
     }
 )

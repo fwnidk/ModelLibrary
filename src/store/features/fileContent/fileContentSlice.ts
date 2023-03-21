@@ -6,7 +6,7 @@ import { fetchFileContent } from './fileContentAPI';
 
 const initialState = {
     data: null,
-    isLoading: false,
+    isLoading: true,
     isError: null,
 }
 
@@ -41,12 +41,9 @@ export const fileContentSlice: any = createSlice({
         builder
             // .addCase(fetchFileContentAsync.pending, (state) => {
             // })
-            .addCase(fetchFileContentAsync.pending, (state) => {
-                state.isLoading = true
-            })
             .addCase(fetchFileContentAsync.fulfilled, (state, action) => {
-                state.isLoading = false;
                 state.data = action.payload;
+                state.isLoading = false;
                 console.log('fetchFileContentAsync')
             })
             .addCase(fetchFileContentAsync.rejected, (state, action) => {
