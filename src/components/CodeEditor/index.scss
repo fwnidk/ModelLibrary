@@ -5,10 +5,15 @@ $background: linear-gradient(to bottom, #ffffff, #f3f4f6);
     font-size: 16px;
 }
 
+.editCardBorder {
+    border: $grayborder;
+    border-radius: 8px;
+}
+
 .editTabs {
-    border-right: $grayborder;
-    border-left: $grayborder;
-    border-top: $grayborder;
+    // border-right: $grayborder;
+    // border-left: $grayborder;
+    // border-top: $grayborder;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 
@@ -21,7 +26,7 @@ $background: linear-gradient(to bottom, #ffffff, #f3f4f6);
 
         .ant-tabs-tab {
             height: 40px;
-            padding: 0 20px !important;
+            padding: 0 25px !important;
             margin: 0 !important;
             border-right: $grayborder;
         }
@@ -46,25 +51,11 @@ $background: linear-gradient(to bottom, #ffffff, #f3f4f6);
     }
 }
 
-.codeEditorContainer {
-    margin-top: -16px !important;
-    .ace_layer.ace_gutter-layer.ace_folding-enabled {
-        color: #c0c0c0;
-    }
-
-    .ace_print-margin {
-        display: none;
-    }
-
-    .ace_gutter-cell:hover {
-        color: #000;
-    }
-
-    .ace_gutter-active-line.ace_gutter-cell {
-        color: #000;
-    }
-}
-
 .codeEditorDiff {
     padding: 15px;
+}
+
+.codeEditorCommit {
+    width: 100%;
+    padding: 0 15px;
 }

@@ -1,40 +1,34 @@
-import { Form, Input, Tabs, TabsProps } from 'antd';
+import { Button, Form, Input, Space, Tabs, TabsProps } from 'antd';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
 import { RootState } from '../../store/store';
 import ErrorStatus from '../ErrorStatus';
 import LoadingStatus from '../LoadingStatus';
-import AceEditor from "react-ace";
+// import AceEditor from "react-ace";
 
 import "ace-builds/src-noconflict/theme-textmate";
 import "ace-builds/src-noconflict/ext-language_tools";
 import './index.scss'
 import DiffComponent from '../DiffComponent';
 import { fetchFileContentAsync } from '../../store/features/fileContent/fileContentSlice';
+import CodeEditBox from '../CodeEditBox';
 
 
 export default function CodeEditor() {
     const location = useLocation().pathname;
     const { data, isLoading, isError } = useSelector((state: RootState) => state.fileContent)
-
+    const navigate = useNavigate()
     //测试时使用
     const dispatch = useDispatch()
     //更改后的代码
     const locationArr = decodeURI(location).split('/')
     //项目名
     const itemName = locationArr[2]
-    //文件类型
-    // import "ace-builds/src-noconflict/mode-javascript";
-    const fileNameArr = locationArr[locationArr.length - 1].split('.')
-    const fileType = fileNameArr[fileNameArr.length - 1]
 
     const filePath = locationArr.slice(4).join('/')
     const [changedCode, setChangedCode] = useState(data ? data.displayData : undefined)
     const [changedPath, setChangedPath] = useState(filePath)
-    //文件路径
-    // const [fileType, setFileType] = useState<string>(fileNameArr[fileNameArr.length - 1])
-
     useEffect(() => {
         if (data === null) {
             dispatch(fetchFileContentAsync(location))
@@ -45,7 +39,7 @@ export default function CodeEditor() {
     }, [isLoading])
 
     const onFinish = (values: any) => {
-        console.log('onFinish', values);
+        console.log('onFinish', { ...values, changedCode });
     }
     const onFinishFailed = (error: any) => {
         console.log(error);
@@ -56,36 +50,12 @@ export default function CodeEditor() {
     const handleChangeCode = (value: any) => {
         setChangedCode(value)
     }
-    const getMode = useCallback(() => {
-        let res: string;
-        switch (fileType) {
-            case 'py':
-                res = 'python';
-                break;
-            case 'js':
-                res = 'javascript';
-                break;
-            case 'ts':
-                res = 'typescript';
-                break;
-            case 'md':
-                res = 'markdown';
-                break;
-            case 'java':
-                res = 'java';
-                break;
-            case 'json':
-                res = 'json';
-                break;
-            default:
-                return undefined
+
+    const noDifference = () => {
+        if (filePath === changedPath && data.displayData === changedCode) {
+            return true;
         }
-        loadMode(res);
-        console.log(res);
-        return res;
-    }, [fileType])
-    const loadMode = (res: string) => {
-        import(`ace-builds/src-noconflict/mode-${res}`);
+        return false;
     }
 
     if (isLoading) {
@@ -95,30 +65,12 @@ export default function CodeEditor() {
         return <ErrorStatus />
     }
 
-
     const tabItems: TabsProps['items'] = [
         {
             key: '1',
             label: '编辑',
             children:
-                <div className='codeEditorContainer'>
-                    <AceEditor
-                        mode={getMode()}
-                        defaultValue={changedCode}
-                        onChange={handleChangeCode}
-                        theme="textmate"
-                        name="UNIQUE_ID_OF_DIV"
-                        editorProps={{ $blockScrolling: true }}
-                        className="codeEditor"
-                        fontSize={14}
-                        width="100%"
-                        focus={true}
-                        enableLiveAutocompletion={true}
-                        debounceChangePeriod={500}
-                        highlightActiveLine={true}
-                        readOnly={false}
-                    />
-                </div>
+                <CodeEditBox defaultVaule={changedCode} onChange={handleChangeCode} />
         },
         {
             key: '2',
@@ -146,7 +98,7 @@ export default function CodeEditor() {
                 size='large'
                 colon={false}
                 requiredMark={false}
-                initialValues={{ changeFilepath: filePath }}
+                initialValues={{ changeFilepath: filePath, codeEditorCommit: `Update ${filePath}` }}
             >
                 <Form.Item
                     name='changeFilepath'
@@ -155,20 +107,37 @@ export default function CodeEditor() {
                 >
                     <Input onChange={(e) => { setChangedPath(e.target.value) }} />
                 </Form.Item>
+                <div className='editCardBorder'>
 
-                <Form.Item
-                    name='editCard'
-                >
-                    <Tabs
-                        defaultActiveKey="1"
-                        items={tabItems}
-                        onChange={handleChange}
-                        className='editTabs'
-                        destroyInactiveTabPane={true}
+                    <Form.Item
                     >
-                    </Tabs>
-                </Form.Item>
-
+                        <Tabs
+                            defaultActiveKey="1"
+                            items={tabItems}
+                            onChange={handleChange}
+                            className='editTabs'
+                            destroyInactiveTabPane={true}
+                        >
+                        </Tabs>
+                    </Form.Item>
+                    <div className='codeEditorCommit'>
+                        <Form.Item
+                            name='codeEditorCommit'
+                        >
+                            <Space direction='vertical' style={{ width: '100%' }}>
+                                <span style={{ fontSize: 16, fontWeight: 600 }}>更改描述</span>
+                                <Input placeholder={`Update ${filePath}`} />
+                            </Space>
+                        </Form.Item>
+                        <Form.Item>
+                            <Space>
+                                {/* 判断是否变动，是否可以提交更改 */}
+                                <Button disabled={noDifference()} htmlType="submit">提交更改</Button>
+                                <Button onClick={() => { navigate(`../blob/${filePath}`) }}>取消</Button>
+                            </Space>
+                        </Form.Item>
+                    </div>
+                </div>
             </Form>
     )
 }

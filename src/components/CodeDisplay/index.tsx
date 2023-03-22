@@ -1,9 +1,5 @@
 import React, { useEffect } from 'react'
-import AceEditor from "react-ace";
 import './index.scss'
-import "ace-builds/src-noconflict/mode-javascript";
-import "ace-builds/src-noconflict/theme-textmate";
-import "ace-builds/src-noconflict/ext-language_tools";
 import FilesTableHeader from '../FilesTableHeader';
 import { Button } from 'antd';
 import { DeleteOutlined, DownloadOutlined, EditOutlined, HistoryOutlined } from '@ant-design/icons';
@@ -16,6 +12,7 @@ import { RootState } from '../../store/store';
 import { fetchFileContentAsync } from '../../store/features/fileContent/fileContentSlice';
 import LoadingStatus from '../LoadingStatus';
 import ErrorStatus from '../ErrorStatus';
+import CodeEditBox from '../CodeEditBox';
 
 
 //代码的展示
@@ -33,7 +30,6 @@ export default function CodeDisplay() {
     const { data, isLoading, isError } = useSelector((state: RootState) => state.fileContent)
     const dispatch = useDispatch()
     const location = useLocation().pathname
-    const aceEditorRef = React.useRef(null)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -51,7 +47,6 @@ export default function CodeDisplay() {
     }
 
     return (
-
         <>
             <FileBreadCrumb />
             <div>
@@ -103,22 +98,7 @@ export default function CodeDisplay() {
                 {
                     data.displayable ?
                         <div className='codeDisplayContainer'>
-                            <AceEditor
-                                ref={aceEditorRef}
-                                mode="javascript"
-                                defaultValue={data.displayData}
-                                theme="textmate"
-                                name="UNIQUE_ID_OF_DIV"
-                                editorProps={{ $blockScrolling: true }}
-                                className="codeEditor"
-                                fontSize={14}
-                                width="100%"
-                                focus={true}
-                                enableLiveAutocompletion={true}
-                                debounceChangePeriod={500}
-                                highlightActiveLine={false}
-                                readOnly={true}
-                            />
+                            <CodeEditBox defaultVaule={data.displayData} />
                         </div>
                         : <div className='oversizedFileTip'>文件太大无法显示，可以查看原始文件</div>
                 }

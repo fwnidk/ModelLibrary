@@ -1,0 +1,60 @@
+.codeBoxSetting {
+    width: 100% !important;
+    overflow: hidden;
+    font-family: IBMPlexMono !important;
+    line-height: 22px;
+
+}
+
+
+.codeDisplayBox {
+    @extend .codeBoxSetting;
+
+    .ace_scroller {
+        font-weight: 100 !important;
+    }
+
+    .ace_layer.ace_gutter-layer.ace_folding-enabled {
+        background-color: #ffffff;
+        color: #c0c0c0;
+    }
+
+    .ace_print-margin {
+        display: none;
+    }
+
+    .ace_gutter-cell:hover {
+        color: #000;
+    }
+
+    .ace_gutter-active-line.ace_gutter-cell {
+        background-color: #eeeeee;
+        color: #000;
+    }
+}
+
+.codeEditorBox {
+    @extend .codeBoxSetting;
+
+    margin-top: -16px !important;
+
+    .ace_layer.ace_gutter-layer.ace_folding-enabled {
+        color: #c0c0c0;
+    }
+
+    .ace_print-margin {
+        display: none;
+    }
+
+    .ace_gutter-cell:hover {
+        color: #000;
+    }
+
+    .ace_active-line {
+        background-color: rgb(241, 248, 255) !important;
+    }
+
+    .ace_gutter-active-line.ace_gutter-cell {
+        color: #000;
+    }
+}
