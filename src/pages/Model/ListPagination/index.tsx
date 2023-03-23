@@ -10,7 +10,7 @@ export default function ListPagination() {
 
     let dispatch = useDispatch()
     let [numTotalItems, pageIndex] = useSelector((state: RootState) => {
-        return [state.modelList.numTotalItems, state.modelList.otherOptions.pageIndex]
+        return [state.modelList.data.numTotalItems, state.modelList.data.otherOptions.pageIndex]
     })
 
     const handleChangePagination: PaginationProps['onChange'] = useCallback((page:number) => {

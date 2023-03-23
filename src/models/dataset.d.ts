@@ -39,11 +39,11 @@ declare namespace DatasetType {
 
     interface DatasetList {
         //dataset的字段（名字、更新日期、下载量、）
+        allFilters:AllFilters,
         activeFilters: ActiveFilters,
         otherOptions: OtherOptions,
         datasets: Array<DatasetList>,
         numTotalItems: number,
-        loadingCompleted: boolean,
     }
 
     type Task =
@@ -53,6 +53,12 @@ declare namespace DatasetType {
         'Audio'
 
     interface DatasetLabelData {
+        task: Array<[string, Task]>,
+        size: Array<string>,
+        language: Array<string>,
+        other: Array<string>
+    }
+    interface AllFilters {
         task: Array<[string, Task]>,
         size: Array<string>,
         language: Array<string>,

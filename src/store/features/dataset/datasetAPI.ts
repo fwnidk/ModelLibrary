@@ -18,5 +18,8 @@ export async function fetchDatasetList(activeFilters: DatasetType.ActiveFiltersP
     }
 }
 
+export async function fetchDatasetLabel() {
+    return await axios.get("/api/datasetLabel")
+}
 
 

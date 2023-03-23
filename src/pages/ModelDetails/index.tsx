@@ -3,7 +3,7 @@ import { Button, Space, Tabs, TabsProps, Typography } from 'antd';
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router';
-import { modelLabelConversionArray } from '../../app/LabelConversionArray';
+import { modelLabelConversionArray } from '../../app/labelConversionArray';
 import { getModelDetailAsync } from '../../store/features/modelDetail/modelDetailSlice';
 import { RootState } from '../../store/store';
 

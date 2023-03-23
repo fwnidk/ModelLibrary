@@ -1,25 +1,34 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../store';
-import { fetchDatasetList } from './datasetAPI';
+import { fetchDatasetLabel, fetchDatasetList } from './datasetAPI';
 
 
 //初始值
-const initialState: DatasetType.DatasetList = {
-    activeFilters: {
-        task: [],
-        other: [],
-        language: [],
-        size: [],
-
+const initialState: { data: DatasetType.DatasetList, isLoading1: boolean, isLoading2: boolean, isError: boolean } = {
+    data: {
+        allFilters: {
+            task: [],
+            other: [],
+            language: [],
+            size: []
+        },
+        activeFilters: {
+            task: [],
+            other: [],
+            language: [],
+            size: [],
+        },
+        otherOptions: {
+            pageIndex: 1,
+            sortType: "Most Downloads",
+            filterByName: ""
+        },
+        datasets: [],
+        numTotalItems: 0,
     },
-    otherOptions: {
-        pageIndex: 1,
-        sortType: "Most Downloads",
-        filterByName: ""
-    },
-    datasets: [],
-    numTotalItems: 0,
-    loadingCompleted: false,
+    isLoading1: true,
+    isLoading2: true,
+    isError: false,
 };
 
 //下面的函数称为thunk，允许我们执行异步逻辑。它
@@ -65,7 +74,15 @@ export const resetDatasetListAsync: any = createAsyncThunk(
     }
 )
 
-export const datasetListSlice = createSlice({
+export const setDatasetLabelAsync: any = createAsyncThunk(
+    'datasetList/setDatasetLabelAsync',
+    async (action) => {
+        const response: any = await fetchDatasetLabel();
+        return response.data;
+    }
+)
+
+export const datasetListSlice: any = createSlice({
     name: 'datasetList',
     initialState,
     //“reducers”字段允许我们定义reducers并生成相关操作
@@ -75,94 +92,124 @@ export const datasetListSlice = createSlice({
             //覆盖state的activeFilters
             if (JSON.stringify(dispatchData.activeFilters) !== "{}")
                 for (let key in dispatchData.activeFilters) {
-                    state.activeFilters[key as DatasetType.ActiveFiltersKey].push(dispatchData.activeFilters[key as DatasetType.ActiveFiltersKey] as string)
+                    state.data.activeFilters[key as DatasetType.ActiveFiltersKey].push(dispatchData.activeFilters[key as DatasetType.ActiveFiltersKey] as string)
                 }
             //修改state的otherOptions
-            state.otherOptions = { ...state.otherOptions, ...dispatchData.otherOptions }
+            state.data.otherOptions = { ...state.data.otherOptions, ...dispatchData.otherOptions }
             if (!dispatchData.otherOptions.hasOwnProperty("pageIndex")) {
-                state.otherOptions.pageIndex = 1
+                state.data.otherOptions.pageIndex = 1
             }
         },
         //去除activeFilter中的值
         removeDatasetList: (state, action: PayloadAction<any>) => {
             let dispatchData = action.payload;
             //覆盖state的activeFilters
-            state.activeFilters[dispatchData.key as DatasetType.ActiveFiltersKey] = state.activeFilters[dispatchData.key as DatasetType.ActiveFiltersKey].filter((value) => {
+            state.data.activeFilters[dispatchData.key as DatasetType.ActiveFiltersKey] = state.data.activeFilters[dispatchData.key as DatasetType.ActiveFiltersKey].filter((value) => {
                 return value !== dispatchData.value
             })
             //修改state的otherOptions            
-            state.otherOptions.pageIndex = 1
+            state.data.otherOptions.pageIndex = 1
         },
         //reset当前分类的activeFilter
         resetDatasetList: (state, action: PayloadAction<any>) => {
-            let dispatchData = action.payload;
+            let dispatchData: Array<string> = action.payload;
             //覆盖state的activeFilters
-            state.activeFilters[dispatchData as DatasetType.ActiveFiltersKey] = []
-            state.otherOptions.pageIndex = 1
+            for (let i of dispatchData) {
+                state.data.activeFilters[i as DatasetType.ActiveFiltersKey] = []
+            }
+            state.data.otherOptions.pageIndex = 1
         },
+        //清空activeFilter
         clearAllDatasetList: () => {
             return {
-                activeFilters: {
-                    task: [],
-                    other: [],
-                    language: [],
-                    size: [],
-
+                data: {
+                    allFilters: {
+                        task: [],
+                        other: [],
+                        language: [],
+                        size: []
+                    },
+                    activeFilters: {
+                        task: [],
+                        other: [],
+                        language: [],
+                        size: [],
+                    },
+                    otherOptions: {
+                        pageIndex: 1,
+                        sortType: "Most Downloads",
+                        filterByName: ""
+                    },
+                    datasets: [],
+                    numTotalItems: 0,
                 },
-                otherOptions: {
-                    pageIndex: 1,
-                    sortType: "Most Downloads",
-                    filterByName: ""
-                },
-                datasets: [],
-                numTotalItems: 0,
-                loadingCompleted: false,
+                isLoading1: true,
+                isLoading2: true,
+                isError: false
             }
-        },
+        }
     },
     //“extraReducers”字段允许切片处理其他地方定义的动作，
     //包括createAsyncThunk或其他切片中生成的动作。
     extraReducers: (builder) => {
         builder
-            // 两个异步函数的成功和失败后的处理
-            .addCase(setDatasetListAsync.fulfilled, (state: DatasetType.DatasetList, action) => {
+            //两个异步函数的成功和失败后的处理
+            .addCase(setDatasetListAsync.fulfilled, (state, action) => {
                 //更新datasetList
-                state.datasets = action.payload.datasetList
+                state.data.datasets = action.payload.datasetList
                 //更新datasetList数量
                 if (action.payload.hasOwnProperty('numTotalItems')) {
-                    state.numTotalItems = action.payload.numTotalItems;
+                    state.data.numTotalItems = action.payload.numTotalItems;
                 }
-                state.loadingCompleted = true;
+                state.isLoading1 = false;
                 console.log('setDatasetListAsync')
             })
-            .addCase(removeDatasetListAsync.fulfilled, (state: DatasetType.DatasetList, action) => {
+            .addCase(removeDatasetListAsync.fulfilled, (state, action) => {
                 //更新datasetList
-                state.datasets = action.payload.datasetList
-                //更新datasetList数量
-                state.numTotalItems = action.payload.numTotalItems;
-                state.loadingCompleted = true;
+                state.data.datasets = action.payload.datasetList
+                //更新datasetList数量             
+                state.data.numTotalItems = action.payload.numTotalItems;
+                state.isLoading1 = false;
                 console.log('removeDatasetListAsync')
             })
-            .addCase(resetDatasetListAsync.fulfilled, (state: DatasetType.DatasetList, action) => {
+            .addCase(resetDatasetListAsync.fulfilled, (state, action) => {
                 //更新datasetList
-                state.datasets = action.payload.datasetList
-                //更新datasetList数量
-                state.numTotalItems = action.payload.numTotalItems;
-                state.loadingCompleted = true;
+                state.data.datasets = action.payload.datasetList
+                //更新datasetList数量             
+                state.data.numTotalItems = action.payload.numTotalItems;
+                state.isLoading1 = false;
                 console.log('resetDatasetListAsync')
             })
+            // .addCase(clearAllDatasetListAsync.fulfilled, (state, action) => {
+            //     //更新datasetList
+            //     state.data.datasets = action.payload.datasetList
+            //     //更新datasetList数量             
+            //     state.data.numTotalItems = action.payload.numTotalItems;
+            //     console.log('clearAllDatasetListAsync')
+            // })
             .addCase(setDatasetListAsync.rejected, (state) => {
+                state.isError = true;
                 console.log('error', state)
             })
             .addCase(removeDatasetListAsync.rejected, (state) => {
+                state.isError = true;
                 console.log('error', state)
             })
             .addCase(resetDatasetListAsync.rejected, (state) => {
+                state.isError = true;
+                console.log('error', state)
+            })
+            .addCase(setDatasetLabelAsync.fulfilled, (state, action) => {
+                state.data.allFilters = action.payload;
+                state.isLoading2 = false;
+                console.log('setDatasetLabelAsync')
+            })
+            .addCase(setDatasetLabelAsync.rejected, (state) => {
+                state.isError = true;
                 console.log('error', state)
             })
     },
 });
-
 export const { setDatasetList } = datasetListSlice.actions;
 export const { removeDatasetList } = datasetListSlice.actions;
 export const { resetDatasetList } = datasetListSlice.actions;

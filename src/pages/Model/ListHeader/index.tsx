@@ -7,7 +7,7 @@ import './index.scss'
 
 const { Text } = Typography;
 export default function ListHeader() {
-    let numTotalItems = useSelector((state: RootState) => state.modelList.numTotalItems)
+    let numTotalItems = useSelector((state: RootState) => state.modelList.data.numTotalItems)
     const dispatch = useDispatch()
     let [sortType, setSortType] = useState('Most Downloads')
     //搜索框改变信息后触发dispatch，发送filterByName: value 

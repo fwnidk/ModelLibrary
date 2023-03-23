@@ -1,7 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
-import Model from "../pages/Model";
-import Dataset from "../pages/Dataset";
 import Doc from "../pages/Doc";
 import ModelDetails from "../pages/ModelDetails";
 import ModelCard from "../pages/ModelDetails/components/ModelCard";
@@ -18,6 +16,7 @@ import CreateItem from "../pages/CreateItem";
 import Commit from "../components/Commit";
 import CodeDisplay from "../components/CodeDisplay";
 import CodeEditor from "../components/CodeEditor";
+import Item from "../pages/Item";
 
 const router = createBrowserRouter(
     [
@@ -31,11 +30,11 @@ const router = createBrowserRouter(
                 },
                 {
                     path: "/models",
-                    element: <Model />
+                    element: <Item type="model" />
                 },
                 {
                     path: "/datasets",
-                    element: <Dataset />
+                    element: <Item type="dataset" />
                 },
                 {
                     path: "/docs",

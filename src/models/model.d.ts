@@ -40,11 +40,11 @@ declare namespace ModelType {
 
     interface ModelList {
         //dataset的字段（名字、更新日期、下载量、）
+        allFilters:AllFilters,
         activeFilters: ActiveFilters,
         otherOptions: OtherOptions,
         models: Array<ModelItem>,
         numTotalItems: number,
-        loadingCompleted: boolean 
     }
 
     type Task =
@@ -53,7 +53,7 @@ declare namespace ModelType {
         'Multimodal' |
         'Audio'
 
-    interface ModelLabelData {
+    interface AllFilters {
         task: Array<[string, Task]>,
         library: Array<string>,
         dataset: Array<string>,

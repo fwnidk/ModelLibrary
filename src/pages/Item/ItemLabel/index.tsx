@@ -1,79 +1,77 @@
-import React, { useCallback, useEffect, useRef, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { Space, Button, Input } from "antd"
-import axios from "axios"
 import './index.scss'
 import TasksMainPage from "../../../components/TasksMainPage"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../store/store"
-import { resetDatasetListAsync } from "../../../store/features/dataset/datasetSlice"
-import '../../../app/mock'
+import "../../../app/mock"
 import LabelBlock from "../../../components/LabelBlock"
-import { datasetLabelConversionArray } from "../../../app/LabelConversionArray"
+import { modelLabelConversionArray, datasetLabelConversionArray } from "../../../app/labelConversionArray"
+import { resetModelListAsync } from "../../../store/features/model/modelSlice"
+import { resetDatasetListAsync } from "../../../store/features/dataset/datasetSlice"
 
 
-export default function DatasetLabel(props: { locationState: any }) {
-
-    const [datasetLabel, setDatasetLabel] = useState<DatasetType.DatasetLabelData>({ task: [], size: [], language: [], other: [], })
-    const [datasetLabelSearched, setDatasetLabelSearched] = useState<DatasetType.DatasetLabelData>({ task: [], size: [], language: [], other: [], })
-    let { locationState } = props;
-    const [currCategory, setCurrCategory] = useState<DatasetType.ActiveFiltersKey>(locationState ? locationState.currCategory : "task")
+export default function ItemLabel(props: { locationState: any, type: string }) {
+    const { type } = props;
+    const [allFiltersSearched, setAllFiltersSearched] = useState<any>(type === 'model' ? { task: [], library: [], dataset: [], other: [], language: [] } : { task: [], size: [], other: [], language: [] })
+    let { locationState } = props
+    const [currCategory, setCurrCategory] = useState<any>(locationState ? locationState.currCategory : "task")
     const [inputValue, setInputValue] = useState<string>("")
-    const inputRef: any = useRef<HTMLDivElement>(null)
     const dispatch = useDispatch();
-    const activeFilters: DatasetType.ActiveFilters = useSelector((state: RootState) => state.datasetList.activeFilters)
-
-    const labelButtonArr = datasetLabelConversionArray;
+    const [activeFilters, allFilters] = useSelector((state: RootState) => type === 'model' ?
+        [state.modelList.data.activeFilters, state.modelList.data.allFilters] :
+        [state.datasetList.data.activeFilters, state.datasetList.data.allFilters])
+    const labelButtonArr = type === 'model' ? modelLabelConversionArray : datasetLabelConversionArray;
     // axios获取数据
     useEffect(() => {
-        const getData = async () => {
-            let response = await axios.get("/api/datasetLabel")
-            let result = response.data
-            setDatasetLabel(result)
-            setDatasetLabelSearched(result)
-        };
-        getData().catch(console.error);
-    }, [])
+        setAllFiltersSearched(allFilters)
+    }, [allFilters])
 
     //点击切换标签分类按钮
-    const handleClickCategory = useCallback((name: DatasetType.ActiveFiltersKey) => {
+    const handleClickCategory = useCallback((name: any) => {
         return () => {
             setInputValue('')
-            setDatasetLabelSearched(datasetLabel)
+            setAllFiltersSearched(allFilters)
             setCurrCategory(name);
         }
-    }, [datasetLabel])
-    //根据当前点击的分类按钮渲染对应组件
+    }, [allFilters])
 
-    //input输入信息后过滤datasetLabel
+    //input输入信息后过滤itemLabel
     const inputOnChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
         setInputValue(value)
         let newExpandedKeys;
         if (currCategory !== "task") {
-            newExpandedKeys = (datasetLabel[currCategory] as Array<string>)
+            newExpandedKeys = ((allFilters as any)[currCategory] as Array<string>)
                 .filter((item) => {
                     return item.toLowerCase().indexOf(value.toLowerCase()) > -1
                 })
         } else {
-            newExpandedKeys = datasetLabel[currCategory].filter((item) => {
+            newExpandedKeys = (allFilters as any)[currCategory].filter((item: any) => {
                 return item[0].toLowerCase().indexOf(value.toLowerCase()) > -1
             })
         }
-        setDatasetLabelSearched({ ...datasetLabelSearched, [currCategory]: newExpandedKeys })
-        console.log(datasetLabelSearched);
-    }, [currCategory, datasetLabel, datasetLabelSearched])
+        setAllFiltersSearched({ ...allFiltersSearched, [currCategory]: newExpandedKeys })
+        console.log(allFiltersSearched);
+    }, [currCategory, allFilters, allFiltersSearched])
 
     const resetActiveFilters = useCallback(() => {
-        dispatch(resetDatasetListAsync(currCategory))
-    }, [currCategory, dispatch])
-
-    const renderCurrCategory = (currCategory: DatasetType.ActiveFiltersKey) => {
-        if (currCategory === "task") {
-            return <TasksMainPage type="dataset" >{datasetLabelSearched[currCategory]}</TasksMainPage>
+        if (type === 'model') {
+            dispatch(resetModelListAsync([currCategory]))
         } else {
-            return <LabelBlock type="dataset" value={currCategory}>{datasetLabelSearched[currCategory]}</LabelBlock>
+            dispatch(resetDatasetListAsync([currCategory]))
         }
-    }
+
+    }, [type, dispatch, currCategory])
+
+    //根据当前点击的分类按钮渲染对应组件
+    const renderCurrCategory = useCallback((currCategory: any) => {
+        if (currCategory === "task") {
+            return <TasksMainPage type={type}>{allFiltersSearched[currCategory]}</TasksMainPage>
+        } else {
+            return <LabelBlock type={type} value={currCategory}>{allFiltersSearched[currCategory]}</LabelBlock >
+        }
+    }, [allFiltersSearched, type])
 
     return (
         <Space direction="vertical" size="large">
@@ -97,8 +95,8 @@ export default function DatasetLabel(props: { locationState: any }) {
                 })}
             </Space>
             <div className="searchDiv">
-                <Input placeholder={`Filter ${currCategory} by name`} onChange={inputOnChange} ref={inputRef} value={inputValue} width="100%"></Input>
-                {activeFilters[currCategory].length === 0 ?
+                <Input placeholder={`Filter ${currCategory} by name`} onChange={inputOnChange} value={inputValue} width="100%"></Input>
+                {(activeFilters as any)[currCategory].length === 0 ?
                     null :
                     <Button
                         onClick={resetActiveFilters}

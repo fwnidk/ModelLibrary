@@ -9,19 +9,14 @@ import { useSelector } from 'react-redux'
 import { RootState } from '../../../store/store'
 
 export default function ModelList() {
-    const loadingCompleted = useSelector((state: RootState) => state.modelList.loadingCompleted)
-    let modelListArr: Array<ModelType.ModelItem> = useSelector((state: RootState) => state.modelList.models)
-
+    let modelListArr: Array<ModelType.ModelItem> = useSelector((state: RootState) => state.modelList.data.models)
     return (
-        loadingCompleted ?
             <>
                 <Space direction="vertical" className="rightSpace">
                     <ListHeader></ListHeader>
                     <ModelListItem list={modelListArr}></ModelListItem>
                 </Space>
                 <ListPagination ></ListPagination>
-            </> :
-            <div className="rightSpace">
-            </div>
+            </> 
     )
 }

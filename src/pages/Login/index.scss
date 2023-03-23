@@ -3,7 +3,6 @@
 }
 
 .loginBackground {
-    width: 120%;
     padding-top: 65px;
     height: auto;
     background: linear-gradient(to bottom, #e0e7ff, #f9f9f9);
@@ -38,7 +37,8 @@
     margin-bottom: 40px;
 }
 
-.usernameForm, .errorMessage {
+.usernameForm,
+.errorMessage {
     margin-bottom: 10px !important;
 }
 

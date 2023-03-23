@@ -1,25 +1,36 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../store';
-import { fetchModelList } from './modelAPI';
+import { fetchModelLabel, fetchModelList } from './modelAPI';
 
 
 //初始值
-const initialState: ModelType.ModelList = {
-    activeFilters: {
-        task: [],
-        library: [],
-        dataset: [],
-        other: [],
-        language: []
+const initialState: { data: ModelType.ModelList, isLoading1: boolean,isLoading2: boolean, isError: boolean } = {
+    data: {
+        allFilters: {
+            task: [],
+            library: [],
+            dataset: [],
+            other: [],
+            language: []
+        },
+        activeFilters: {
+            task: [],
+            library: [],
+            dataset: [],
+            other: [],
+            language: []
+        },
+        otherOptions: {
+            pageIndex: 1,
+            sortType: "Most Downloads",
+            filterByName: ""
+        },
+        models: [],
+        numTotalItems: 0,
     },
-    otherOptions: {
-        pageIndex: 1,
-        sortType: "Most Downloads",
-        filterByName: ""
-    },
-    models: [],
-    numTotalItems: 0,
-    loadingCompleted: false,
+    isLoading1: true,
+    isLoading2: true,
+    isError: false,
 };
 
 //下面的函数称为thunk，允许我们执行异步逻辑。它
@@ -41,7 +52,7 @@ export const setModelListAsync: any = createAsyncThunk(
         if (filter.otherOptions.hasOwnProperty("pageIndex")) {
             resetPageIndex = false;
         }
-        const response: any = await fetchModelList((action.getState() as RootState).modelList.activeFilters, (action.getState() as RootState).modelList.otherOptions, filter.first, resetPageIndex);
+        const response: any = await fetchModelList((action.getState() as RootState).modelList.data.activeFilters, (action.getState() as RootState).modelList.data.otherOptions, filter.first, resetPageIndex);
         return response.data;
     }
 )
@@ -50,7 +61,7 @@ export const removeModelListAsync: any = createAsyncThunk(
     'modelList/removeModelListAsync',
     async (filter, action) => {
         action.dispatch(removeModelList(filter))
-        const response: any = await fetchModelList((action.getState() as RootState).modelList.activeFilters, (action.getState() as RootState).modelList.otherOptions, false, true);
+        const response: any = await fetchModelList((action.getState() as RootState).modelList.data.activeFilters, (action.getState() as RootState).modelList.data.otherOptions, false, true);
         return response.data;
     }
 )
@@ -59,19 +70,18 @@ export const resetModelListAsync: any = createAsyncThunk(
     'modelList/resetModelListAsync',
     async (filter, action) => {
         action.dispatch(resetModelList(filter))
-        const response: any = await fetchModelList((action.getState() as RootState).modelList.activeFilters, (action.getState() as RootState).modelList.otherOptions, false, true);
-        return response.data;
-    }
-)
-export const clearAllModelListAsync: any = createAsyncThunk(
-    'modelList/clearAllListAsync',
-    async (filter, action) => {
-        action.dispatch(clearAllModelList(filter))
-        const response: any = await fetchModelList((action.getState() as RootState).modelList.activeFilters, (action.getState() as RootState).modelList.otherOptions, false, true);
+        const response: any = await fetchModelList((action.getState() as RootState).modelList.data.activeFilters, (action.getState() as RootState).modelList.data.otherOptions, false, true);
         return response.data;
     }
 )
 
+export const setModelLabelAsync: any = createAsyncThunk(
+    'modelList/setModelLabelAsync',
+    async (action) => {
+        const response: any = await fetchModelLabel();
+        return response.data;
+    }
+)
 
 export const modelListSlice: any = createSlice({
     name: 'modelList',
@@ -83,51 +93,62 @@ export const modelListSlice: any = createSlice({
             //覆盖state的activeFilters
             if (JSON.stringify(dispatchData.activeFilters) !== "{}")
                 for (let key in dispatchData.activeFilters) {
-                    state.activeFilters[key as ModelType.ActiveFiltersKey].push(dispatchData.activeFilters[key as ModelType.ActiveFiltersKey] as string)
+                    state.data.activeFilters[key as ModelType.ActiveFiltersKey].push(dispatchData.activeFilters[key as ModelType.ActiveFiltersKey] as string)
                 }
             //修改state的otherOptions
-            state.otherOptions = { ...state.otherOptions, ...dispatchData.otherOptions }
+            state.data.otherOptions = { ...state.data.otherOptions, ...dispatchData.otherOptions }
             if (!dispatchData.otherOptions.hasOwnProperty("pageIndex")) {
-                state.otherOptions.pageIndex = 1
+                state.data.otherOptions.pageIndex = 1
             }
         },
         //去除activeFilter中的值
         removeModelList: (state, action: PayloadAction<any>) => {
             let dispatchData = action.payload;
             //覆盖state的activeFilters
-            state.activeFilters[dispatchData.key as ModelType.ActiveFiltersKey] = state.activeFilters[dispatchData.key as ModelType.ActiveFiltersKey].filter((value) => {
+            state.data.activeFilters[dispatchData.key as ModelType.ActiveFiltersKey] = state.data.activeFilters[dispatchData.key as ModelType.ActiveFiltersKey].filter((value) => {
                 return value !== dispatchData.value
             })
             //修改state的otherOptions            
-            state.otherOptions.pageIndex = 1
+            state.data.otherOptions.pageIndex = 1
         },
         //reset当前分类的activeFilter
         resetModelList: (state, action: PayloadAction<any>) => {
             let dispatchData: Array<string> = action.payload;
             //覆盖state的activeFilters
             for (let i of dispatchData) {
-                state.activeFilters[i as ModelType.ActiveFiltersKey] = []
+                state.data.activeFilters[i as ModelType.ActiveFiltersKey] = []
             }
-            state.otherOptions.pageIndex = 1
+            state.data.otherOptions.pageIndex = 1
         },
         //清空activeFilter
         clearAllModelList: () => {
             return {
-                activeFilters: {
-                    task: [],
-                    library: [],
-                    dataset: [],
-                    other: [],
-                    language: []
+                data: {
+                    allFilters: {
+                        task: [],
+                        library: [],
+                        dataset: [],
+                        other: [],
+                        language: []
+                    },
+                    activeFilters: {
+                        task: [],
+                        library: [],
+                        dataset: [],
+                        other: [],
+                        language: []
+                    },
+                    otherOptions: {
+                        pageIndex: 1,
+                        sortType: "Most Downloads",
+                        filterByName: ""
+                    },
+                    models: [],
+                    numTotalItems: 0,
                 },
-                otherOptions: {
-                    pageIndex: 1,
-                    sortType: "Most Downloads",
-                    filterByName: ""
-                },
-                models: [],
-                numTotalItems: 0,
-                loadingCompleted: false,
+                isLoading1:true,
+                isLoading2:true,
+                isError: false
             }
         }
     },
@@ -136,46 +157,58 @@ export const modelListSlice: any = createSlice({
     extraReducers: (builder) => {
         builder
             //两个异步函数的成功和失败后的处理
-            .addCase(setModelListAsync.fulfilled, (state: ModelType.ModelList, action) => {
+            .addCase(setModelListAsync.fulfilled, (state, action) => {
                 //更新modelList
-                state.models = action.payload.modelList
+                state.data.models = action.payload.modelList
                 //更新modelList数量
                 if (action.payload.hasOwnProperty('numTotalItems')) {
-                    state.numTotalItems = action.payload.numTotalItems;
+                    state.data.numTotalItems = action.payload.numTotalItems;
                 }
-                state.loadingCompleted = true;
+                state.isLoading1 = false;
                 console.log('setModelListAsync')
             })
-            .addCase(removeModelListAsync.fulfilled, (state: ModelType.ModelList, action) => {
+            .addCase(removeModelListAsync.fulfilled, (state, action) => {
                 //更新modelList
-                state.models = action.payload.modelList
+                state.data.models = action.payload.modelList
                 //更新modelList数量             
-                state.numTotalItems = action.payload.numTotalItems;
-                state.loadingCompleted = true;
+                state.data.numTotalItems = action.payload.numTotalItems;
+                state.isLoading1 = false;
                 console.log('removeModelListAsync')
             })
-            .addCase(resetModelListAsync.fulfilled, (state: ModelType.ModelList, action) => {
+            .addCase(resetModelListAsync.fulfilled, (state, action) => {
                 //更新modelList
-                state.models = action.payload.modelList
+                state.data.models = action.payload.modelList
                 //更新modelList数量             
-                state.numTotalItems = action.payload.numTotalItems;
-                state.loadingCompleted = true;
+                state.data.numTotalItems = action.payload.numTotalItems;
+                state.isLoading1 = false;
                 console.log('resetModelListAsync')
             })
-            // .addCase(clearAllModelListAsync.fulfilled, (state: ModelType.ModelList, action) => {
+            // .addCase(clearAllModelListAsync.fulfilled, (state, action) => {
             //     //更新modelList
-            //     state.models = action.payload.modelList
+            //     state.data.models = action.payload.modelList
             //     //更新modelList数量             
-            //     state.numTotalItems = action.payload.numTotalItems;
+            //     state.data.numTotalItems = action.payload.numTotalItems;
             //     console.log('clearAllModelListAsync')
             // })
             .addCase(setModelListAsync.rejected, (state) => {
+                state.isError = true;
                 console.log('error', state)
             })
             .addCase(removeModelListAsync.rejected, (state) => {
+                state.isError = true;
                 console.log('error', state)
             })
             .addCase(resetModelListAsync.rejected, (state) => {
+                state.isError = true;
+                console.log('error', state)
+            })
+            .addCase(setModelLabelAsync.fulfilled, (state, action) => {
+                state.data.allFilters = action.payload;
+                state.isLoading2 = false;
+                console.log('setModelLabelAsync')
+            })
+            .addCase(setModelLabelAsync.rejected, (state) => {
+                state.isError = true;
                 console.log('error', state)
             })
         // .addCase(clearAllModelListAsync.rejected, (state) => {
@@ -199,7 +232,7 @@ export const { clearAllModelList } = modelListSlice.actions;
 // export const getmodelListByFilter =
 //     (filter: { activeFilters: ModelType.ActiveFilters, first: boolean }): AppThunk =>
 //         (dispatch, getState) => {
-//             const selectFilter = (state: RootState) => state.activeFilters;
+//             const selectFilter = (state: RootState) => state.data.activeFilters;
 //             const FiltersFromState = selectFilter(getState())
 //             if(FiltersFromState)
 //             dispatch(getmodelListAsync(filter));

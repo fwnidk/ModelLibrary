@@ -17,6 +17,9 @@ export async function fetchModelList(activeFilters: ModelType.ActiveFiltersPost,
         }
     }
 }
+export async function fetchModelLabel() {
+    return await axios.get("/api/modelLabel")
+}
 
 
 

@@ -11,9 +11,9 @@ export default function LabelBlock(props: { type: string, children: any, value: 
 
     const activeFilters = useSelector((state: RootState) => {
         if (props.type === "model") {
-            return state.modelList.activeFilters
+            return state.modelList.data.activeFilters
         } else {
-            return state.datasetList.activeFilters
+            return state.datasetList.data.activeFilters
         }
     })
 
