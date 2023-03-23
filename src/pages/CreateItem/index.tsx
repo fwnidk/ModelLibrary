@@ -23,8 +23,11 @@ export default function CreateItem(props: { type: string }) {
         let postMessage = { ...values, type };
         console.log('Success:', postMessage);
         await axios.post('/api/createItem', postMessage);
-        navigate(`/model/${values.itemName}`)
-        // await dispatch(loginAsync(values.username, values.password))
+        if(type === 'model'){
+            navigate(`/model/${values.itemName}`)
+        } else{
+            navigate(`/dataset/${values.itemName}`)
+        }
     };
     const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);

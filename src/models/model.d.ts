@@ -7,6 +7,7 @@ declare namespace ModelType {
         downloads: number,
         id: string,
         type: string
+        isPrivate: boolean
     }
 
     interface ActiveFilters {

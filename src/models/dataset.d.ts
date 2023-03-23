@@ -6,7 +6,8 @@ declare namespace DatasetType {
         author: string,
         downloads: number,
         id: string,
-        type: string
+        type: string,
+        isPrivate: boolean
     }
 
     interface ActiveFilters {

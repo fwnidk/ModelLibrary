@@ -3,26 +3,31 @@ import { fetchModelDetail } from './modelDetailAPI';
 
 
 //初始值
-const initialState: ModelDetailType.ModelDetail = {
-    activeFilters: {
-        task: [],
-        library: [],
-        dataset: [],
-        language: [],
-        other: [],
+const initialState: { data: ModelDetailType.ModelDetail, isLoading: boolean, isError: boolean } = {
+    data: {
+        activeFilters: {
+            task: [],
+            library: [],
+            dataset: [],
+            language: [],
+            other: [],
+        },
+        options: {
+            lastModified: 0,
+            lastModifiedInformation: "",
+            name: "",
+            author: "",
+            avatar: "",
+            downloads: 0,
+            id: "",
+            type: "",
+            isPrivate: true
+        },
+        filesTable: [],
+        activeMenu: "0"
     },
-    options: {
-        lastModified: 0,
-        lastModifiedInformation: "",
-        name: "",
-        author: "",
-        avatar: "",
-        downloads: 0,
-        id: "",
-        type: "",
-    },
-    filesTable: [],
-    activeMenu: "0"
+    isLoading: true,
+    isError: false,
 };
 
 //下面的函数称为thunk，允许我们执行异步逻辑。它
@@ -45,7 +50,7 @@ export const modelDetailSlice = createSlice({
     //“reducers”字段允许我们定义reducers并生成相关操作
     reducers: {
         setActiveMenu: (state, action: PayloadAction<any>) => {
-            state.activeMenu = action.payload
+            state.data.activeMenu = action.payload
         },
         // //去除activeFilter中的值
         // removeModelDetail: (state, action: PayloadAction<any>) => {
@@ -69,14 +74,16 @@ export const modelDetailSlice = createSlice({
     extraReducers: (builder) => {
         builder
             //两个异步函数的成功和失败后的处理
-            .addCase(getModelDetailAsync.fulfilled, (state: ModelDetailType.ModelDetail, action) => {
+            .addCase(getModelDetailAsync.fulfilled, (state, action) => {
                 //更新modelDetail
-                for (let key in state) {
-                    state[key as ModelDetailType.ModelDetailKey] = action.payload[key]
+                for (let key in state.data) {
+                    (state.data as any)[key] = action.payload[key]
                 }
+                state.isLoading = false;
                 //更新modelDetail数量
                 console.log('getModelDetailAsync')
             }).addCase(getModelDetailAsync.rejected, (state) => {
+                state.isError = true;
                 console.log('error', state)
             })
     },

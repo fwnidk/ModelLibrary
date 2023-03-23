@@ -3,25 +3,29 @@ import { fetchDatasetDetail } from './datasetDetailAPI';
 
 
 //初始值
-const initialState: DatasetDetailType.DatasetDetail = {
-    activeFilters: {
-        task: [],
-        library: [],
-        dataset: [],
-        language: [],
-        other: [],
+const initialState: { data: DatasetDetailType.DatasetDetail, isLoading: boolean, isError: boolean } = {
+    data: {
+        activeFilters: {
+            task: [],
+            library: [],
+            dataset: [],
+            language: [],
+            other: [],
+        },
+        options: {
+            lastModified: 0,
+            lastModifiedInformation: "",
+            name: "",
+            author: "",
+            downloads: 0,
+            id: "",
+            type: "",
+        },
+        filesTable: [],
+        activeMenu: "0"
     },
-    options: {
-        lastModified: 0,
-        lastModifiedInformation: "",
-        name: "",
-        author: "",
-        downloads: 0,
-        id: "",
-        type: "",
-    },
-    filesTable: [],
-    activeMenu: "0"
+    isLoading: true,
+    isError: false,
 };
 
 //下面的函数称为thunk，允许我们执行异步逻辑。它
@@ -44,7 +48,7 @@ export const datasetDetailSlice = createSlice({
     //“reducers”字段允许我们定义reducers并生成相关操作
     reducers: {
         setActiveMenu: (state, action: PayloadAction<any>) => {
-            state.activeMenu = action.payload
+            state.data.activeMenu = action.payload
         },
         // //去除activeFilter中的值
         // removeDatasetDetail: (state, action: PayloadAction<any>) => {
@@ -68,10 +72,10 @@ export const datasetDetailSlice = createSlice({
     extraReducers: (builder) => {
         builder
             //两个异步函数的成功和失败后的处理
-            .addCase(getDatasetDetailAsync.fulfilled, (state: DatasetDetailType.DatasetDetail, action) => {
+            .addCase(getDatasetDetailAsync.fulfilled, (state, action) => {
                 //更新datasetDetail
                 for (let key in state) {
-                    state[key as DatasetDetailType.DatasetDetailKey] = action.payload[key]
+                    (state as any)[key] = action.payload[key]
                 }
                 //更新datasetDetail数量
                 console.log('getDatasetDetailAsync')

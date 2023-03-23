@@ -43,7 +43,7 @@ Random.extend({
         return Random.capitalize(Random.string('abcdefghijklmnopqrstuvwxyz -', 3, 9)) + " " + Random.capitalize(Random.string('abcdefghijklmnopqrstuvwxyz -', 3, 9))
     }
 })
-const fileType = ['.txt', '.py', '.md', '.json', '.bin', '.ot','.js','.ts','.java']
+const fileType = ['.txt', '.py', '.md', '.json', '.bin', '.ot', '.js', '.ts', '.java']
 Random.extend({
     fileNameWithType: function () {
         return Random.capitalize(Random.string('abcdefghijklmnopqrstuvwxyz-', 3, 9)) + Random.capitalize(Random.string('abcdefghijklmnopqrstuvwxyz-', 3, 9)) + this.pick(fileType)
@@ -310,13 +310,13 @@ export const createRandomModelDetailData = Mock.mock("/api/modelDetail",
                 avatar: Random.dataImage('100x100', last),
                 downloads: "@natural(0,100000)",
                 id: "@string",
-                type: "model"
+                type: "model",
+                isPrivate: false
             },
         })
     }
 )
 
-// /api/modelDetail
 export const createRandomFilesTable = Mock.mock("/api/filesTable",
     "post", function () {
         let folderArr = Mock.mock({
@@ -341,10 +341,9 @@ export const createRandomFilesTable = Mock.mock("/api/filesTable",
                 fileURL: "@image(200x200)"
             }]
         })
-
-        return {
+        return{
             filesTable: folderArr.filesTable.concat(fileArr.filesTable)
-        }
+        };
     }
 )
 
@@ -370,7 +369,8 @@ export const getPersonalFiles = Mock.mock("/api/personalFiles",
                 author: userName.body,
                 downloads: "@natural(0,10000)",
                 id: "@string",
-                type: "@type"
+                type: "@type",
+                isPrivate: true
             }],
         })
         obj.list.sort((a: any, b: any) => {

@@ -13,7 +13,7 @@ import ErrorStatus from '../../components/ErrorStatus'
 export default function Model() {
     const dispatch = useDispatch()
     let location = useLocation()
-    const { isLoading1, isLoading2, isError, data } = useSelector((state: RootState) => state.modelList)
+    const { isLoading1, isLoading2, isError } = useSelector((state: RootState) => state.modelList)
     useEffect(() => {
         // console.log(location,isLoading, isError, data);
         if (location.state === null) {

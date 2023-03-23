@@ -1,0 +1,29 @@
+.markdown {
+    font-size: 15px;
+    line-height: 1.5;
+
+    h1 {
+        font-size: 42px;
+    }
+
+    h2 {
+        font-size: 37px;
+    }
+
+    h3 {
+        font-size: 32px;
+    }
+
+    h4 {
+        font-size: 27px;
+    }
+
+    h5 {
+        font-size: 22px;
+    }
+}
+
+.markdownNavbar {
+    position: sticky;
+    top: 5px;
+}
