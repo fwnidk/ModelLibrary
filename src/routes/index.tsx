@@ -1,14 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
 import Doc from "../pages/Doc";
-import ModelDetails from "../pages/ModelDetails";
-import ModelCard from "../pages/ModelDetails/components/ModelCard";
-import ModelFilesTable from "../pages/ModelDetails/components/ModelFilesTable";
-import DatasetDetails from "../pages/DatasetDetails";
 import App from "../App";
-import DatasetCard from "../pages/DatasetDetails/components/DatasetCard";
-import DatasetFilesTable from "../pages/DatasetDetails/components/DatasetFilesTable";
-import Login from "../pages/Login";
+import LogIn from "../pages/LogIn";
 import Welcome from "../pages/Welcome";
 import Setting from "../pages/Setting";
 import Profile from "../pages/Profile";
@@ -17,6 +11,10 @@ import Commit from "../components/Commit";
 import CodeDisplay from "../components/CodeDisplay";
 import CodeEditor from "../components/CodeEditor";
 import Item from "../pages/Item";
+import ItemDetails from "../pages/ItemDetails";
+import ItemCard from "../pages/ItemDetails/components/ItemCard";
+import ItemFilesTable from "../pages/ItemDetails/components/ItemFilesTable";
+import SignUp from "../pages/SignUp";
 
 const router = createBrowserRouter(
     [
@@ -41,8 +39,12 @@ const router = createBrowserRouter(
                     element: <Doc />,
                 },
                 {
-                    path: "/login",
-                    element: <Login />,
+                    path: "/logIn",
+                    element: <LogIn />,
+                },
+                {
+                    path: "/signUp",
+                    element: <SignUp />,
                 },
                 {
                     path: "/welcome",
@@ -64,24 +66,19 @@ const router = createBrowserRouter(
                     path: "/createDataset",
                     element: < CreateItem type="dataset" />,
                 },
-
-
-                // {
-
-                // },
                 {
-                    path: "model/:search",
-                    element: <ModelDetails />,
+                    path: "dataset/:search",
+                    element: <ItemDetails type='dataset' />,
                     // loader: (params) => params,
                     children: [
                         {
                             path: "",
-                            element: <ModelCard />,
+                            element: <ItemCard />,
 
                         },
                         {
                             path: "tree/*",
-                            element: <ModelFilesTable />,
+                            element: <ItemFilesTable type='dataset' />,
                         },
                         {
                             path: "commit",
@@ -98,18 +95,30 @@ const router = createBrowserRouter(
                     ]
                 },
                 {
-                    path: "dataset/:search",
-                    element: <DatasetDetails />,
+                    path: "model/:search",
+                    element: <ItemDetails type='model' />,
                     // loader: (params) => params,
                     children: [
                         {
                             path: "",
-                            element: <DatasetCard />,
+                            element: <ItemCard />,
 
                         },
                         {
                             path: "tree/*",
-                            element: <DatasetFilesTable />,
+                            element: <ItemFilesTable type='model' />,
+                        },
+                        {
+                            path: "commit",
+                            element: <Commit />
+                        },
+                        {
+                            path: "blob/*",
+                            element: <CodeDisplay />
+                        },
+                        {
+                            path: "edit/*",
+                            element: <CodeEditor />
                         }
                     ]
                 },

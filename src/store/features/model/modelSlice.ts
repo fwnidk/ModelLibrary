@@ -4,7 +4,7 @@ import { fetchModelLabel, fetchModelList } from './modelAPI';
 
 
 //初始值
-const initialState: { data: ModelType.ModelList, isLoading1: boolean,isLoading2: boolean, isError: boolean } = {
+const initialState: { data: ModelType.ModelList, isLoading1: boolean, isLoading2: boolean, isError: boolean } = {
     data: {
         allFilters: {
             task: [],
@@ -77,7 +77,7 @@ export const resetModelListAsync: any = createAsyncThunk(
 
 export const setModelLabelAsync: any = createAsyncThunk(
     'modelList/setModelLabelAsync',
-    async (action) => {
+    async () => {
         const response: any = await fetchModelLabel();
         return response.data;
     }
@@ -146,8 +146,8 @@ export const modelListSlice: any = createSlice({
                     models: [],
                     numTotalItems: 0,
                 },
-                isLoading1:true,
-                isLoading2:true,
+                isLoading1: true,
+                isLoading2: true,
                 isError: false
             }
         }
@@ -157,6 +157,22 @@ export const modelListSlice: any = createSlice({
     extraReducers: (builder) => {
         builder
             //两个异步函数的成功和失败后的处理
+            .addCase(setModelListAsync.pending, (state) => {
+                state.isLoading1 = true;
+                state.isLoading2 = true;
+            })
+            .addCase(removeModelListAsync.pending, (state) => {
+                state.isLoading1 = true;
+                state.isLoading2 = true;
+            })
+            .addCase(resetModelListAsync.pending, (state) => {
+                state.isLoading1 = true;
+                state.isLoading2 = true;
+            })
+            .addCase(setModelLabelAsync.pending, (state) => {
+                state.isLoading1 = true;
+                state.isLoading2 = true;
+            })
             .addCase(setModelListAsync.fulfilled, (state, action) => {
                 //更新modelList
                 state.data.models = action.payload.modelList
@@ -183,13 +199,11 @@ export const modelListSlice: any = createSlice({
                 state.isLoading1 = false;
                 console.log('resetModelListAsync')
             })
-            // .addCase(clearAllModelListAsync.fulfilled, (state, action) => {
-            //     //更新modelList
-            //     state.data.models = action.payload.modelList
-            //     //更新modelList数量             
-            //     state.data.numTotalItems = action.payload.numTotalItems;
-            //     console.log('clearAllModelListAsync')
-            // })
+            .addCase(setModelLabelAsync.fulfilled, (state, action) => {
+                state.data.allFilters = action.payload;
+                state.isLoading2 = false;
+                console.log('setModelLabelAsync')
+            })
             .addCase(setModelListAsync.rejected, (state) => {
                 state.isError = true;
                 console.log('error', state)
@@ -201,11 +215,6 @@ export const modelListSlice: any = createSlice({
             .addCase(resetModelListAsync.rejected, (state) => {
                 state.isError = true;
                 console.log('error', state)
-            })
-            .addCase(setModelLabelAsync.fulfilled, (state, action) => {
-                state.data.allFilters = action.payload;
-                state.isLoading2 = false;
-                console.log('setModelLabelAsync')
             })
             .addCase(setModelLabelAsync.rejected, (state) => {
                 state.isError = true;

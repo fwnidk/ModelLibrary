@@ -5,7 +5,7 @@ import { ConfigProvider, Layout } from 'antd';
 import { Outlet } from 'react-router';
 import cookie from 'react-cookies'
 import { useDispatch } from 'react-redux';
-import { loginByCookieAsync } from './store/features/login/loginSlice';
+import { logInByCookieAsync } from './store/features/logIn/logInSlice';
 const { Footer, Content } = Layout;
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
     useEffect(() => {
         const userInfo = cookie.load('userInfo')
         if (userInfo !== undefined) {
-            dispatch(loginByCookieAsync(userInfo))
+            dispatch(logInByCookieAsync(userInfo))
         }
     }, [dispatch])
     return (

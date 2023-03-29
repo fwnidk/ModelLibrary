@@ -180,13 +180,11 @@ export const datasetListSlice: any = createSlice({
                 state.isLoading1 = false;
                 console.log('resetDatasetListAsync')
             })
-            // .addCase(clearAllDatasetListAsync.fulfilled, (state, action) => {
-            //     //更新datasetList
-            //     state.data.datasets = action.payload.datasetList
-            //     //更新datasetList数量             
-            //     state.data.numTotalItems = action.payload.numTotalItems;
-            //     console.log('clearAllDatasetListAsync')
-            // })
+            .addCase(setDatasetLabelAsync.fulfilled, (state, action) => {
+                state.data.allFilters = action.payload;
+                state.isLoading2 = false;
+                console.log('setDatasetLabelAsync')
+            })
             .addCase(setDatasetListAsync.rejected, (state) => {
                 state.isError = true;
                 console.log('error', state)
@@ -198,11 +196,6 @@ export const datasetListSlice: any = createSlice({
             .addCase(resetDatasetListAsync.rejected, (state) => {
                 state.isError = true;
                 console.log('error', state)
-            })
-            .addCase(setDatasetLabelAsync.fulfilled, (state, action) => {
-                state.data.allFilters = action.payload;
-                state.isLoading2 = false;
-                console.log('setDatasetLabelAsync')
             })
             .addCase(setDatasetLabelAsync.rejected, (state) => {
                 state.isError = true;

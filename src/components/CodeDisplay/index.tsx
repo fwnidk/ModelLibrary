@@ -50,7 +50,7 @@ export default function CodeDisplay() {
         <>
             <FileBreadCrumb />
             <div>
-                <FilesTableHeader lastModified={data.lastModified} lastModifiedInformation={data.lastModifiedInformation} ></FilesTableHeader>
+                <FilesTableHeader lastModified={data.lastModified} lastModifiedInformation={data.lastModifiedInformation}></FilesTableHeader>
                 <div className='codeToolbar'>
                     <Button
                         type='link'

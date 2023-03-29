@@ -9,12 +9,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import PersonalIcon from '../PersonalIcon';
 import cookie from 'react-cookies'
-import { logout } from '../../store/features/login/loginSlice';
+import { logout } from '../../store/features/logIn/logInSlice';
 
 
 export default function GlobalHeader() {
     const navigate = useNavigate();
-    const loginInformation: LoginType.LoginInformation = useSelector((state: RootState) => state.loginInformation)
+    const logInInformation: LogInType.LogInInformation = useSelector((state: RootState) => state.logInInformation)
     const dispatch = useDispatch()
 
     function handleEnter(e: any) {
@@ -79,13 +79,13 @@ export default function GlobalHeader() {
 
     let items2: MenuProps['items'];
 
-    if (loginInformation.loginStatus === 0) {
+    if (logInInformation.logInStatus === 0) {
         items2 = [
             { key: '1', label: <NavLink to="/models">Models</NavLink>, },
             { key: '2', label: <NavLink to="/datasets">Datasets</NavLink> },
             { key: '3', label: <NavLink to="/docs">Docs</NavLink> },
-            { key: '4', label: <NavLink to="/login">Login </NavLink> },]
-    } else if (loginInformation.loginStatus === 1) {
+            { key: '4', label: <NavLink to="/logIn">LogIn </NavLink> },]
+    } else if (logInInformation.logInStatus === 1) {
         items2 = [
             { key: '1', label: <NavLink to="/models">Models</NavLink>, },
             { key: '2', label: <NavLink to="/datasets">Datasets</NavLink> },
@@ -93,7 +93,7 @@ export default function GlobalHeader() {
             {
                 key: '4', label:
                     <Dropdown menu={{ items: dropdownItem }} placement="bottomRight">
-                        <div><PersonalIcon avatarURL={(loginInformation.personalInformation as LoginType.PersonalInformation).avatar} /></div>
+                        <div><PersonalIcon avatarURL={(logInInformation.personalInformation as LogInType.PersonalInformation).avatar} /></div>
                     </Dropdown>
             },]
     }

@@ -2,7 +2,7 @@
     color: rgb(16, 179, 255);
 }
 
-.loginBackground {
+.logInBackground {
     padding-top: 65px;
     height: auto;
     background: linear-gradient(to bottom, #e0e7ff, #f9f9f9);
@@ -10,7 +10,7 @@
     flex-grow: 1;
 }
 
-.loginFormCard {
+.logInFormCard {
     background-color: #ffffff;
     width: 24rem;
     height: 600;
@@ -42,14 +42,14 @@
     margin-bottom: 10px !important;
 }
 
-.loginFormCard .ant-col {
+.logInFormCard .ant-col {
     padding-bottom: 0;
 }
 
-.loginButton {
+.logInButton {
     width: 100%;
 }
 
-.loginForm {
+.logInForm {
     width: 100%;
 }

@@ -74,6 +74,9 @@ export const modelDetailSlice = createSlice({
     extraReducers: (builder) => {
         builder
             //两个异步函数的成功和失败后的处理
+            .addCase(getModelDetailAsync.pending, (state) => {
+                state.isLoading = true;
+            })
             .addCase(getModelDetailAsync.fulfilled, (state, action) => {
                 //更新modelDetail
                 for (let key in state.data) {

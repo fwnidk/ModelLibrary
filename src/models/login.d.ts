@@ -1,11 +1,11 @@
-declare namespace LoginType {
-    interface LoginForm {
+declare namespace LogInType {
+    interface LogInForm {
         userName: string,
         password: string
     }
 
 
-    type LoginStatus = 0 | 1 | 2
+    type LogInStatus = 0 | 1 | 2
 
     interface SigninForm {
         userName: string,
@@ -22,9 +22,9 @@ declare namespace LoginType {
         Organizations: Array<string>,
     }
 
-    interface LoginInformation {
+    interface LogInInformation {
         personalInformation: PersonalInformation | null,
-        loginStatus: LoginStatus,
+        logInStatus: LogInStatus,
     }
 }
 

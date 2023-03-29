@@ -11,7 +11,7 @@ import './index.scss'
 export default function CreateItem(props: { type: string }) {
     // radio存储公有私有信息
     const [radio, setRadio] = useState<boolean>(false);
-    const userName = useSelector((state: RootState) => state.loginInformation.personalInformation?.userName);
+    const userName = useSelector((state: RootState) => state.logInInformation.personalInformation?.userName);
     // const dispatch = useDispatch();
     const navigate = useNavigate();
 

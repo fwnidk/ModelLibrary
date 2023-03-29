@@ -14,7 +14,7 @@ import './index.scss'
 import { ReactComponent as ProfileIcon } from "../../../app/icons/profile.svg"
 
 export default function HomeLoggedIn() {
-    const personalInformation: LoginType.PersonalInformation = useSelector((state: RootState) => state.loginInformation.personalInformation)
+    const personalInformation: LogInType.PersonalInformation = useSelector((state: RootState) => state.logInInformation.personalInformation)
     const personalFilesList: Array<any> = useSelector((state: RootState) => state.personalFiles.list)
     const trendingList: Array<any> = useSelector((state: RootState) => state.trendingList.list)
     const [currCategory, setCurrCategory] = useState<number>(0)

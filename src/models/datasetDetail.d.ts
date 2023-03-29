@@ -10,16 +10,6 @@ declare namespace DatasetDetailType {
         type: string
     }
 
-    interface ActiveFilters {
-        task: Array<string>,
-        library: Array<string>,
-        dataset: Array<string>,
-        language: Array<string>,
-        other: Array<string>,
-    }
-
-    type ActiveFiltersKey = keyof ActiveFilters;
-
     interface FilesItem {
         key: string,
         fileName: string,
@@ -34,7 +24,7 @@ declare namespace DatasetDetailType {
 
     interface DatasetDetail {
         //dataset的字段（名字、更新日期、下载量、）
-        activeFilters: ActiveFilters,
+        activeFilters: DatasetType.ActiveFilters,
         options: Options,
         filesTable: FilesTable,
         activeMenu: string

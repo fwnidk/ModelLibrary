@@ -17,7 +17,7 @@ const initialState: PersonalFilesType.List = {
 export const setPersonalFilesAsync: any = createAsyncThunk(
     'personalFiles/setPersonalFilesAsync',
     async (_, action) => {
-        const userName: string = (action.getState() as RootState).loginInformation.personalInformation.userName
+        const userName: string = (action.getState() as RootState).logInInformation.personalInformation.userName
         const response: any = await fetchPersonalFiles(userName);
         // console.log(response.data);
         return response.data;

@@ -7,8 +7,7 @@ const initialState: { data: DatasetDetailType.DatasetDetail, isLoading: boolean,
     data: {
         activeFilters: {
             task: [],
-            library: [],
-            dataset: [],
+            size: [],
             language: [],
             other: [],
         },
@@ -50,36 +49,24 @@ export const datasetDetailSlice = createSlice({
         setActiveMenu: (state, action: PayloadAction<any>) => {
             state.data.activeMenu = action.payload
         },
-        // //去除activeFilter中的值
-        // removeDatasetDetail: (state, action: PayloadAction<any>) => {
-        //     let dispatchData = action.payload;
-        //     //覆盖state的activeFilters
-        //     state.activeFilters[dispatchData.key as DatasetDetailType.ActiveFiltersKey] = state.activeFilters[dispatchData.key as DatasetDetailType.ActiveFiltersKey].filter((value) => {
-        //         return value !== dispatchData.value
-        //     })
-        //     //修改state的otherOptions            
-        //     state.otherOptions.pageIndex = 1
-        // },
-        // //reset当前分类的activeFilter
-        // resetDatasetDetail: (state, action: PayloadAction<any>) => {
-        //     let dispatchData = action.payload;
-        //     //覆盖state的activeFilters
-        //     state.activeFilters[dispatchData as DatasetDetailType.ActiveFiltersKey] = []
-        // },
     },
     // “extraReducers”字段允许切片处理其他地方定义的动作，
     // 包括createAsyncThunk或其他切片中生成的动作。
     extraReducers: (builder) => {
         builder
             //两个异步函数的成功和失败后的处理
-            .addCase(getDatasetDetailAsync.fulfilled, (state, action) => {
+            .addCase(getDatasetDetailAsync.pending, (state) => {
+                state.isLoading = true;
+            }).addCase(getDatasetDetailAsync.fulfilled, (state, action) => {
                 //更新datasetDetail
-                for (let key in state) {
-                    (state as any)[key] = action.payload[key]
+                for (let key in state.data) {
+                    (state.data as any)[key] = action.payload[key]
                 }
+                state.isLoading = false;
                 //更新datasetDetail数量
                 console.log('getDatasetDetailAsync')
             }).addCase(getDatasetDetailAsync.rejected, (state) => {
+                state.isError = true;
                 console.log('error', state)
             })
     },

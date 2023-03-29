@@ -2,7 +2,7 @@
 import "../../../app/mock"
 import axios from 'axios';
 
-export async function fetchLogin(loginInformation: LoginType.LoginForm | string) {
-    let message = await axios.post('/api/login', loginInformation)
+export async function fetchLogIn(logInInformation: LogInType.LogInForm | string) {
+    let message = await axios.post('/api/logIn', logInInformation)
     return message
 }

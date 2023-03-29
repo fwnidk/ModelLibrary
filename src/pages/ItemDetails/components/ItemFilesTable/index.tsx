@@ -14,17 +14,18 @@ import FilesTableHeader from '../../../../components/FilesTableHeader';
 import FileBreadCrumb from '../../../../components/FileBreadcrumb';
 import LoadingStatus from '../../../../components/LoadingStatus';
 //详情页面的文件展示表格
-export default function ModelFilesTable() {
-    const [filesTable, setFilesTable] = useState<ModelDetailType.FilesTable>()
+export default function ItemFilesTable(props: { type: string }) {
+    const { type } = props
+    const [filesTable, setFilesTable] = useState<any>()
     const [isLoading, setIsLoading] = useState(true)
     const navigate = useNavigate()
     const location = useLocation().pathname
-    const { lastModified, lastModifiedInformation } = useSelector((state: RootState) => state.modelDetail.data.options)
+    const { lastModified, lastModifiedInformation } = useSelector((state: RootState) => type === 'model' ? state.modelDetail.data.options : state.datasetDetail.data.options)
     useEffect(() => {
         //获取表格数据
         const getData = async () => {
             let response = await axios.post("/api/filesTable", location)
-            let result = response.data.filesTable.sort((a: ModelDetailType.FilesItem, b: ModelDetailType.FilesItem) => {
+            let result = response.data.filesTable.sort((a: any, b: any) => {
                 if (!a.isAFolder && b.isAFolder) {
                     return 1;
                 }
@@ -34,7 +35,7 @@ export default function ModelFilesTable() {
                 result[index].lastModified = getTimeAgoString(result[index].lastModified)
             }
             // console.log(result);
-            console.log(response.data);
+            // console.log(response.data);
             setFilesTable(result)
             setIsLoading(false)
         };
@@ -42,14 +43,14 @@ export default function ModelFilesTable() {
     }, [location])
 
     const downloadFile = async (fileURL: string, fileName: string) => {
-        console.log(fileURL);
+        // console.log(fileURL);
         try {
             let res = await axios({
                 method: 'get',
                 url: "/200/09f/fff.png",
                 responseType: 'blob',
             })
-            console.log(res.headers['content-type']);
+            // console.log(res.headers['content-type']);
             let url = window.URL.createObjectURL(new Blob([res.data], { type: res.headers['content-type'] }));
             let link = document.createElement("a");
             link.style.display = "none";
@@ -70,7 +71,7 @@ export default function ModelFilesTable() {
         }
     }
 
-    const columns: ColumnsType<ModelDetailType.FilesItem> = [
+    const columns: ColumnsType<any> = [
         {
             dataIndex: 'fileName',
             key: 'fileName',
@@ -83,7 +84,7 @@ export default function ModelFilesTable() {
                 )
             },
             width: "28%",
-            onCell: (record: ModelDetailType.FilesItem) => {
+            onCell: (record: any) => {
                 return {
                     onClick: () => {
                         if (record.isAFolder) {
@@ -140,7 +141,7 @@ export default function ModelFilesTable() {
         <>
             <FileBreadCrumb />
             <div>
-                <FilesTableHeader lastModified={lastModified} lastModifiedInformation={lastModifiedInformation} type='model' />
+                <FilesTableHeader lastModified={lastModified} lastModifiedInformation={lastModifiedInformation} />
                 <Table
                     columns={columns}
                     dataSource={filesTable}

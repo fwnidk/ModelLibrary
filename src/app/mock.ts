@@ -66,11 +66,11 @@ Random.extend({
 })
 // {
 // loggedIn: "@boolean",
-// loginInformation: 
-const loginInformationArr = [1]
+// logInInformation: 
+const logInInformationArr = [1]
 Random.extend({
-    loginInformation: function () {
-        return this.pick(loginInformationArr)
+    logInInformation: function () {
+        return this.pick(logInInformationArr)
     }
 })
 
@@ -271,6 +271,8 @@ export const createRandomDatasetListData = Mock.mock("/api/datasetList",
 
 export const createRandomDatsetDetailData = Mock.mock("/api/datasetDetail",
     "post", function (post) {
+        let last = Random.last();
+        let author = Random.first() + ' ' + last;
         return Mock.mock({
             "activeFilters": {
                 "task|1-5": ["@string"],
@@ -280,11 +282,14 @@ export const createRandomDatsetDetailData = Mock.mock("/api/datasetDetail",
             },
             options: {
                 lastModified: "@timeInteger",
+                lastModifiedInformation: "@lastModifiedInformation",
                 name: post.body,
-                author: "@first @last",
+                author,
+                avatar: Random.dataImage('100x100', last),
                 downloads: "@natural(0,100000)",
                 id: "@string",
-                type: "dataset"
+                type: "dataset",
+                isPrivate: false
             },
         })
     }
@@ -341,22 +346,31 @@ export const createRandomFilesTable = Mock.mock("/api/filesTable",
                 fileURL: "@image(200x200)"
             }]
         })
-        return{
+        return {
             filesTable: folderArr.filesTable.concat(fileArr.filesTable)
         };
     }
 )
 
-export const getLoginStatus = Mock.mock("/api/login",
+export const getLogInStatus = Mock.mock("/api/logIn",
     "post", function () {
         return Mock.mock({
             personalInformation: "@personalInformation",
-            loginStatus: "@loginInformation",
+            logInStatus: "@logInInformation",
         }
             // {
             // loggedIn: "@boolean",
-            // loginInformation: 
+            // logInInformation: 
         )
+    }
+)
+//1:success 2:用户名重复
+export const getSignUpStatus = Mock.mock("/api/signUp",
+    "post", function () {
+        if (Random.boolean(2, 8, true)) {
+            return 2;
+        }
+        return 1;
     }
 )
 

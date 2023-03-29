@@ -4,23 +4,23 @@ import './index.scss'
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginAsync } from '../../store/features/login/loginSlice';
+import { logInAsync } from '../../store/features/logIn/logInSlice';
 import { RootState } from '../../store/store';
 import cookie from 'react-cookies'
 
-export default function Login() {
+export default function LogIn() {
     const dispatch = useDispatch()
-    const loginStatus: LoginType.LoginStatus = useSelector((state: RootState) => state.loginInformation.loginStatus)
+    const logInStatus: LogInType.LogInStatus = useSelector((state: RootState) => state.logInInformation.logInStatus)
     const navigate = useNavigate()
     useEffect(() => {
-        console.log('loginStatus: ', loginStatus);
-        if (loginStatus === 1) {
+        console.log('logInStatus: ', logInStatus);
+        if (logInStatus === 1) {
             navigate('/welcome')
         }
-    }, [loginStatus, navigate])
+    }, [logInStatus, navigate])
 
     const onFinish = async (values: any) => {
-        await dispatch(loginAsync(values.username, values.password))
+        await dispatch(logInAsync(values.username, values.password))
         cookie.save('userInfo', values.username, { path: '/' })
     };
     const onFinishFailed = (errorInfo: any) => {
@@ -30,17 +30,17 @@ export default function Login() {
     //     console.log("handle click register");
     // }
     return (
-        <div className='loginBackground' >
-            <div className='loginFormCard'>
+        <div className='logInBackground' >
+            <div className='logInFormCard'>
                 <Space direction='vertical' align="center">
                     <Typography.Title level={2}>
                         登录
                     </Typography.Title>
-                    <span>没有账号？<Link to="">注册</Link></span>
+                    <span style={{ color: "#66696c" }}>没有账号？<Link to="/signUp">注册</Link></span>
                 </Space>
                 <Form
-                    name="normal_login"
-                    className="loginForm"
+                    name="normal_logIn"
+                    className="logInForm"
                     initialValues={{ remember: true }}
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
@@ -57,7 +57,7 @@ export default function Login() {
                     >
                         <Input prefix={<UserOutlined />} placeholder="用户名" />
                     </Form.Item>
-                    
+
                     <Form.Item
                         name="password"
                         label="密码"
@@ -71,20 +71,19 @@ export default function Login() {
                         />
                     </Form.Item>
 
-                    {(loginStatus === 2) && <Form.Item className="errorMessage">
+                    {(logInStatus === 2) && <Form.Item className="errorMessage">
                         <Alert message="用户名或密码不正确。" type="error" />
                     </Form.Item>}
 
                     <Form.Item>
-                        <Button type="default" htmlType="submit" className="loginButton">
+                        <Button type="default" htmlType="submit" className="logInButton">
                             登录
                         </Button>
                     </Form.Item>
                 </Form>
-                {/* <Link to="" className="login-form-forgot">
+                {/* <Link to="" className="logIn-form-forgot">
                     忘记密码？
                 </Link> */}
-
             </div>
         </div>
     )

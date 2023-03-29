@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../store/store"
 import "../../../app/mock"
 import LabelBlock from "../../../components/LabelBlock"
-import { modelLabelConversionArray, datasetLabelConversionArray } from "../../../app/labelConversionArray"
+import { labelConversionArray } from "../../../app/labelConversionArray"
 import { resetModelListAsync } from "../../../store/features/model/modelSlice"
 import { resetDatasetListAsync } from "../../../store/features/dataset/datasetSlice"
 
@@ -21,12 +21,12 @@ export default function ItemLabel(props: { locationState: any, type: string }) {
     const [activeFilters, allFilters] = useSelector((state: RootState) => type === 'model' ?
         [state.modelList.data.activeFilters, state.modelList.data.allFilters] :
         [state.datasetList.data.activeFilters, state.datasetList.data.allFilters])
-    const labelButtonArr = type === 'model' ? modelLabelConversionArray : datasetLabelConversionArray;
     // axios获取数据
     useEffect(() => {
         setAllFiltersSearched(allFilters)
     }, [allFilters])
 
+    const labelButtonArr = labelConversionArray(type);
     //点击切换标签分类按钮
     const handleClickCategory = useCallback((name: any) => {
         return () => {
