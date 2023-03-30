@@ -10,7 +10,7 @@ import cookie from 'react-cookies'
 
 export default function LogIn() {
     const dispatch = useDispatch()
-    const logInStatus: LogInType.LogInStatus = useSelector((state: RootState) => state.logInInformation.logInStatus)
+    const logInStatus: LogInType.LogInStatus = useSelector((state: RootState) => state.logInInformation.data.logInStatus)
     const navigate = useNavigate()
     useEffect(() => {
         console.log('logInStatus: ', logInStatus);

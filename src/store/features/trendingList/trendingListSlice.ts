@@ -4,7 +4,7 @@ import { fetchTrendingList } from './trendingListAPI';
 
 //初始值
 const initialState: TrendingListType.List = {
-    list:[]
+    list: []
 };
 
 //下面的函数称为thunk，允许我们执行异步逻辑。它
@@ -16,7 +16,7 @@ const initialState: TrendingListType.List = {
 export const setTrendingListAsync: any = createAsyncThunk(
     'trendingList/setTrendingListAsync',
     async (_, action) => {
-        const userName: string = (action.getState() as RootState).logInInformation.personalInformation.userName
+        const userName: string = (action.getState() as RootState).logInInformation.data.personalInformation.userName
         const response: any = await fetchTrendingList(userName);
         // console.log(response.data);
         return response.data;

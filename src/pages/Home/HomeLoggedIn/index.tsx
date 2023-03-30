@@ -12,10 +12,12 @@ import ModelItem from '../../../components/ModelItem'
 import UpdateMessage from '../../../components/UpdateMessage'
 import './index.scss'
 import { ReactComponent as ProfileIcon } from "../../../app/icons/profile.svg"
+import LoadingStatus from '../../../components/LoadingStatus'
+import ErrorStatus from '../../../components/ErrorStatus'
 
 export default function HomeLoggedIn() {
-    const personalInformation: LogInType.PersonalInformation = useSelector((state: RootState) => state.logInInformation.personalInformation)
-    const personalFilesList: Array<any> = useSelector((state: RootState) => state.personalFiles.list)
+    const personalInformation: LogInType.PersonalInformation = useSelector((state: RootState) => state.logInInformation.data.personalInformation)
+    const { data, isError, isLoading } = useSelector((state: RootState) => state.personalFiles)
     const trendingList: Array<any> = useSelector((state: RootState) => state.trendingList.list)
     const [currCategory, setCurrCategory] = useState<number>(0)
     const [currTrendingCategory, setCurrTrendingCategory] = useState<number>(0)
@@ -25,7 +27,7 @@ export default function HomeLoggedIn() {
     useEffect(() => {
         dispatch(setPersonalFilesAsync())
         dispatch(setTrendingListAsync())
-        // console.log(personalFilesList)
+        // console.log(data.list)
     }, [dispatch])
 
     const getHomeLoggedInItem = () => {
@@ -33,7 +35,7 @@ export default function HomeLoggedIn() {
         let prevtimeAgoString: string = ''
         let res: Array<JSX.Element> = [];
         let index = 0;
-        personalFilesList.forEach((item) => {
+        data.list.forEach((item: any) => {
             if ((item.type === 'model' && (currCategory === 2 || currCategory === 3)) ||
                 (item.type === 'dataset' && (currCategory === 1 || currCategory === 3))) {
                 return;
@@ -92,7 +94,12 @@ export default function HomeLoggedIn() {
             </NavLink>),
         },
     ]
-
+    if (isLoading) {
+        return <LoadingStatus />
+    }
+    if (isError) {
+        return <ErrorStatus />
+    }
     return (
         <Row className='homeLoggedIn'>
             <Col span={4} className="homeLoggedIn1">
@@ -108,7 +115,7 @@ export default function HomeLoggedIn() {
                             <ProfileIcon style={{ width: 16, height: 16, marginLeft: -3, marginRight: 8, color: '#9599a0' }} />
                             简介
                         </NavLink>
-                        <span><MailFilled className='grayIcon' /> 通知 (0)</span>
+                        <NavLink to='/notification' style={{ color: "#000" }}><MailFilled className='grayIcon' /> 通知 (0)</NavLink>
                         <NavLink to='/setting' style={{ color: "#000" }}><SettingFilled className='grayIcon' /> 设置</NavLink>
                     </Space>
                     <Space direction='vertical' size='small'>
@@ -138,7 +145,7 @@ export default function HomeLoggedIn() {
                             )
                         })}
                     </Space>
-                    {personalFilesList.length !== 0 ? getHomeLoggedInItem() : <h1>暂无动态</h1>}
+                    {data.list.length !== 0 ? getHomeLoggedInItem() : <h1>暂无动态</h1>}
                 </div>
             </Col>
             <Col span={6} className="homeLoggedIn3">

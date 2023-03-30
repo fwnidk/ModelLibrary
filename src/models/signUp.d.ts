@@ -1,7 +1,15 @@
 declare namespace SignUpType {
-    interface SignUp {
+    interface SignUpForm {
         userName: string,
         password: string,
-        password_confirmation: string,
+        avatar: any,
+        researchInterests: string,
+        team: string,
+    }
+
+    interface SignUpFormSecond {
+        avatar: any,
+        researchInterests: string,
+        team: string,
     }
 }

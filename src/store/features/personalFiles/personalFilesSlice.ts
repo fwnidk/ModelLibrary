@@ -3,10 +3,14 @@ import { RootState } from '../../store';
 import { fetchPersonalFiles } from './personalFilesAPI';
 
 //初始值
-const initialState: PersonalFilesType.List = {
-    list:[]
+const initialState: LoadingStatusType.Wrapper<PersonalFilesType.List> = {
+    data: {
+        list: []
+    },
+    isLoading: false,
+    isError: false,
 };
-
+//加载状态包装器
 //下面的函数称为thunk，允许我们执行异步逻辑。它
 //可以像常规操作一样进行调度：“dispatch（incrementAsync（10））”。这
 //将使用“dispatch”函数作为第一个参数调用thunk。异步
@@ -17,7 +21,7 @@ const initialState: PersonalFilesType.List = {
 export const setPersonalFilesAsync: any = createAsyncThunk(
     'personalFiles/setPersonalFilesAsync',
     async (_, action) => {
-        const userName: string = (action.getState() as RootState).logInInformation.personalInformation.userName
+        const userName: string = (action.getState() as RootState).logInInformation.data.personalInformation.userName
         const response: any = await fetchPersonalFiles(userName);
         // console.log(response.data);
         return response.data;
@@ -30,21 +34,22 @@ export const personalFilesSlice = createSlice({
     //“reducers”字段允许我们定义reducers并生成相关操作
     reducers: {
         // setPersonalFiles: (state, action: PayloadAction<any>) => {
-
         // },
     },
     extraReducers: (builder) => {
         builder
-            //两个异步函数的成功和失败后的处理
-            .addCase(setPersonalFilesAsync.fulfilled, (state: PersonalFilesType.List, action) => {
-                //更新personalFiles
-                state = action.payload
-                console.log('setPersonalFilesAsync')
-                return state
+            .addCase(setPersonalFilesAsync.pending, (state, action) => {
+                state.isLoading = true
             })
-
-            .addCase(setPersonalFilesAsync.rejected, (state) => {
-                console.log('error', state)
+            .addCase(setPersonalFilesAsync.fulfilled, (state, action) => {
+                //更新personalFiles
+                state.data = action.payload
+                state.isLoading = false
+                console.log('setPersonalFilesAsync')
+            })
+            .addCase(setPersonalFilesAsync.rejected, (state,error) => {
+                state.isError = false
+                console.log('error', error)
             })
     },
 });

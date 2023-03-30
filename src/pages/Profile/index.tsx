@@ -4,6 +4,8 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import DatasetListItem from '../../components/DatasetListItem';
+import ErrorStatus from '../../components/ErrorStatus';
+import LoadingStatus from '../../components/LoadingStatus';
 import ModelIcon from '../../components/ModelIcon';
 import ModelListItem from '../../components/ModelListItem';
 import PersonalIcon from '../../components/PersonalIcon';
@@ -14,14 +16,19 @@ import './index.scss'
 export default function Profile() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const personalFilesList: Array<any> = useSelector((state: RootState) => state.personalFiles.list)
-    const personalInformation: LogInType.PersonalInformation = useSelector((state: RootState) => state.logInInformation.personalInformation)
+    const { data, isLoading, isError } = useSelector((state: RootState) => state.personalFiles)
+    const personalInformation: LogInType.PersonalInformation = useSelector((state: RootState) => state.logInInformation.data.personalInformation)
     useEffect(() => {
         dispatch(setPersonalFilesAsync())
     }, [dispatch, personalInformation])
-    const modelList = personalFilesList.filter((item) => item.type === 'model')
-    const datasetList = personalFilesList.filter((item) => item.type === 'dataset')
-
+    const modelList = data.list.filter((item: any) => item.type === 'model')
+    const datasetList = data.list.filter((item: any) => item.type === 'dataset')
+    if (isLoading) {
+        return <LoadingStatus />
+    }
+    if (isError) {
+        return <ErrorStatus />
+    }
     return (
         <Row className='profile'>
             <Col span={6} className="profileLeft">

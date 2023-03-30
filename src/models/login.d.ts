@@ -7,13 +7,6 @@ declare namespace LogInType {
 
     type LogInStatus = 0 | 1 | 2
 
-    interface SigninForm {
-        userName: string,
-        password: string,
-        confirmPassword: string,
-        team: string
-    }
-
     interface PersonalInformation {
         userName: string,
         team: string,

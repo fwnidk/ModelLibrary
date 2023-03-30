@@ -15,6 +15,7 @@ import ItemDetails from "../pages/ItemDetails";
 import ItemCard from "../pages/ItemDetails/components/ItemCard";
 import ItemFilesTable from "../pages/ItemDetails/components/ItemFilesTable";
 import SignUp from "../pages/SignUp";
+import Notification from "../pages/Notification";
 
 const router = createBrowserRouter(
     [
@@ -49,6 +50,10 @@ const router = createBrowserRouter(
                 {
                     path: "/welcome",
                     element: <Welcome />,
+                },
+                {
+                    path: "/notification",
+                    element: <Notification  />,
                 },
                 {
                     path: "/setting",

@@ -2,9 +2,13 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 // import { RootState, AppThunk } from '../../store';
 import { fetchLogIn } from './logInAPI';
 
-const initialState: LogInType.LogInInformation = {
-    personalInformation: null,
-    logInStatus: 0
+const initialState: LoadingStatusType.Wrapper<LogInType.LogInInformation> = {
+    data: {
+        personalInformation: null,
+        logInStatus: 0
+    },
+    isLoading: false,
+    isError: false,
 }
 
 //下面的函数称为thunk，允许我们执行异步逻辑。它
@@ -37,11 +41,11 @@ export const logInSlice: any = createSlice({
     initialState,
     //“reducers”字段允许我们定义reducers并生成相关操作
     reducers: {
-        logout: () => {
-            return ({
+        logout: (state) => {
+            state.data = {
                 personalInformation: null,
                 logInStatus: 0
-            } as LogInType.LogInInformation)
+            }
         },
         //使用PayloadAction类型声明`action.payload的内容`
 
@@ -50,22 +54,28 @@ export const logInSlice: any = createSlice({
     //包括createAsyncThunk或其他切片中生成的动作。
     extraReducers: (builder) => {
         builder
-            // .addCase(logInAsync.pending, (state) => {
-            // })
+            .addCase(logInAsync.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(logInByCookieAsync.pending, (state) => {
+                state.isLoading = true
+            })
             .addCase(logInAsync.fulfilled, (state, action) => {
-                state = action.payload;
+                state.data = action.payload;
+                state.isLoading = false
                 console.log('logInAsync')
-                return state
             })
             .addCase(logInByCookieAsync.fulfilled, (state, action) => {
-                state = action.payload;
+                state.data = action.payload;
+                state.isLoading = false
                 console.log('logInByCookieAsync')
-                return state
             })
             .addCase(logInAsync.rejected, (state) => {
+                state.isError = true;
                 console.log('error', state)
             })
             .addCase(logInByCookieAsync.rejected, (state) => {
+                state.isError = true;
                 console.log('error', state)
             })
     },

@@ -14,7 +14,7 @@ import { logout } from '../../store/features/logIn/logInSlice';
 
 export default function GlobalHeader() {
     const navigate = useNavigate();
-    const logInInformation: LogInType.LogInInformation = useSelector((state: RootState) => state.logInInformation)
+    const logInInformation: LogInType.LogInInformation = useSelector((state: RootState) => state.logInInformation.data)
     const dispatch = useDispatch()
 
     function handleEnter(e: any) {

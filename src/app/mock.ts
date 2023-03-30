@@ -364,13 +364,20 @@ export const getLogInStatus = Mock.mock("/api/logIn",
         )
     }
 )
-//1:success 2:用户名重复
-export const getSignUpStatus = Mock.mock("/api/signUp",
+//1:第一步完成 2:第二步完成 -1:用户名重复
+export const verifyUsername = Mock.mock("/api/verifyUsername",
     "post", function () {
-        if (Random.boolean(2, 8, true)) {
-            return 2;
+        if (Random.boolean(1, 9, true)) {
+            return -1;
         }
         return 1;
+    }
+)
+
+// '/api/signUp'
+export const submitSignUpForm = Mock.mock("/api/signUp",
+    "post", function () {
+        return 2;
     }
 )
 
@@ -470,5 +477,13 @@ export const getBlob = Mock.mock("/api/getBlob",
             ...displayFileData
         })
         return fileObj;
+    }
+)
+
+// /api/avatarPost
+export const avatarPost = Mock.mock("/api/avatarPost",
+    "post", function (postMessage) {
+        console.log("avatarPost---使用mock");
+        return true;
     }
 )
