@@ -2,7 +2,9 @@
     width: 100%;
 }
 
-.d2h-code-line-ctn, .d2h-code-side-linenumber, .d2h-code-side-line {
+.d2h-code-line-ctn,
+.d2h-code-side-linenumber,
+.d2h-code-side-line {
     font-size: 14px !important;
     height: 20px;
     line-height: 20px;
@@ -14,9 +16,18 @@
 
 .d2h-info {
     background-color: rgb(239, 246, 255);
+    height: 22px;
+    line-height: 22px;
+
+    .d2h-code-side-line {
+        height: 22px;
+        line-height: 22px;
+        font-size: 15px !important;
+    }
 }
 
-.d2h-del, .d2h-ins .d2h-code-line-ctn {
+.d2h-del,
+.d2h-ins .d2h-code-line-ctn {
     font-family: IBMPlexMono;
     font-weight: lighter;
 }
@@ -35,10 +46,10 @@
     line-height: 25.4px;
     height: 25.4px;
     margin-left: 3px;
-} 
+}
 
 .d2h-file-list {
-    border: 0.8px solid rgb(229,231,235);
+    border: 0.8px solid rgb(229, 231, 235);
 }
 
 .d2h-file-list-header {

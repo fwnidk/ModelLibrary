@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import './index.scss'
 import FilesTableHeader from '../FilesTableHeader';
 import { Button } from 'antd';
@@ -39,13 +39,32 @@ export default function CodeDisplay() {
     // const handleChange = (value: string) => {
     //     dispatch({ type: 'setCode', payload: value })
     // }
+
+    const [fileType, fileName] = useMemo(() => {
+        const locationArr = decodeURI(location).split('/')
+        const fileName = locationArr[locationArr.length - 1]
+        const fileNameArr = fileName.split('.')
+        return [fileNameArr[fileNameArr.length - 1], fileName]
+    }, [location])
+
+    const downloadFile = async (fileStr: string) => {
+        console.log('fileType: ', fileType);
+        let url = window.URL.createObjectURL(new Blob([fileStr]));
+        let link = document.createElement("a");
+        link.style.display = "none";
+        link.href = url;
+        link.download = fileName
+        document.body.appendChild(link);
+        link.click();
+    }
+
+
     if (isLoading) {
         return <LoadingStatus />;
     }
     if (isError) {
         return <ErrorStatus />;
     }
-
     return (
         <>
             <FileBreadCrumb />
@@ -56,7 +75,7 @@ export default function CodeDisplay() {
                         type='link'
                         className='codeToolbarButton'
                         onClick={() => {
-                            console.log(data.displayData);
+                            downloadFile(data.displayData);
                         }}
                     ><DownloadOutlined />下载</Button>
                     <Button

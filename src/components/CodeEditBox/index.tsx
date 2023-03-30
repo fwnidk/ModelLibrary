@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/theme-textmate";
 import "ace-builds/src-noconflict/ext-language_tools";
@@ -8,14 +8,11 @@ import { useLocation } from 'react-router-dom';
 export default function CodeEditBox(props: { defaultVaule: string, onChange?: any }) {
     const { defaultVaule, onChange } = props
     const location = useLocation().pathname
-    const locationArr = decodeURI(location).split('/')
-    const fileNameArr = locationArr[locationArr.length - 1].split('.')
-    // const [fileType, setFileType] = useState('')
-    const fileType = fileNameArr[fileNameArr.length - 1]
-    useEffect(() => {
-        console.log('codeEdit');
-        // setFileType(fileNameArr[fileNameArr.length - 1])
-    }, [fileNameArr])
+    const fileType = useMemo(() => {
+        const locationArr = decodeURI(location).split('/')
+        const fileNameArr = locationArr[locationArr.length - 1].split('.')
+        return fileNameArr[fileNameArr.length - 1]
+    }, [location])
     const getMode = () => {
         let res: string;
         switch (fileType) {
