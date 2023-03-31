@@ -1,0 +1,25 @@
+$grayborder : 0.8px solid rgb(229, 231, 235);
+
+.deleteCardTitle {
+    width: 100px;
+    height: 100%;
+    line-height: 40px;
+    text-align: center;
+    background-color: #FFFFFF;
+    border-right: $grayborder;
+}
+
+.deleteCard {
+    padding: 20px 15px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.deleteCardFileList {
+    background-color: #f4f6f7;
+    width: 100%;
+    height: 45px;
+    padding-left: 22px;
+    border-radius: 5px;
+    font-size: 16px;
+}

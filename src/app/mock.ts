@@ -487,3 +487,10 @@ export const avatarPost = Mock.mock("/api/avatarPost",
         return true;
     }
 )
+
+export const filesPost = Mock.mock("/api/filesPost",
+    "post", function (postMessage) {
+        console.log("filePost---使用mock");
+        return true;
+    }
+)

@@ -27,9 +27,11 @@ export default function DiffComponent(props: { diffDataList: Array<any>, documen
                 newString = JSON.stringify(newData, null, 2);
             }
             // 对比差异
-            const diffStr = createTwoFilesPatch(oldFileName || "", newFileName || "", oldString, newString);
+            const diffStr = createTwoFilesPatch(oldFileName || ' ', newFileName || ' ', oldString, newString);
+            console.log('diffStr: ', diffStr);
             // 差异json化
             const diffJson = parse(diffStr);
+            console.log('diffJson: ', diffJson);
             diffJsonList.push(diffJson[0]);
         })
         // console.log(diffJsonList);
@@ -56,7 +58,7 @@ export default function DiffComponent(props: { diffDataList: Array<any>, documen
         const diff2htmlUi = new Diff2HtmlUI(targetElement as HTMLElement, diffJsonList, configuration as any);
         diff2htmlUi.draw();       //绘制页面
         diff2htmlUi.highlightCode();  // 高亮数据
-    }, [])
+    }, [props.documentChangesOverview])
     return (
         <div id={'diff-ui-mult'} />
     )

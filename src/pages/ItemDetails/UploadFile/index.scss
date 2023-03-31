@@ -1,0 +1,42 @@
+$grayborder : 0.8px solid rgb(229, 231, 235);
+$background: linear-gradient(to bottom, #ffffff, #f3f4f6);
+
+.uploadCardBorder {
+    border: $grayborder;
+    border-radius: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.uploadCardHeader {
+    font-size: 16px;
+    text-shadow: 0 0 0.25px currentcolor;
+    height: 40px;
+    background: $background !important;
+    border-bottom: $grayborder;
+}
+
+.uploadCardTitle {
+    width: 150px;
+    height: 100%;
+    line-height: 40px;
+    text-align: center;
+    background-color: #FFFFFF;
+    border-right: $grayborder;
+}
+
+.filesUploadDragger {
+    padding: 20px 15px;
+
+    .ant-upload {
+        background-color: #FFFFFF;
+        border-radius: 8px;
+    }
+}
+
+.ant-upload-list-item,
+.ant-upload-list-item-done {
+    height: 38px !important;
+}

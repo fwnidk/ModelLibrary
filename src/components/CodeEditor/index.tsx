@@ -1,5 +1,5 @@
 import { Button, Form, Input, Space, Tabs, TabsProps } from 'antd';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router'
 import { RootState } from '../../store/store';
@@ -13,7 +13,6 @@ import './index.scss'
 import DiffComponent from '../DiffComponent';
 import { fetchFileContentAsync } from '../../store/features/fileContent/fileContentSlice';
 import CodeEditBox from '../CodeEditBox';
-
 
 export default function CodeEditor() {
     const location = useLocation().pathname;
@@ -39,6 +38,9 @@ export default function CodeEditor() {
     }, [isLoading])
 
     const onFinish = (values: any) => {
+        if (values.codeEditorCommit === undefined || values.codeEditorCommit === '') {
+            values.codeEditorCommit = defaultCommitMessage
+        }
         console.log('onFinish', { ...values, changedCode });
     }
     const onFinishFailed = (error: any) => {
@@ -89,6 +91,10 @@ export default function CodeEditor() {
         //   oldString,
         //    newString
     ]
+    //filePath === changedPath ?`Update ${changedPath}` :`Rename ${filePath} to ${changedPath}`
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+
+    const defaultCommitMessage = filePath === changedPath ? `Update ${changedPath}` : `Rename ${filePath} to ${changedPath}`
 
     return (
         changedCode === undefined ? <LoadingStatus /> :
@@ -98,7 +104,7 @@ export default function CodeEditor() {
                 size='large'
                 colon={false}
                 requiredMark={false}
-                initialValues={{ changeFilepath: filePath, codeEditorCommit: `Update ${filePath}` }}
+                initialValues={{ changeFilepath: filePath }}
             >
                 <Form.Item
                     name='changeFilepath'
@@ -126,7 +132,7 @@ export default function CodeEditor() {
                         >
                             <Space direction='vertical' style={{ width: '100%' }}>
                                 <span style={{ fontSize: 16, fontWeight: 600 }}>更改描述</span>
-                                <Input placeholder={`Update ${filePath}`} />
+                                <Input placeholder={defaultCommitMessage} />
                             </Space>
                         </Form.Item>
                         <Form.Item>

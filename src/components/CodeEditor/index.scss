@@ -57,5 +57,6 @@ $background: linear-gradient(to bottom, #ffffff, #f3f4f6);
 
 .codeEditorCommit {
     width: 100%;
-    padding: 0 15px;
+    padding: 15px;
+    border-top: $grayborder;
 }

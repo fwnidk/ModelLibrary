@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import './index.scss'
 import "../../../app/mock"
 import { displayNumberOfBytes } from '../../../app/displayNumberOfBytes';
-import { ArrowDownOutlined, FileOutlined, FolderFilled } from '@ant-design/icons';
+import { ArrowDownOutlined, CaretDownOutlined, FileOutlined, FolderFilled, PlusOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
 import { getTimeAgoString } from '../../../app/getTimeAgoString';
@@ -154,7 +154,7 @@ export default function ItemFilesTable(props: { type: string }) {
             <div className='filesTableTitle'>
                 <FileBreadCrumb />
                 <Dropdown menu={{ items: dropdownItems }} placement="bottomRight" className='addFileDropdown'>
-                    <Button>添加文件</Button>
+                    <Button><PlusOutlined />添加文件<CaretDownOutlined style={{ fontSize: 10 }} /></Button>
                 </Dropdown>
             </div>
             <div>
