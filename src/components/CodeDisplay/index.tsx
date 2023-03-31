@@ -30,6 +30,7 @@ export default function CodeDisplay() {
     const { data, isLoading, isError } = useSelector((state: RootState) => state.fileContent)
     const dispatch = useDispatch()
     const location = useLocation().pathname
+    const locationStr = location.split('/').slice(4).join('/');
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -40,15 +41,12 @@ export default function CodeDisplay() {
     //     dispatch({ type: 'setCode', payload: value })
     // }
 
-    const [fileType, fileName] = useMemo(() => {
+    const fileName = useMemo(() => {
         const locationArr = decodeURI(location).split('/')
-        const fileName = locationArr[locationArr.length - 1]
-        const fileNameArr = fileName.split('.')
-        return [fileNameArr[fileNameArr.length - 1], fileName]
+        return locationArr[locationArr.length - 1]
     }, [location])
 
     const downloadFile = async (fileStr: string) => {
-        console.log('fileType: ', fileType);
         let url = window.URL.createObjectURL(new Blob([fileStr]));
         let link = document.createElement("a");
         link.style.display = "none";
@@ -99,28 +97,31 @@ export default function CodeDisplay() {
                         className='codeToolbarButton'
                         onClick={
                             () => {
-                                let locationStr = location.split('/').slice(4).join('/');
                                 navigate(`../edit/${locationStr}`)
                             }
                         }
-                    ><EditOutlined />编辑</Button>}
-                    <Button
+                    ><EditOutlined />编辑
+                    </Button>}
+                    {!data.displayable || <Button
                         type='link'
                         className='codeToolbarButton'
-
-                    ><DeleteOutlined />删除</Button>
+                        onClick={
+                            () => {
+                                navigate(`../delete/${locationStr}`)
+                            }
+                        }
+                    ><DeleteOutlined />删除
+                    </Button>}
                     <div className='codeToolbarFileSize'>
                         {displayNumberOfBytes(data.size)}
                     </div>
                 </div>
 
-                {
-                    data.displayable ?
-                        <div className='codeDisplayContainer'>
-                            <CodeEditBox defaultVaule={data.displayData} />
-                        </div>
-                        : <div className='oversizedFileTip'>文件太大无法显示，可以查看原始文件</div>
-                }
+                {data.displayable ?
+                    <div className='codeDisplayContainer'>
+                        <CodeEditBox defaultVaule={data.displayData} />
+                    </div>
+                    : <div className='oversizedFileTip'>文件太大无法显示，可以查看原始文件</div>}
             </div>
         </>
     );

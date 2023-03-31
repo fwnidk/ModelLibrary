@@ -42,7 +42,7 @@ export default function ItemDetails(props: { type: string }) {
             ),
         },
         {
-            key: 'tree',
+            key: 'tree/main',
             label: (
                 <span className='tabsFont'>
                     <ProfileOutlined />文件

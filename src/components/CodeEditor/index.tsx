@@ -26,7 +26,7 @@ export default function CodeEditor() {
     //项目名
     const itemName = locationArr[2]
 
-    const filePath = locationArr.slice(4).join('/')
+    const filePath = locationArr.slice(5).join('/')
     const [changedCode, setChangedCode] = useState(data ? data.displayData : undefined)
     const [changedPath, setChangedPath] = useState(filePath)
     useEffect(() => {

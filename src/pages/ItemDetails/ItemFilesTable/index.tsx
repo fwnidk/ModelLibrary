@@ -1,25 +1,27 @@
-import { Space, Table } from 'antd'
+import { Button, Dropdown, MenuProps, Space, Table } from 'antd'
 import { ColumnsType } from 'antd/es/table';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import './index.scss'
-import "../../../../app/mock"
-import { displayNumberOfBytes } from '../../../../app/displayNumberOfBytes';
+import "../../../app/mock"
+import { displayNumberOfBytes } from '../../../app/displayNumberOfBytes';
 import { ArrowDownOutlined, FileOutlined, FolderFilled } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../../store/store';
-import { getTimeAgoString } from '../../../../app/getTimeAgoString';
-import FilesTableHeader from '../../../../components/FilesTableHeader';
-import FileBreadCrumb from '../../../../components/FileBreadcrumb';
-import LoadingStatus from '../../../../components/LoadingStatus';
+import { RootState } from '../../../store/store';
+import { getTimeAgoString } from '../../../app/getTimeAgoString';
+import FilesTableHeader from '../../../components/FilesTableHeader';
+import FileBreadCrumb from '../../../components/FileBreadcrumb';
+import LoadingStatus from '../../../components/LoadingStatus';
+import { NavLink } from 'react-router-dom';
 //详情页面的文件展示表格
 export default function ItemFilesTable(props: { type: string }) {
     const { type } = props
     const [filesTable, setFilesTable] = useState<any>()
     const [isLoading, setIsLoading] = useState(true)
     const navigate = useNavigate()
-    const location = useLocation().pathname
+    const location = useLocation().pathname;
+    const locationStr = location.split('/').slice(4).join('/');
     const { lastModified, lastModifiedInformation } = useSelector((state: RootState) => type === 'model' ? state.modelDetail.data.options : state.datasetDetail.data.options)
     useEffect(() => {
         //获取表格数据
@@ -90,12 +92,7 @@ export default function ItemFilesTable(props: { type: string }) {
                         if (record.isAFolder) {
                             navigate(`${location}/${encodeURI(record.fileName)}`)
                         } else {
-                            let locationStr = location.split('/').slice(4).join('/');
-                            if (locationStr === '') {
-                                navigate(`../blob/${encodeURI(record.fileName)}`)
-                            } else {
-                                navigate(`../blob/${locationStr}/${encodeURI(record.fileName)}`)
-                            }
+                            navigate(`../blob/${locationStr}/${encodeURI(record.fileName)}`)
                         }
                     }
                 }
@@ -134,12 +131,32 @@ export default function ItemFilesTable(props: { type: string }) {
             width: "10%",
             onCell: naviagteDiff
         },]
+    const dropdownItems: MenuProps['items'] = [
+        {
+            key: '1',
+            label: (
+                <NavLink to={`../new/${locationStr}`}>在线创建文件</NavLink>
+            ),
+        },
+        {
+            key: '2',
+            label: (
+                <NavLink to={`../upload/${locationStr}`}>上传文件/文件夹</NavLink>
+            ),
+        },
+    ]
     if (isLoading) {
         return <LoadingStatus />
     }
     return (
         <>
-            <FileBreadCrumb />
+
+            <div className='filesTableTitle'>
+                <FileBreadCrumb />
+                <Dropdown menu={{ items: dropdownItems }} placement="bottomRight" className='addFileDropdown'>
+                    <Button>添加文件</Button>
+                </Dropdown>
+            </div>
             <div>
                 <FilesTableHeader lastModified={lastModified} lastModifiedInformation={lastModifiedInformation} />
                 <Table

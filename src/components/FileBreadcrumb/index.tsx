@@ -1,19 +1,19 @@
 import { Breadcrumb } from 'antd';
-import React, { useCallback } from 'react'
+import React, { useMemo } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import './index.scss'
 
 export default function FileBreadCrumb() {
     const location = useLocation().pathname;
-    const getBread = useCallback(() => {
+    const getBread = useMemo(() => {
         const locationArr = decodeURI(location).split('/')
         const name = locationArr[2]
-        const breadcrumbContent: Array<string> = locationArr.slice(4);
+        const breadcrumbContent: Array<string> = locationArr.slice(5);
         // console.log(breadcrumbContent);
         let breadcrumbItems = (breadcrumbContent.length !== 0) ?
-            [{ title: <Link to='../tree' className='breadCrumbItem'>{name}</Link> }] :
+            [{ title: <Link to='../tree/main' className='breadCrumbItem'>{name}</Link> }] :
             [{ title: <span> {name} </span> }];
-        let currRoute: string = '../tree'
+        let currRoute: string = '../tree/main'
         for (let i = 0; i < breadcrumbContent.length; i++) {
             let item = breadcrumbContent[i]
             currRoute += ('/' + item);
@@ -23,9 +23,9 @@ export default function FileBreadCrumb() {
                 breadcrumbItems.push({ title: <Link to={currRoute} className='breadCrumbItem'>{item}</Link> })
             }
         }
-        return breadcrumbItems
+        return breadcrumbItems;
     }, [location])
     return (
-        <Breadcrumb items={getBread()} className="fileBreadcrumb" />
+        <Breadcrumb items={getBread} className="fileBreadcrumb" />
     )
 }

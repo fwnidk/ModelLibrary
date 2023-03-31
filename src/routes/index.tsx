@@ -12,10 +12,51 @@ import CodeDisplay from "../components/CodeDisplay";
 import CodeEditor from "../components/CodeEditor";
 import Item from "../pages/Item";
 import ItemDetails from "../pages/ItemDetails";
-import ItemCard from "../pages/ItemDetails/components/ItemCard";
-import ItemFilesTable from "../pages/ItemDetails/components/ItemFilesTable";
+import ItemCard from "../pages/ItemDetails/ItemCard";
+import ItemFilesTable from "../pages/ItemDetails/ItemFilesTable";
 import SignUp from "../pages/SignUp";
 import Notification from "../pages/Notification";
+import NewFile from "../pages/ItemDetails/NewFile";
+import UploadFile from "../pages/ItemDetails/UploadFile";
+import DeleteFile from "../pages/ItemDetails/DeleteFile";
+
+const getChildrenArr = (type: string) => {
+    return [
+        {
+            path: "",
+            element: <ItemCard />,
+
+        },
+        {
+            path: "tree/*",
+            element: <ItemFilesTable type={type} />,
+        },
+        {
+            path: "commit",
+            element: <Commit />
+        },
+        {
+            path: "blob/*",
+            element: <CodeDisplay />
+        },
+        {
+            path: "edit/*",
+            element: <CodeEditor />
+        },
+        {
+            path: "new/*",
+            element: <NewFile />
+        },
+        {
+            path: "upload/*",
+            element: <UploadFile />
+        },
+        {
+            path: "delete/*",
+            element: <DeleteFile />
+        },
+    ]
+}
 
 const router = createBrowserRouter(
     [
@@ -53,7 +94,7 @@ const router = createBrowserRouter(
                 },
                 {
                     path: "/notification",
-                    element: <Notification  />,
+                    element: <Notification />,
                 },
                 {
                     path: "/setting",
@@ -74,58 +115,12 @@ const router = createBrowserRouter(
                 {
                     path: "dataset/:search",
                     element: <ItemDetails type='dataset' />,
-                    // loader: (params) => params,
-                    children: [
-                        {
-                            path: "",
-                            element: <ItemCard />,
-
-                        },
-                        {
-                            path: "tree/*",
-                            element: <ItemFilesTable type='dataset' />,
-                        },
-                        {
-                            path: "commit",
-                            element: <Commit />
-                        },
-                        {
-                            path: "blob/*",
-                            element: <CodeDisplay />
-                        },
-                        {
-                            path: "edit/*",
-                            element: <CodeEditor />
-                        }
-                    ]
+                    children: getChildrenArr('dataset')
                 },
                 {
                     path: "model/:search",
                     element: <ItemDetails type='model' />,
-                    // loader: (params) => params,
-                    children: [
-                        {
-                            path: "",
-                            element: <ItemCard />,
-
-                        },
-                        {
-                            path: "tree/*",
-                            element: <ItemFilesTable type='model' />,
-                        },
-                        {
-                            path: "commit",
-                            element: <Commit />
-                        },
-                        {
-                            path: "blob/*",
-                            element: <CodeDisplay />
-                        },
-                        {
-                            path: "edit/*",
-                            element: <CodeEditor />
-                        }
-                    ]
+                    children: getChildrenArr('model')
                 },
             ]
         },
