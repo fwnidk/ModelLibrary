@@ -13,7 +13,7 @@ export default function ListHeader(props: { type: string }) {
     const dispatch = useDispatch()
     let [sortType, setSortType] = useState('Most Downloads')
     //搜索框改变信息后触发dispatch，发送filterByName: value 
-    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    function handleChange(e: any) {
         const { value } = e.target
         if (type === 'model') {
             dispatch(setModelListAsync({ activeFilters: {}, otherOptions: { filterByName: value }, first: false }))
@@ -46,7 +46,7 @@ export default function ListHeader(props: { type: string }) {
             <Space size="large" wrap >
                 <Text className='fontSize20'>{type === 'model' ? 'Models' : 'Datasets'}</Text>
                 <Text type="secondary" className='fontSize20'> {(numTotalItems || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
-                <Input placeholder='Filter by name' onChange={handleChange} className="inputStyle" ></Input>
+                <Input placeholder='Filter by name' onPressEnter={handleChange} className="inputStyle" ></Input>
             </Space>
             <Dropdown menu={{ items, onClick }} placement="bottomLeft" className='dropdownStyle'>
                 <Button >Sort: {sortType}</Button>

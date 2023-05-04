@@ -23,7 +23,7 @@ export default function Item(props: { type: string }) {
                 dispatch(setModelListAsync({ activeFilters: {}, otherOptions: {}, first: true }))
             } else {
                 const { currCategory, label } = location.state
-                dispatch(setModelListAsync({ activeFilters: { [currCategory]: label }, otherOptions: {}, first: false }))
+                dispatch(setModelListAsync({ activeFilters: { [currCategory]: label }, otherOptions: {}, first: true }))
             }
             dispatch(setModelLabelAsync())
         } else {
@@ -31,7 +31,7 @@ export default function Item(props: { type: string }) {
                 dispatch(setDatasetListAsync({ activeFilters: {}, otherOptions: {}, first: true }))
             } else {
                 const { currCategory, label } = location.state
-                dispatch(setDatasetListAsync({ activeFilters: { [currCategory]: label }, otherOptions: {}, first: false }))
+                dispatch(setDatasetListAsync({ activeFilters: { [currCategory]: label }, otherOptions: {}, first: true }))
             }
             dispatch(setDatasetLabelAsync())
         }

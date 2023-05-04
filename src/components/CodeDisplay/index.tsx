@@ -102,7 +102,7 @@ export default function CodeDisplay() {
                         }
                     ><EditOutlined />编辑
                     </Button>}
-                    {!data.displayable || <Button
+                    {<Button
                         type='link'
                         className='codeToolbarButton'
                         onClick={

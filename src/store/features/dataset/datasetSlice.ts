@@ -40,18 +40,11 @@ const initialState: { data: DatasetType.DatasetList, isLoading1: boolean, isLoad
 //getDatasetListAsyncRemove
 export const setDatasetListAsync: any = createAsyncThunk(
     'datasetList/getDatasetListAsync',
-    async (filter: {
-        activeFilters: DatasetType.ActiveFilters
-        , otherOptions: DatasetType.OtherOptions, first: boolean
-    }, action) => {
+    async (filter: { activeFilters: DatasetType.ActiveFilters, otherOptions: DatasetType.OtherOptions, first: boolean }, action) => {
         action.dispatch(setDatasetList(filter))
-        // console.log('filter: ', filter);
-        //如果重置页面索引，则resetPageIndex为true
-        let resetPageIndex = true;
-        if (filter.otherOptions.hasOwnProperty("pageIndex")) {
-            resetPageIndex = false;
-        }
-        const response = await fetchDatasetList((action.getState() as RootState).datasetList.activeFilters, (action.getState() as RootState).datasetList.otherOptions, filter.first, resetPageIndex);
+        //如果更改页数，则resetPageIndex为false
+        let resetPageIndex = !filter.otherOptions.hasOwnProperty("pageIndex");
+        const response = await fetchDatasetList((action.getState() as RootState).datasetList.data.activeFilters, (action.getState() as RootState).datasetList.data.otherOptions);
         return response.data;
     }
 )
@@ -60,7 +53,7 @@ export const removeDatasetListAsync: any = createAsyncThunk(
     'datasetList/removeDatasetListAsync',
     async (filter, action) => {
         action.dispatch(removeDatasetList(filter))
-        const response: any = await fetchDatasetList((action.getState() as RootState).datasetList.activeFilters, (action.getState() as RootState).datasetList.otherOptions, false, true);
+        const response: any = await fetchDatasetList((action.getState() as RootState).datasetList.data.activeFilters, (action.getState() as RootState).datasetList.data.otherOptions);
         return response.data;
     }
 )
@@ -69,7 +62,7 @@ export const resetDatasetListAsync: any = createAsyncThunk(
     'datasetList/resetDatasetListAsync',
     async (filter, action) => {
         action.dispatch(resetDatasetList(filter))
-        const response: any = await fetchDatasetList((action.getState() as RootState).datasetList.activeFilters, (action.getState() as RootState).datasetList.otherOptions, false, true);
+        const response: any = await fetchDatasetList((action.getState() as RootState).datasetList.data.activeFilters, (action.getState() as RootState).datasetList.data.otherOptions);
         return response.data;
     }
 )
@@ -143,8 +136,8 @@ export const datasetListSlice: any = createSlice({
                     datasets: [],
                     numTotalItems: 0,
                 },
-                isLoading1: true,
-                isLoading2: true,
+                isLoading1: false,
+                isLoading2: false,
                 isError: false
             }
         }
@@ -154,6 +147,14 @@ export const datasetListSlice: any = createSlice({
     extraReducers: (builder) => {
         builder
             //两个异步函数的成功和失败后的处理
+            .addCase(setDatasetListAsync.pending, (state, action) => {
+                if (action.meta.arg.first) {
+                    state.isLoading1 = true;
+                }
+            })
+            .addCase(setDatasetLabelAsync.pending, (state) => {
+                state.isLoading2 = true;
+            })
             .addCase(setDatasetListAsync.fulfilled, (state, action) => {
                 //更新datasetList
                 state.data.datasets = action.payload.datasetList

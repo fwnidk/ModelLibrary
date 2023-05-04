@@ -179,7 +179,7 @@ Random.extend({
 
 
 
-export const createRandomModelLabelData = Mock.mock("/api/modelLabel",
+export const createRandomModelLabelData = Mock.mock("/api/modelLabel", 'get',
     //返回多条条models数据 
     Mock.mock({
         "task|45-60": [["@string", "@tasksarr"]],
@@ -191,25 +191,23 @@ export const createRandomModelLabelData = Mock.mock("/api/modelLabel",
 )
 
 //更新页数和sort
-export const createRandomModelListDataUpdatePage = Mock.mock("/api/modelListPage",
-    "post", function () {
-        return Mock.mock({
-            "modelList|30": [
-                {
-                    lastModified: "@timeInteger",
-                    name: "@fileName",
-                    author: "@first @last",
-                    downloads: "@natural(0,10000)",
-                    id: "@string",
-                    type: "model"
-                }],
-        })
-    }
-)
-
-// 其他更新情况，会返回一个新的numTotalItems
-export const createRandomModelListData = Mock.mock("/api/modelList",
-    "post", function () {
+// export const createRandomModelListDataUpdatePage = Mock.mock("/api/modelListPage",
+//     "post", function () {
+//         return Mock.mock({
+//             "modelList|30": [
+//                 {
+//                     lastModified: "@timeInteger",
+//                     name: "@fileName",
+//                     author: "@first @last",
+//                     downloads: "@natural(0,10000)",
+//                     id: "@string",
+//                     type: "model"
+//                 }],
+//         })
+//     }
+// )
+export const createRandomModelListData = Mock.mock(/\/api\/modelList(\?.)?/,
+    "get", function (params) {
         return Mock.mock({
             "modelList|30": [{
                 lastModified: "@timeInteger",
@@ -223,6 +221,22 @@ export const createRandomModelListData = Mock.mock("/api/modelList",
         })
     }
 )
+// 其他更新情况，会返回一个新的numTotalItems
+// export const createRandomModelListData = Mock.mock("/api/modelList",
+//     "post", function () {
+//         return Mock.mock({
+//             "modelList|30": [{
+//                 lastModified: "@timeInteger",
+//                 name: "@fileName",
+//                 author: "@first @last",
+//                 downloads: "@natural(0,10000)",
+//                 id: "@string",
+//                 type: "model"
+//             }],
+//             numTotalItems: "@natural(0,1000000)",
+//         })
+//     }
+// )
 
 
 export const createRandomDatasetLabelData = Mock.mock("/api/datasetLabel",
@@ -234,26 +248,25 @@ export const createRandomDatasetLabelData = Mock.mock("/api/datasetLabel",
         "language|45-60": ["@string"],
     })
 )
-
-export const createRandomDatasetListDataUpdatePage = Mock.mock("/api/datasetListPage",
-    "post", function () {
-        return Mock.mock({
-            "datasetList|30": [
-                {
-                    lastModified: "@timeInteger",
-                    name: "@fileName",
-                    author: "@first @last",
-                    downloads: "@natural(0,10000)",
-                    id: "@string",
-                    type: "dataset"
-                }],
-        })
-    }
-)
+// export const createRandomDatasetListDataUpdatePage = Mock.mock(/\/api\/datasetList(\?.)?/,
+//     "get", function () {
+//         return Mock.mock({
+//             "datasetList|30": [
+//                 {
+//                     lastModified: "@timeInteger",
+//                     name: "@fileName",
+//                     author: "@first @last",
+//                     downloads: "@natural(0,10000)",
+//                     id: "@string",
+//                     type: "dataset"
+//                 }],
+//         })
+//     }
+// )
 
 // 其他更新情况，会返回一个新的numTotalItems
-export const createRandomDatasetListData = Mock.mock("/api/datasetList",
-    "post", function () {
+export const createRandomDatasetListData = Mock.mock(/\/api\/datasetList(\?.)?/,
+    "get", function () {
         return Mock.mock({
             "datasetList|30": [
                 {
@@ -267,7 +280,7 @@ export const createRandomDatasetListData = Mock.mock("/api/datasetList",
             numTotalItems: "@natural(0,1000000)",
         })
     }
-)
+) 
 
 export const createRandomDatsetDetailData = Mock.mock("/api/datasetDetail",
     "post", function (post) {
@@ -284,6 +297,9 @@ export const createRandomDatsetDetailData = Mock.mock("/api/datasetDetail",
                 lastModified: "@timeInteger",
                 lastModifiedInformation: "@lastModifiedInformation",
                 name: post.body,
+                // author:{
+
+                // }
                 author,
                 avatar: Random.dataImage('100x100', last),
                 downloads: "@natural(0,100000)",
@@ -353,8 +369,9 @@ export const createRandomFilesTable = Mock.mock("/api/filesTable",
 )
 
 export const getLogInStatus = Mock.mock("/api/logIn",
-    "post", function () {
-        return Mock.mock({
+    "post", function (postMessage) {
+        console.log('useMock', postMessage);
+        let obj = Mock.mock({
             personalInformation: "@personalInformation",
             logInStatus: "@logInInformation",
         }
@@ -362,6 +379,8 @@ export const getLogInStatus = Mock.mock("/api/logIn",
             // loggedIn: "@boolean",
             // logInInformation: 
         )
+        console.log(obj);
+        return obj
     }
 )
 //1:第一步完成 2:第二步完成 -1:用户名重复
@@ -465,7 +484,7 @@ export const getBlob = Mock.mock("/api/getBlob",
         let size = Random.fileSize();
         // let fileType = fileName.split('.')[1];
         // let displayable = size > 5000000000 ? false : true;
-        let displayable = true;
+        let displayable = false;
         let displayFileData = displayable ? { displayable, displayData: Random.getSomeCode(fileTpye) } : { displayable };
         let fileObj = Mock.mock({
             // fileName: fileName,
@@ -483,6 +502,7 @@ export const getBlob = Mock.mock("/api/getBlob",
 // /api/avatarPost
 export const avatarPost = Mock.mock("/api/avatarPost",
     "post", function (postMessage) {
+        console.log('avatarPost:', postMessage.body)
         console.log("avatarPost---使用mock");
         return true;
     }

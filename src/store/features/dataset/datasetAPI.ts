@@ -3,19 +3,24 @@ import "../../../app/mock"
 import axios from 'axios';
 
 
-export async function fetchDatasetList(activeFilters: DatasetType.ActiveFiltersPost, otherOptions: DatasetType.OtherOptions, first: boolean, resetPageIndex: boolean) {
+export async function fetchDatasetList(activeFilters: DatasetType.ActiveFiltersPost, otherOptions: DatasetType.OtherOptions) {
     //判断是否首次加载list
-    let postData = [activeFilters,otherOptions]
-    if (first) {
-        return await axios.post("/api/datasetList", postData)
-    } else {
-        //非首次加载则判断是否为换页操作
-        if (resetPageIndex)
-            return await axios.post("/api/datasetList", postData)
-        else {
-            return await axios.post("/api/datasetListPage", postData)
+    let paramsArr = []
+    for (let filter in activeFilters) {
+        let arr = (activeFilters as any)[filter]
+        if (arr.length !== 0) {
+            let currParams = filter + '=' + arr.join(',');
+            paramsArr.push(currParams)
         }
     }
+    for (let option in otherOptions) {
+        if (!(option === 'filterByName' && (otherOptions as any)[option] === '')) {
+            paramsArr.push(option + '=' + (otherOptions as any)[option])
+        }
+    }
+    let getParams = '?' + paramsArr.join('&')
+    console.log(getParams);
+    return await axios.get(`/api/datasetList${getParams}`)
 }
 
 export async function fetchDatasetLabel() {

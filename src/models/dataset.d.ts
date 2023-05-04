@@ -15,7 +15,6 @@ declare namespace DatasetType {
         size: Array<string>,
         language: Array<string>,
         other: Array<string>,
-
     }
     type ActiveFiltersKey = keyof ActiveFilters;
 

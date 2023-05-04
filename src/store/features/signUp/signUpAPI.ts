@@ -8,6 +8,7 @@ export async function fetchVerifyUsername(username:string) {
 }
 
 export async function fetchSignUp(signUpInformation: SignUpType.SignUpForm) {
+    console.log(signUpInformation);
     let message = await axios.post('/api/signUp', signUpInformation)
     return message
 }

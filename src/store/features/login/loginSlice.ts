@@ -19,7 +19,6 @@ const initialState: LoadingStatusType.Wrapper<LogInType.LogInInformation> = {
 // fetches logIn information from the server
 // logInSlice.ts
 
-
 export const logInAsync: any = createAsyncThunk(
     'logIn/fetchLogIn',
     async (logInInformation: LogInType.LogInForm) => {

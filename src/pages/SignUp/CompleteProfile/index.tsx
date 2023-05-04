@@ -37,13 +37,13 @@ export default function CompleteProfile() {
     };
 
     const uploadOptions: UploadProps = {
-        name: 'avatar',
+        name: 'file',
         beforeUpload: beforeUpload,
         maxCount: 1,
         action: '/api/avatarPost',
-        // onChange(info) {
-        //     setFileList(info.fileList);
-        // }
+        headers: {
+            authorization: 'authorization-text',
+        },
     }
     // const handleChange: UploadProps['onChange'] = (info) => {
     //     if (newFile.status === 'done') {

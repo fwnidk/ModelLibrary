@@ -4,7 +4,6 @@ declare namespace LogInType {
         password: string
     }
 
-
     type LogInStatus = 0 | 1 | 2
 
     interface PersonalInformation {
@@ -20,4 +19,3 @@ declare namespace LogInType {
         logInStatus: LogInStatus,
     }
 }
-

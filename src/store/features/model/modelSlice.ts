@@ -28,8 +28,8 @@ const initialState: { data: ModelType.ModelList, isLoading1: boolean, isLoading2
         models: [],
         numTotalItems: 0,
     },
-    isLoading1: true,
-    isLoading2: true,
+    isLoading1: false,
+    isLoading2: false,
     isError: false,
 };
 
@@ -44,15 +44,11 @@ export const setModelListAsync: any = createAsyncThunk(
     'modelList/setModelListAsync',
     async (filter: { activeFilters: ModelType.ActiveFiltersPost, otherOptions: ModelType.OtherOptions, first: boolean }, action) => {
         //如果first为false，则为后续更新activeFilters数据
-        if (!filter.first) {
-            action.dispatch(setModelList(filter))
-        }
-        //如果重置页面索引，则resetPageIndex为true
-        let resetPageIndex = true;
-        if (filter.otherOptions.hasOwnProperty("pageIndex")) {
-            resetPageIndex = false;
-        }
-        const response: any = await fetchModelList((action.getState() as RootState).modelList.data.activeFilters, (action.getState() as RootState).modelList.data.otherOptions, filter.first, resetPageIndex);
+        action.dispatch(setModelList(filter))
+        //如果更改页数，则resetPageIndex为false
+        let resetPageIndex = !filter.otherOptions.hasOwnProperty("pageIndex");
+        const response: any = await fetchModelList((action.getState() as RootState).modelList.data.activeFilters, (action.getState() as RootState).modelList.data.otherOptions);
+        // console.log(response.data);
         return response.data;
     }
 )
@@ -61,7 +57,7 @@ export const removeModelListAsync: any = createAsyncThunk(
     'modelList/removeModelListAsync',
     async (filter, action) => {
         action.dispatch(removeModelList(filter))
-        const response: any = await fetchModelList((action.getState() as RootState).modelList.data.activeFilters, (action.getState() as RootState).modelList.data.otherOptions, false, true);
+        const response: any = await fetchModelList((action.getState() as RootState).modelList.data.activeFilters, (action.getState() as RootState).modelList.data.otherOptions);
         return response.data;
     }
 )
@@ -70,7 +66,7 @@ export const resetModelListAsync: any = createAsyncThunk(
     'modelList/resetModelListAsync',
     async (filter, action) => {
         action.dispatch(resetModelList(filter))
-        const response: any = await fetchModelList((action.getState() as RootState).modelList.data.activeFilters, (action.getState() as RootState).modelList.data.otherOptions, false, true);
+        const response: any = await fetchModelList((action.getState() as RootState).modelList.data.activeFilters, (action.getState() as RootState).modelList.data.otherOptions);
         return response.data;
     }
 )
@@ -79,6 +75,7 @@ export const setModelLabelAsync: any = createAsyncThunk(
     'modelList/setModelLabelAsync',
     async () => {
         const response: any = await fetchModelLabel();
+        console.log(response.data);
         return response.data;
     }
 )
@@ -157,20 +154,12 @@ export const modelListSlice: any = createSlice({
     extraReducers: (builder) => {
         builder
             //两个异步函数的成功和失败后的处理
-            .addCase(setModelListAsync.pending, (state) => {
-                state.isLoading1 = true;
-                state.isLoading2 = true;
-            })
-            .addCase(removeModelListAsync.pending, (state) => {
-                state.isLoading1 = true;
-                state.isLoading2 = true;
-            })
-            .addCase(resetModelListAsync.pending, (state) => {
-                state.isLoading1 = true;
-                state.isLoading2 = true;
+            .addCase(setModelListAsync.pending, (state, action) => {
+                if (action.meta.arg.first) {
+                    state.isLoading1 = true;
+                }
             })
             .addCase(setModelLabelAsync.pending, (state) => {
-                state.isLoading1 = true;
                 state.isLoading2 = true;
             })
             .addCase(setModelListAsync.fulfilled, (state, action) => {
