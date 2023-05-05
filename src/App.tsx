@@ -11,6 +11,9 @@ const { Footer, Content } = Layout;
 function App() {
     const dispatch = useDispatch()
     useEffect(() => {
+        if (process.env.NODE_ENV === "development") {
+            import('./app/mock')
+        }
         const userInfo = cookie.load('userInfo')
         if (userInfo !== undefined) {
             dispatch(logInByCookieAsync(userInfo))

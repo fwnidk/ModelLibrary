@@ -4,7 +4,7 @@ import './index.scss'
 import TasksMainPage from "../../../components/TasksMainPage"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../store/store"
-import "../../../app/mock"
+// import "../../../app/mock"
 import LabelBlock from "../../../components/LabelBlock"
 import { labelConversionArray } from "../../../app/labelConversionArray"
 import { resetModelListAsync } from "../../../store/features/model/modelSlice"

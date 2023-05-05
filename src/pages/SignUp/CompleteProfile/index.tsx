@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { submitSignUpFormAsync } from '../../../store/features/signUp/signUpSlice';
 import './index.scss'
 import { RcFile } from 'antd/es/upload';
-import '../../../app/mock'
+// import '../../../app/icons/mock'
 import TextArea from 'antd/es/input/TextArea';
 
 export default function CompleteProfile() {

@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import DiffComponent from '../DiffComponent'
-import '../../app/mock'
+// import '../../app/icons/mock'
 
 
 export default function Commit() {

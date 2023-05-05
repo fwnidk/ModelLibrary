@@ -4,7 +4,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import './index.scss'
-import "../../../app/mock"
+// import "../../../app/icons/mock"
 import { displayNumberOfBytes } from '../../../app/displayNumberOfBytes';
 import { ArrowDownOutlined, CaretDownOutlined, FileOutlined, FolderFilled, PlusOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';

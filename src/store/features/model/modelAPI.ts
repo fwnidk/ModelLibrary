@@ -1,6 +1,10 @@
 // A mock function to mimic making an async request for data
-import "../../../app/mock"
 import axios from 'axios';
+// import { createRandomModelListData } from '../../../app/mock'
+
+// if (process.env.NODE_ENV === "development") {
+//     createRandomModelListData()
+// }
 
 
 export async function fetchModelList(activeFilters: ModelType.ActiveFiltersPost, otherOptions: ModelType.OtherOptions) {
