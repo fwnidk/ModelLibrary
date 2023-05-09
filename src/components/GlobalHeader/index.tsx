@@ -74,6 +74,7 @@ export default function GlobalHeader() {
     ]
 
     const items1: MenuProps['items'] = [
+        { key: '2', label: "v1.0" },
         { key: '0', label: <NavLink to="/home" >Home</NavLink> },
         { className: "inputStyle", key: '3', label: <Input placeholder='?' prefix={<SearchOutlined />} onPressEnter={(e) => { handleEnter(e) }}></Input> }];
 
