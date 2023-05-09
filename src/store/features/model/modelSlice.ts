@@ -46,7 +46,7 @@ export const setModelListAsync: any = createAsyncThunk(
         //如果first为false，则为后续更新activeFilters数据
         action.dispatch(setModelList(filter))
         //如果更改页数，则resetPageIndex为false
-        let resetPageIndex = !filter.otherOptions.hasOwnProperty("pageIndex");
+        // let resetPageIndex = !filter.otherOptions.hasOwnProperty("pageIndex");
         const response: any = await fetchModelList((action.getState() as RootState).modelList.data.activeFilters, (action.getState() as RootState).modelList.data.otherOptions);
         // console.log(response.data);
         return response.data;

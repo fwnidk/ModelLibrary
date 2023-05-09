@@ -35,17 +35,18 @@ export default function LabelBlock(props: { type: string, children: any, value: 
         <div>
             <Space size={[10, 15]} wrap>
                 {
-                    props.value !== 'task' ?
+                    // props.value !== 'task' ?
                         props.children.map((i: string) => {
                             return (
                                 <CategoryLabel key={i} type={props.type} value={{ buttonKey: props.value, buttonValue: i, active: buttonIsActive(i) }}></CategoryLabel>
                             )
-                        }) :
-                        props.children.map((i: [string, ModelType.Task]) => {
-                            return (
-                                <CategoryLabel key={i[0]} type={props.type} value={{ buttonKey: props.value, buttonValue: i[0], active: buttonIsActive(i[0]) }}></CategoryLabel>
-                            )
-                        })
+                        }) 
+                        // :
+                        // props.children.map((i: [string, ModelType.Task]) => {
+                        //     return (
+                        //         <CategoryLabel key={i[0]} type={props.type} value={{ buttonKey: props.value, buttonValue: i[0], active: buttonIsActive(i[0]) }}></CategoryLabel>
+                        //     )
+                        // })
                 }
             </Space >
         </div >

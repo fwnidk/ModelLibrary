@@ -1,5 +1,5 @@
-export const getTimeYMD = (time: number) => {
-    const date = new Date(time);
+export const getTimeYMD = (time: string) => {
+    const date = new Date(Date.parse(time));
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
     const day = date.getDate();

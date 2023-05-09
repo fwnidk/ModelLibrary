@@ -7,7 +7,7 @@ import { RootState } from '../../store/store'
 import PersonalIcon from '../PersonalIcon'
 import './index.scss'
 
-export default function FilesTableHeader(props: { lastModified: number, lastModifiedInformation: string}) {
+export default function FilesTableHeader(props: { lastModified: string, lastModifiedInformation: string}) {
     const { lastModified, lastModifiedInformation} = props
     const type = useLocation().pathname.split('/')[1]
     const { avatar, author, } = useSelector((state: RootState) => type === 'model' ? state.modelDetail.data.options : state.datasetDetail.data.options)

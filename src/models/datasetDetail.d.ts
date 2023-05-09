@@ -1,7 +1,7 @@
 declare namespace DatasetDetailType {
 
     interface Options {
-        lastModified: number,
+        lastModified: string,
         lastModifiedInformation: string,
         name: string,
         author: string,

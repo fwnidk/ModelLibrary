@@ -2,7 +2,7 @@
 declare namespace FileContentType {
 
     interface FileContentNotNull {
-        lastModified: number,
+        lastModified: string,
         lastModifiedInformation: string,
         size: number,
         fileURL: string,

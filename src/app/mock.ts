@@ -82,8 +82,9 @@ Random.extend({
 })
 
 Random.extend({
-    timeInteger: function () {
-        return Random.integer(1600000000000, 1678280738712)
+    timeString: function () {
+        let timeInteger = Random.integer(1600000000000, 1678280738712);
+        return new Date(timeInteger).toISOString()
     }
 })
 // personalInformation: {
@@ -182,7 +183,8 @@ Random.extend({
 export const createRandomModelLabelData = Mock.mock("/api/modelLabel", 'get',
     //返回多条条models数据 
     Mock.mock({
-        "task|45-60": [["@string", "@tasksarr"]],
+        // "task|45-60": [["@string", "@tasksarr"]],
+        "task|45-60": ["@string"],
         "library|45-60": ["@string"],
         "dataset|45-60": ["@string"],
         "other|45-60": ["@string"],
@@ -196,7 +198,7 @@ export const createRandomModelLabelData = Mock.mock("/api/modelLabel", 'get',
 //         return Mock.mock({
 //             "modelList|30": [
 //                 {
-//                     lastModified: "@timeInteger",
+//                     lastModified: "@timeString",
 //                     name: "@fileName",
 //                     author: "@first @last",
 //                     downloads: "@natural(0,10000)",
@@ -210,7 +212,7 @@ export const createRandomModelListData = Mock.mock(/\/api\/modelList(\?.)?/,
     "get", function (params) {
         return Mock.mock({
             "modelList|30": [{
-                lastModified: "@timeInteger",
+                lastModified: "@timeString",
                 name: "@fileName",
                 author: "@first @last",
                 downloads: "@natural(0,10000)",
@@ -226,7 +228,7 @@ export const createRandomModelListData = Mock.mock(/\/api\/modelList(\?.)?/,
 //     "post", function () {
 //         return Mock.mock({
 //             "modelList|30": [{
-//                 lastModified: "@timeInteger",
+//                 lastModified: "@timeString",
 //                 name: "@fileName",
 //                 author: "@first @last",
 //                 downloads: "@natural(0,10000)",
@@ -242,7 +244,7 @@ export const createRandomModelListData = Mock.mock(/\/api\/modelList(\?.)?/,
 export const createRandomDatasetLabelData = Mock.mock("/api/datasetLabel",
     //返回多条条datasets数据 
     Mock.mock({
-        "task|45-60": [["@string", "@tasksarr"]],
+        "task|45-60": ["@string"],
         "size": datasetSize,
         "other|45-60": ["@string"],
         "language|45-60": ["@string"],
@@ -253,7 +255,7 @@ export const createRandomDatasetLabelData = Mock.mock("/api/datasetLabel",
 //         return Mock.mock({
 //             "datasetList|30": [
 //                 {
-//                     lastModified: "@timeInteger",
+//                     lastModified: "@timeString",
 //                     name: "@fileName",
 //                     author: "@first @last",
 //                     downloads: "@natural(0,10000)",
@@ -270,7 +272,7 @@ export const createRandomDatasetListData = Mock.mock(/\/api\/datasetList(\?.)?/,
         return Mock.mock({
             "datasetList|30": [
                 {
-                    lastModified: "@timeInteger",
+                    lastModified: "@timeString",
                     name: "@fileName",
                     author: "@first @last",
                     downloads: "@natural(0,10000)",
@@ -294,7 +296,7 @@ export const createRandomDatsetDetailData = Mock.mock("/api/datasetDetail",
                 "language": ["@string"],
             },
             options: {
-                lastModified: "@timeInteger",
+                lastModified: "@timeString",
                 lastModifiedInformation: "@lastModifiedInformation",
                 name: post.body,
                 // author:{
@@ -324,7 +326,7 @@ export const createRandomModelDetailData = Mock.mock("/api/modelDetail",
                 "language": ["@string"],
             },
             options: {
-                lastModified: "@timeInteger",
+                lastModified: "@timeString",
                 lastModifiedInformation: "@lastModifiedInformation",
                 name: post.body,
                 author,
@@ -345,7 +347,7 @@ export const createRandomFilesTable = Mock.mock("/api/filesTable",
                 key: "@string",
                 fileName: "@filename",
                 isAFolder: true,
-                lastModified: "@timeInteger",
+                lastModified: "@timeString",
                 lastModifiedInformation: "@lastModifiedInformation",
                 size: undefined,
                 fileURL: undefined
@@ -356,7 +358,7 @@ export const createRandomFilesTable = Mock.mock("/api/filesTable",
                 key: "@string",
                 fileName: "@fileNameWithType",
                 isAFolder: false,
-                lastModified: "@timeInteger",
+                lastModified: "@timeString",
                 lastModifiedInformation: "@lastModifiedInformation",
                 size: "@fileSize",
                 fileURL: "@image(200x200)"
@@ -404,7 +406,7 @@ export const getPersonalFiles = Mock.mock("/api/personalFiles",
     "post", function (userName) {
         let obj = Mock.mock({
             "list|5-12": [{
-                lastModified: "@timeInteger",
+                lastModified: "@timeString",
                 name: "@fileName",
                 author: userName.body,
                 downloads: "@natural(0,10000)",
@@ -424,7 +426,7 @@ export const getTrendingList = Mock.mock("/api/trendingList",
     "post", function (userName) {
         let obj = Mock.mock({
             "list|5-12": [{
-                lastModified: "@timeInteger",
+                lastModified: "@timeString",
                 name: "@fileName",
                 author: userName.body,
                 downloads: "@natural(0,10000)",
@@ -489,7 +491,7 @@ export const getBlob = Mock.mock("/api/getBlob",
         let fileObj = Mock.mock({
             // fileName: fileName,
             // id: "@string",
-            lastModified: "@timeInteger",
+            lastModified: "@timeString",
             lastModifiedInformation: "@lastModifiedInformation",
             size,
             fileURL: "@image(200x200)",

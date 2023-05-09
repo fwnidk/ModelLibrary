@@ -1,7 +1,7 @@
 declare namespace ModelDetailType {
 
     interface Options {
-        lastModified: number,
+        lastModified: string,
         lastModifiedInformation: string,
         name: string,
         author: string,

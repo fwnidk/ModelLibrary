@@ -1,7 +1,7 @@
 declare namespace DatasetType {
 
     interface DatasetItem {
-        lastModified: number,
+        lastModified: string,
         name: string,
         author: string,
         downloads: number,

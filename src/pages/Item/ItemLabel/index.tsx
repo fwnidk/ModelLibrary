@@ -41,16 +41,17 @@ export default function ItemLabel(props: { locationState: any, type: string }) {
         const { value } = e.target;
         setInputValue(value)
         let newExpandedKeys;
-        if (currCategory !== "task") {
-            newExpandedKeys = ((allFilters as any)[currCategory] as Array<string>)
-                .filter((item) => {
-                    return item.toLowerCase().indexOf(value.toLowerCase()) > -1
-                })
-        } else {
+        //更新：暂时不需要对task进行二级分类
+        // if (currCategory !== "task") {
+        //     newExpandedKeys = ((allFilters as any)[currCategory] as Array<string>)
+        //         .filter((item) => {
+        //             return item.toLowerCase().indexOf(value.toLowerCase()) > -1
+        //         })
+        // } else {
             newExpandedKeys = (allFilters as any)[currCategory].filter((item: any) => {
                 return item[0].toLowerCase().indexOf(value.toLowerCase()) > -1
             })
-        }
+        // }
         setAllFiltersSearched({ ...allFiltersSearched, [currCategory]: newExpandedKeys })
         console.log(allFiltersSearched);
     }, [currCategory, allFilters, allFiltersSearched])
@@ -66,11 +67,11 @@ export default function ItemLabel(props: { locationState: any, type: string }) {
 
     //根据当前点击的分类按钮渲染对应组件
     const renderCurrCategory = useCallback((currCategory: any) => {
-        if (currCategory === "task") {
-            return <TasksMainPage type={type}>{allFiltersSearched[currCategory]}</TasksMainPage>
-        } else {
+        // if (currCategory === "task") {
+        //     return <TasksMainPage type={type}>{allFiltersSearched[currCategory]}</TasksMainPage>
+        // } else {
             return <LabelBlock type={type} value={currCategory}>{allFiltersSearched[currCategory]}</LabelBlock >
-        }
+        // }
     }, [allFiltersSearched, type])
 
     return (

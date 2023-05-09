@@ -1,7 +1,7 @@
 declare namespace ModelType {
 
     interface ModelItem {
-        lastModified: number,
+        lastModified: string,
         name: string,
         author: string,
         downloads: number,

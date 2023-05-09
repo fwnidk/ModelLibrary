@@ -1,4 +1,4 @@
-export function getTimeAgoString(date: number): string {
+export function getTimeAgoString(date: string): string {
     const ONE_MINUTE = 60 * 1000; // 每分钟的毫秒数
     const ONE_HOUR = 60 * ONE_MINUTE; // 每小时的毫秒数
     const ONE_DAY = 24 * ONE_HOUR; // 每天的毫秒数
@@ -6,7 +6,7 @@ export function getTimeAgoString(date: number): string {
     const ONE_YEAR = 12 * ONE_MONTH; // 每个月的毫秒数
 
     const now = new Date().getTime();
-    const diff = now - date;
+    const diff = now - Date.parse(date);
 
     if (diff < ONE_MINUTE) {
         return "刚刚";
