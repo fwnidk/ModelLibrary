@@ -10,15 +10,14 @@ import './index.scss'
 export default function ListPagination(props: { type: string }) {
     const { type } = props;
     let dispatch = useDispatch()
-    let [numTotalItems, pageIndex] = useSelector((state: RootState) => {
-        return type === 'model' ?
-            [state.modelList.data.numTotalItems, state.modelList.data.otherOptions.pageIndex] :
-            [state.datasetList.data.numTotalItems, state.datasetList.data.otherOptions.pageIndex]
+    let data = useSelector((state: RootState) => {
+        return type === 'model' ? state.modelList.data : state.datasetList.data
     })
-
+    let numTotalItems = data.numTotalItems
+    let pageIndex = data.otherOptions.pageIndex
     const handleChangePagination: PaginationProps['onChange'] = useCallback((page: number) => {
         console.log("page", page);
-        if(type === 'model') {
+        if (type === 'model') {
             dispatch(setModelListAsync({ activeFilters: {}, otherOptions: { pageIndex: page }, first: false }))
         } else {
             dispatch(setDatasetListAsync({ activeFilters: {}, otherOptions: { pageIndex: page }, first: false }))

@@ -6,14 +6,13 @@ import { Outlet } from 'react-router';
 import cookie from 'react-cookies'
 import { useDispatch } from 'react-redux';
 import { logInByCookieAsync } from './store/features/logIn/logInSlice';
+import './app/mock'
+
 const { Footer, Content } = Layout;
 
 function App() {
     const dispatch = useDispatch()
     useEffect(() => {
-        if (process.env.NODE_ENV === "development") {
-            import('./app/mock')
-        }
         const userInfo = cookie.load('userInfo')
         if (userInfo !== undefined) {
             dispatch(logInByCookieAsync(userInfo))
