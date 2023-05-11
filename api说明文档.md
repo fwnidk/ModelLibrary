@@ -19,35 +19,68 @@
 ### 响应数据：
 ```
 {
-    personalInformation: {
-            userName: string,
-            team: string,
-            avatar: string,
-            reserchInterest: string,
-            organizations: string,
-        },
-    logInStatus: number,
+    "code": number,
+    "msg": string,
+    "data":string
 }
 ```
 ### 响应数据样例：
 ```json
 {
-    "personalInformation": {
-        "userName": "Margaret Hernandez",
-        "team": "&efS4jb",
-        "avatar": "...",
-        "reserchInterest": [
-            "H1*Z("
-        ],
-        "organizations": [
-            "3(T",
-            "d)Ha@"
-        ]
-    },
-    "logInStatus": 1
+    "code": 1,
+    "msg": "success",
+    "data": 									           "eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi5ZGo57uN5ZCbIiwiaWQiOjEsInVzZXJuYW1lIjoienNqIiwiZXhwIjoxNjgzODM2NDY4fQ.LoRPPqgxQQUomivcQjJu_fvAi5mwhZvbhPF1Ru2kyRg"
 }
 ```
-## 2. 验证注册用户，验证注册用户名是否重复
+
+## 2. 登录主页
+### 请求路径：/api/user
+### 请求方式：get
+### 请求参数：
+```
+header:
+"token":"eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi5ZGo57uN5ZCbIiwiaWQiOjEsInVzZXJuYW1lIjoienNqIiwiZXhwIjoxNjgzODM2NDY4fQ.LoRPPqgxQQUomivcQjJu_fvAi5mwhZvbhPF1Ru2kyRg"
+```
+### 请求数据样例：
+```json
+{
+    "userName": "fwnidk",
+    "password": "fwnidkfwnidk"
+}
+```
+### 响应数据：
+```
+{
+    "code": number,
+    "msg": string,
+    "data":[
+        "personalInformation": {
+        "userName": "Margaret Hernandez",
+        "team": "&efS4jb",
+        "image": "...",
+    },
+}
+
+```
+
+### 响应数据样例
+```
+{
+    "code": number,
+    "msg": string,
+    "data":[
+        "personalInformation": {
+        "userName": "Margaret Hernandez",
+        "team": "&efS4jb",
+        "image": "...",
+    },
+]
+}
+```
+
+
+## 3. 验证注册用户，验证注册用户名是否重复
+
 ### 请求路径：/api/verifyUsername
 ### 请求方式：post
 ### 请求参数：
