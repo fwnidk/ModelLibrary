@@ -2,10 +2,11 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 // import { RootState, AppThunk } from '../../store';
 import { fetchLogIn } from './logInAPI';
 
-const initialState: LoadingStatusType.Wrapper<LogInType.LogInInformation> = {
-    data: {
-        personalInformation: null,
-        logInStatus: 0
+const initialState: LoadingStatusType.LoadingStatus<ResponseDataType.ResponseData<any>> = {
+    responseData: {
+        code: 0,
+        msg: "no login",
+        data: "",
     },
     isLoading: false,
     isError: false,
@@ -27,23 +28,17 @@ export const logInAsync: any = createAsyncThunk(
     }
 );
 
-export const logInByCookieAsync: any = createAsyncThunk(
-    'logIn/fetchLogInByCookie',
-    async (userInfo: string) => {
-        const response = await fetchLogIn(userInfo);
-        return response.data;
-    }
-);
-
 export const logInSlice: any = createSlice({
     name: 'logIn',
     initialState,
     //“reducers”字段允许我们定义reducers并生成相关操作
     reducers: {
         logout: (state) => {
-            state.data = {
-                personalInformation: null,
-                logInStatus: 0
+            localStorage.removeItem('jwtToken')
+            state.responseData = {
+                code: 0,
+                msg: "no login",
+                data: "",
             }
         },
         //使用PayloadAction类型声明`action.payload的内容`
@@ -56,24 +51,15 @@ export const logInSlice: any = createSlice({
             .addCase(logInAsync.pending, (state) => {
                 state.isLoading = true
             })
-            .addCase(logInByCookieAsync.pending, (state) => {
-                state.isLoading = true
-            })
             .addCase(logInAsync.fulfilled, (state, action) => {
-                state.data = action.payload;
+                state.responseData = action.payload;
+                if (state.responseData.code === 1) {
+                    localStorage.setItem('jwtToken', state.responseData.data);
+                }
                 state.isLoading = false
                 console.log('logInAsync')
             })
-            .addCase(logInByCookieAsync.fulfilled, (state, action) => {
-                state.data = action.payload;
-                state.isLoading = false
-                console.log('logInByCookieAsync')
-            })
             .addCase(logInAsync.rejected, (state) => {
-                state.isError = true;
-                console.log('error', state)
-            })
-            .addCase(logInByCookieAsync.rejected, (state) => {
                 state.isError = true;
                 console.log('error', state)
             })

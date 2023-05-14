@@ -3,28 +3,32 @@ import { fetchModelDetail } from './modelDetailAPI';
 
 
 //初始值
-const initialState: { data: ModelDetailType.ModelDetail, isLoading: boolean, isError: boolean } = {
-    data: {
-        activeFilters: {
-            task: [],
-            library: [],
-            dataset: [],
-            language: [],
-            other: [],
+const initialState: LoadingStatusType.LoadingStatus<ResponseDataType.ResponseData<ModelDetailType.ModelDetail>> = {
+    responseData: {
+        code: 0,
+        msg: "",
+        data: {
+            activeFilters: {
+                task: [],
+                library: [],
+                dataset: [],
+                language: [],
+                other: [],
+            },
+            options: {
+                lastModified: "1970-01-01T00:00:00",
+                lastModifiedInformation: "",
+                name: "",
+                author: "",
+                avatar: "",
+                downloads: 0,
+                id: "",
+                type: "",
+                isPrivate: true
+            },
+            filesTable: [],
+            activeMenu: "0"
         },
-        options: {
-            lastModified: "1970-01-01T00:00:00",
-            lastModifiedInformation: "",
-            name: "",
-            author: "",
-            avatar: "",
-            downloads: 0,
-            id: "",
-            type: "",
-            isPrivate: true
-        },
-        filesTable: [],
-        activeMenu: "0"
     },
     isLoading: true,
     isError: false,
@@ -44,13 +48,13 @@ export const getModelDetailAsync: any = createAsyncThunk(
     }
 )
 
-export const modelDetailSlice = createSlice({
+export const modelDetailSlice: any = createSlice({
     name: 'modelDetail',
     initialState,
     //“reducers”字段允许我们定义reducers并生成相关操作
     reducers: {
         setActiveMenu: (state, action: PayloadAction<any>) => {
-            state.data.activeMenu = action.payload
+            state.responseData.data.activeMenu = action.payload
         },
         // //去除activeFilter中的值
         // removeModelDetail: (state, action: PayloadAction<any>) => {
@@ -79,8 +83,8 @@ export const modelDetailSlice = createSlice({
             })
             .addCase(getModelDetailAsync.fulfilled, (state, action) => {
                 //更新modelDetail
-                for (let key in state.data) {
-                    (state.data as any)[key] = action.payload[key]
+                for (let key in state.responseData.data) {
+                    (state.responseData.data as any)[key] = action.payload[key]
                 }
                 state.isLoading = false;
                 //更新modelDetail数量

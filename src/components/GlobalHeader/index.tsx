@@ -8,13 +8,12 @@ import { SearchOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import PersonalIcon from '../PersonalIcon';
-import cookie from 'react-cookies'
 import { logout } from '../../store/features/logIn/logInSlice';
 
 
 export default function GlobalHeader() {
     const navigate = useNavigate();
-    const logInInformation: LogInType.LogInInformation = useSelector((state: RootState) => state.logInInformation.data)
+    const {code} = useSelector((state: RootState) => state.logIn.responseData)
     const dispatch = useDispatch()
 
     function handleEnter(e: any) {
@@ -64,7 +63,7 @@ export default function GlobalHeader() {
             label: (
                 <div
                     onClick={() => {
-                        cookie.remove('userInfo', { path: '/' });
+                        localStorage.removeItem('token');
                         dispatch(logout())
                     }}>
                     登出账号
@@ -79,23 +78,24 @@ export default function GlobalHeader() {
 
     let items2: MenuProps['items'];
 
-    if (logInInformation.logInStatus === 0) {
+    if (code === 0) {
         items2 = [
             { key: '1', label: <NavLink to="/models">Models</NavLink>, },
             { key: '2', label: <NavLink to="/datasets">Datasets</NavLink> },
             { key: '3', label: <NavLink to="/docs">Docs</NavLink> },
             { key: '4', label: <NavLink to="/logIn">LogIn </NavLink> },]
-    } else if (logInInformation.logInStatus === 1) {
+    } else if (code === 1) {
         items2 = [
             { key: '1', label: <NavLink to="/models">Models</NavLink>, },
             { key: '2', label: <NavLink to="/datasets">Datasets</NavLink> },
             { key: '3', label: <NavLink to="/docs">Docs</NavLink> },
-            {
-                key: '4', label:
-                    <Dropdown menu={{ items: dropdownItem }} placement="bottomRight">
-                        <div><PersonalIcon avatarURL={(logInInformation.personalInformation as LogInType.PersonalInformation).avatar} /></div>
-                    </Dropdown>
-            },]
+            // {
+            //     key: '4', label:
+            //         <Dropdown menu={{ items: dropdownItem }} placement="bottomRight">
+            //             <div><PersonalIcon avatarURL={(logInInformation.personalInformation as LogInType.PersonalInformation).avatar} /></div>
+            //         </Dropdown>
+            // },
+        ]
     }
 
     return (

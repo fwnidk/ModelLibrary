@@ -1,13 +1,13 @@
 import Mock, { Random } from "mockjs"
 
-if(process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === "development") {
     Random.extend({
         tasksArr: function () {
             let tasksArr = ["Computer Vision", 'Multimodal', 'Natural Language Processing', 'Audio']
             return this.pick(tasksArr)
         }
     })
-    
+
     const datasetSize = [
         "n<1K",
         "1K<n<10K",
@@ -26,19 +26,19 @@ if(process.env.NODE_ENV === "development") {
             return this.pick(datasetSize)
         }
     })
-    
+
     Random.extend({
         fileSize: function () {
             return Math.pow(Random.natural(0, 100000), 2)
         }
     })
-    
+
     Random.extend({
         lastModifiedInformation: function () {
             return "Update " + Random.capitalize(Random.string('abcdefghijklmnopqrstuvwxyz ,-', 7, 20))
         }
     })
-    
+
     Random.extend({
         fileName: function () {
             return Random.capitalize(Random.string('abcdefghijklmnopqrstuvwxyz -', 3, 9)) + " " + Random.capitalize(Random.string('abcdefghijklmnopqrstuvwxyz -', 3, 9))
@@ -74,14 +74,14 @@ if(process.env.NODE_ENV === "development") {
             return this.pick(logInInformationArr)
         }
     })
-    
+
     const typearr = ["dataset", "model"]
     Random.extend({
         type: function () {
             return this.pick(typearr)
         }
     })
-    
+
     Random.extend({
         timeString: function () {
             let timeInteger = Random.integer(1600000000000, 1678280738712);
@@ -93,7 +93,7 @@ if(process.env.NODE_ENV === "development") {
     //     team: "@string",
     //     avatar: Random.dataImage('200x200',)
     // },
-    
+
     Random.extend({
         personalInformation: function () {
             let last = Random.last();
@@ -110,7 +110,7 @@ if(process.env.NODE_ENV === "development") {
             }
         }
     })
-    
+
     Random.extend({
         getSomeCode: function (fileType) {
             switch (fileType) {
@@ -175,24 +175,25 @@ if(process.env.NODE_ENV === "development") {
             }
         }
     })
-    
-    
-    
-    
-    
-    
+    //响应数据外面包一层
+    const wrapResponseData = (data: any, code = 0, msg = 'success') => ({ code, msg, data })
+
+
+
+
+
     const createRandomModelLabelData = Mock.mock("/api/modelLabel", 'get',
         //返回多条条models数据 
-        Mock.mock({
+        Mock.mock(wrapResponseData({
             // "task|45-60": [["@string", "@tasksarr"]],
             "task|45-60": ["@string"],
             "library|45-60": ["@string"],
             "dataset|45-60": ["@string"],
             "other|45-60": ["@string"],
             "language|20-25": ["@string"]
-        })
+        }))
     )
-    
+
     //更新页数和sort
     // const createRandomModelListDataUpdatePage = Mock.mock("/api/modelListPage",
     //     "post", function () {
@@ -211,7 +212,7 @@ if(process.env.NODE_ENV === "development") {
     // )
     const createRandomModelListData = Mock.mock(/\/api\/modelList(\?.)?/,
         "get", function (params) {
-            return Mock.mock({
+            return Mock.mock(wrapResponseData({
                 "modelList|30": [{
                     lastModified: "@timeString",
                     name: "@fileName",
@@ -221,7 +222,7 @@ if(process.env.NODE_ENV === "development") {
                     type: "model"
                 }],
                 numTotalItems: "@natural(0,1000000)",
-            })
+            }))
         }
     )
     // 其他更新情况，会返回一个新的numTotalItems
@@ -240,16 +241,16 @@ if(process.env.NODE_ENV === "development") {
     //         })
     //     }
     // )
-    
-    
+
+
     const createRandomDatasetLabelData = Mock.mock("/api/datasetLabel",
         //返回多条条datasets数据 
-        Mock.mock({
+        Mock.mock(wrapResponseData({
             "task|45-60": ["@string"],
             "size": datasetSize,
             "other|45-60": ["@string"],
             "language|45-60": ["@string"],
-        })
+        }))
     )
     // const createRandomDatasetListDataUpdatePage = Mock.mock(/\/api\/datasetList(\?.)?/,
     //     "get", function () {
@@ -266,11 +267,11 @@ if(process.env.NODE_ENV === "development") {
     //         })
     //     }
     // )
-    
+
     // 其他更新情况，会返回一个新的numTotalItems
     const createRandomDatasetListData = Mock.mock(/\/api\/datasetList(\?.)?/,
         "get", function () {
-            return Mock.mock({
+            return Mock.mock(wrapResponseData({
                 "datasetList|30": [
                     {
                         lastModified: "@timeString",
@@ -281,15 +282,15 @@ if(process.env.NODE_ENV === "development") {
                         type: "dataset"
                     }],
                 numTotalItems: "@natural(0,1000000)",
-            })
+            }))
         }
-    ) 
-    
+    )
+
     const createRandomDatsetDetailData = Mock.mock("/api/datasetDetail",
         "post", function (post) {
             let last = Random.last();
             let author = Random.first() + ' ' + last;
-            return Mock.mock({
+            return Mock.mock(wrapResponseData({
                 "activeFilters": {
                     "task|1-5": ["@string"],
                     "size": ["@datasetSize"],
@@ -301,7 +302,7 @@ if(process.env.NODE_ENV === "development") {
                     lastModifiedInformation: "@lastModifiedInformation",
                     name: post.body,
                     // author:{
-    
+
                     // }
                     author,
                     avatar: Random.dataImage('100x100', last),
@@ -310,15 +311,15 @@ if(process.env.NODE_ENV === "development") {
                     type: "dataset",
                     isPrivate: false
                 },
-            })
+            }))
         }
     )
-    
+
     const createRandomModelDetailData = Mock.mock("/api/modelDetail",
         "post", function (post) {
             let last = Random.last();
             let author = Random.first() + ' ' + last;
-            return Mock.mock({
+            return Mock.mock(wrapResponseData({
                 "activeFilters": {
                     "task|1-5": ["@string"],
                     "library|1-5": ["@string"],
@@ -337,10 +338,10 @@ if(process.env.NODE_ENV === "development") {
                     type: "model",
                     isPrivate: false
                 },
-            })
+            }))
         }
     )
-    
+
     const createRandomFilesTable = Mock.mock("/api/filesTable",
         "post", function () {
             let folderArr = Mock.mock({
@@ -365,13 +366,29 @@ if(process.env.NODE_ENV === "development") {
                     fileURL: "@image(200x200)"
                 }]
             })
-            return {
+            return wrapResponseData({
                 filesTable: folderArr.filesTable.concat(fileArr.filesTable)
-            };
+            });
         }
     )
-    
-    const getLogInStatus = Mock.mock("/api/logIn",
+
+    const getJWT = Mock.mock("/api/logIn",
+        "post", function (postMessage) {
+            let loginSuccess = Random.boolean(2, 1, true)
+            let obj = loginSuccess ? {
+                "code": 1,
+                "msg": "success",
+                "data": "eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi5ZGo57uN5ZCbIiwiaWQiOjEsInVzZXJuYW1lIjoienNqIiwiZXhwIjoxNjgzODM2NDY4fQ.LoRPPqgxQQUomivcQjJu_fvAi5mwhZvbhPF1Ru2kyRg"
+            } : {
+                "code": 0,
+                "msg": "用户名或密码不正确",
+                "data": ""
+            }
+            console.log(obj);
+            return obj
+        }
+    )
+    const getLogInStatus = Mock.mock("/api/getLogInStatus",
         "post", function (postMessage) {
             console.log('useMock', postMessage);
             let obj = Mock.mock({
@@ -395,14 +412,14 @@ if(process.env.NODE_ENV === "development") {
             return 1;
         }
     )
-    
+
     // '/api/signUp'
     const submitSignUpForm = Mock.mock("/api/signUp",
         "post", function () {
             return 2;
         }
     )
-    
+
     const getPersonalFiles = Mock.mock("/api/personalFiles",
         "post", function (userName) {
             let obj = Mock.mock({
@@ -422,7 +439,7 @@ if(process.env.NODE_ENV === "development") {
             return obj;
         }
     )
-    
+
     const getTrendingList = Mock.mock("/api/trendingList",
         "post", function (userName) {
             let obj = Mock.mock({
@@ -444,13 +461,13 @@ if(process.env.NODE_ENV === "development") {
             return obj;
         }
     )
-    
+
     const createItem = Mock.mock("/api/createItem",
         "post", function (postMessage) {
-    
+
         }
     )
-    
+
     //返回之前版本文件和最新文件相关信息
     const getPrevAndNewFile = Mock.mock("/api/getPrevAndNewFile",
         "post", function (postMessage) {
@@ -477,7 +494,7 @@ if(process.env.NODE_ENV === "development") {
             return arr;
         }
     )
-    
+
     const getBlob = Mock.mock("/api/getBlob",
         "post", function (postMessage) {
             console.log(postMessage.body);
@@ -501,7 +518,7 @@ if(process.env.NODE_ENV === "development") {
             return fileObj;
         }
     )
-    
+
     // /api/avatarPost
     const avatarPost = Mock.mock("/api/avatarPost",
         "post", function (postMessage) {
@@ -510,7 +527,7 @@ if(process.env.NODE_ENV === "development") {
             return true;
         }
     )
-    
+
     const filesPost = Mock.mock("/api/filesPost",
         "post", function (postMessage) {
             console.log("filePost---使用mock");

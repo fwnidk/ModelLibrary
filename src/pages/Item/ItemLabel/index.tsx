@@ -9,6 +9,7 @@ import LabelBlock from "../../../components/LabelBlock"
 import { labelConversionArray } from "../../../app/labelConversionArray"
 import { resetModelListAsync } from "../../../store/features/model/modelSlice"
 import { resetDatasetListAsync } from "../../../store/features/dataset/datasetSlice"
+import LoadingStatus from "../../../components/LoadingStatus"
 
 
 export default function ItemLabel(props: { locationState: any, type: string }) {
@@ -18,14 +19,18 @@ export default function ItemLabel(props: { locationState: any, type: string }) {
     const [currCategory, setCurrCategory] = useState<any>(locationState ? locationState.currCategory : "task")
     const [inputValue, setInputValue] = useState<string>("")
     const dispatch = useDispatch();
-    const [activeFilters, allFilters] = useSelector((state: RootState) => type === 'model' ?
-        [state.modelList.data.activeFilters, state.modelList.data.allFilters] :
-        [state.datasetList.data.activeFilters, state.datasetList.data.allFilters])
-    // axios获取数据
+    const [activeFilters, allFilters, isLoading] = useSelector((state: RootState) => type === 'model' ?
+        [state.modelList.data.activeFilters, state.modelList.data.allFilters, state.modelList.isLoading1] :
+        [state.datasetList.data.activeFilters, state.datasetList.data.allFilters, state.datasetList.isLoading1])
+    useEffect(() => {
+        console.log('type changed');
+        setCurrCategory("task")
+        setAllFiltersSearched(type === 'model' ? { task: [], library: [], dataset: [], other: [], language: [] } : { task: [], size: [], other: [], language: [] })
+    }, [type])
     useEffect(() => {
         setAllFiltersSearched(allFilters)
     }, [allFilters])
-
+    // axios获取数据
     const labelButtonArr = labelConversionArray(type);
     //点击切换标签分类按钮
     const handleClickCategory = useCallback((name: any) => {
@@ -48,9 +53,9 @@ export default function ItemLabel(props: { locationState: any, type: string }) {
         //             return item.toLowerCase().indexOf(value.toLowerCase()) > -1
         //         })
         // } else {
-            newExpandedKeys = (allFilters as any)[currCategory].filter((item: any) => {
-                return item[0].toLowerCase().indexOf(value.toLowerCase()) > -1
-            })
+        newExpandedKeys = (allFilters as any)[currCategory].filter((item: any) => {
+            return item[0].toLowerCase().indexOf(value.toLowerCase()) > -1
+        })
         // }
         setAllFiltersSearched({ ...allFiltersSearched, [currCategory]: newExpandedKeys })
         console.log(allFiltersSearched);
@@ -70,11 +75,10 @@ export default function ItemLabel(props: { locationState: any, type: string }) {
         // if (currCategory === "task") {
         //     return <TasksMainPage type={type}>{allFiltersSearched[currCategory]}</TasksMainPage>
         // } else {
-            return <LabelBlock type={type} value={currCategory}>{allFiltersSearched[currCategory]}</LabelBlock >
+        return <LabelBlock type={type} value={currCategory}>{allFiltersSearched[currCategory]}</LabelBlock >
         // }
     }, [allFiltersSearched, type])
-
-    return (
+    return ((activeFilters as any)[currCategory] ?
         <Space direction="vertical" size="large">
             <Space wrap>
                 {labelButtonArr.map((name) => {
@@ -109,6 +113,7 @@ export default function ItemLabel(props: { locationState: any, type: string }) {
                 }
             </div>
             {renderCurrCategory(currCategory)}
-        </Space>
+        </Space> :
+        <></>
     )
 }

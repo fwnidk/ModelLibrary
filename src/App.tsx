@@ -3,9 +3,7 @@ import './index.scss'
 import GlobalHeader from './components/GlobalHeader';
 import { ConfigProvider, Layout } from 'antd';
 import { Outlet } from 'react-router';
-import cookie from 'react-cookies'
 import { useDispatch } from 'react-redux';
-import { logInByCookieAsync } from './store/features/logIn/logInSlice';
 import './app/mock'
 
 const { Footer, Content } = Layout;
@@ -13,10 +11,7 @@ const { Footer, Content } = Layout;
 function App() {
     const dispatch = useDispatch()
     useEffect(() => {
-        const userInfo = cookie.load('userInfo')
-        if (userInfo !== undefined) {
-            dispatch(logInByCookieAsync(userInfo))
-        }
+
     }, [dispatch])
     return (
         <ConfigProvider theme={{

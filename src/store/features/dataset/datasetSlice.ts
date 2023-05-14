@@ -43,7 +43,7 @@ export const setDatasetListAsync: any = createAsyncThunk(
     async (filter: { activeFilters: DatasetType.ActiveFilters, otherOptions: DatasetType.OtherOptions, first: boolean }, action) => {
         action.dispatch(setDatasetList(filter))
         //如果更改页数，则resetPageIndex为false
-        let resetPageIndex = !filter.otherOptions.hasOwnProperty("pageIndex");
+        // let resetPageIndex = !filter.otherOptions.hasOwnProperty("pageIndex");
         const response = await fetchDatasetList((action.getState() as RootState).datasetList.data.activeFilters, (action.getState() as RootState).datasetList.data.otherOptions);
         return response.data;
     }
@@ -69,7 +69,7 @@ export const resetDatasetListAsync: any = createAsyncThunk(
 
 export const setDatasetLabelAsync: any = createAsyncThunk(
     'datasetList/setDatasetLabelAsync',
-    async (action) => {
+    async () => {
         const response: any = await fetchDatasetLabel();
         return response.data;
     }
@@ -157,50 +157,50 @@ export const datasetListSlice: any = createSlice({
             })
             .addCase(setDatasetListAsync.fulfilled, (state, action) => {
                 //更新datasetList
-                state.data.datasets = action.payload.datasetList
+                state.data.datasets = action.payload.data.datasetList
                 //更新datasetList数量
-                if (action.payload.hasOwnProperty('numTotalItems')) {
-                    state.data.numTotalItems = action.payload.numTotalItems;
+                if (action.payload.data.hasOwnProperty('numTotalItems')) {
+                    state.data.numTotalItems = action.payload.data.numTotalItems;
                 }
                 state.isLoading1 = false;
                 console.log('setDatasetListAsync')
             })
             .addCase(removeDatasetListAsync.fulfilled, (state, action) => {
                 //更新datasetList
-                state.data.datasets = action.payload.datasetList
+                state.data.datasets = action.payload.data.datasetList
                 //更新datasetList数量             
-                state.data.numTotalItems = action.payload.numTotalItems;
+                state.data.numTotalItems = action.payload.data.numTotalItems;
                 state.isLoading1 = false;
                 console.log('removeDatasetListAsync')
             })
             .addCase(resetDatasetListAsync.fulfilled, (state, action) => {
                 //更新datasetList
-                state.data.datasets = action.payload.datasetList
+                state.data.datasets = action.payload.data.datasetList
                 //更新datasetList数量             
-                state.data.numTotalItems = action.payload.numTotalItems;
+                state.data.numTotalItems = action.payload.data.numTotalItems;
                 state.isLoading1 = false;
                 console.log('resetDatasetListAsync')
             })
             .addCase(setDatasetLabelAsync.fulfilled, (state, action) => {
-                state.data.allFilters = action.payload;
+                state.data.allFilters = action.payload.data;
                 state.isLoading2 = false;
                 console.log('setDatasetLabelAsync')
             })
-            .addCase(setDatasetListAsync.rejected, (state) => {
+            .addCase(setDatasetListAsync.rejected, (state, err) => {
                 state.isError = true;
-                console.log('error', state)
+                console.log('error', state, err)
             })
-            .addCase(removeDatasetListAsync.rejected, (state) => {
+            .addCase(removeDatasetListAsync.rejected, (state, err) => {
                 state.isError = true;
-                console.log('error', state)
+                console.log('error', state, err)
             })
-            .addCase(resetDatasetListAsync.rejected, (state) => {
+            .addCase(resetDatasetListAsync.rejected, (state, err) => {
                 state.isError = true;
-                console.log('error', state)
+                console.log('error', state, err)
             })
-            .addCase(setDatasetLabelAsync.rejected, (state) => {
+            .addCase(setDatasetLabelAsync.rejected, (state, err) => {
                 state.isError = true;
-                console.log('error', state)
+                console.log('error', state, err)
             })
     },
 });

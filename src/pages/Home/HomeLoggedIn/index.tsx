@@ -16,7 +16,7 @@ import LoadingStatus from '../../../components/LoadingStatus'
 import ErrorStatus from '../../../components/ErrorStatus'
 
 export default function HomeLoggedIn() {
-    const personalInformation: LogInType.PersonalInformation = useSelector((state: RootState) => state.logInInformation.data.personalInformation)
+    const personalInformation: LogInType.PersonalInformation = useSelector((state: RootState) => state.personalInformation.responseData.data.personalInformation)
     const { data, isError, isLoading } = useSelector((state: RootState) => state.personalFiles)
     const trendingList: Array<any> = useSelector((state: RootState) => state.trendingList.list)
     const [currCategory, setCurrCategory] = useState<number>(0)

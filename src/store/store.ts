@@ -17,7 +17,7 @@ export const store: any = configureStore({
         datasetList: datasetListReducer,
         modelDetail: modelDetailReducer,
         datasetDetail: datasetDetailReducer,
-        logInInformation: logInReducer,
+        logIn: logInReducer,
         signUpInformation: signUpReducer,
         personalFiles: personalFilesReducer,
         trendingList: trendingListReducer,

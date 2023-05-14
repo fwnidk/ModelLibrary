@@ -3,9 +3,13 @@ import { RootState } from '../../store';
 import { fetchPersonalFiles } from './personalFilesAPI';
 
 //初始值
-const initialState: LoadingStatusType.Wrapper<PersonalFilesType.List> = {
-    data: {
-        list: []
+const initialState: LoadingStatusType.LoadingStatus<ResponseDataType.ResponseData<PersonalFilesType.List>> = {
+    responseData: {
+        code: 0,
+        msg: "",
+        data: {
+            list: []
+        },
     },
     isLoading: false,
     isError: false,
@@ -43,11 +47,11 @@ export const personalFilesSlice = createSlice({
             })
             .addCase(setPersonalFilesAsync.fulfilled, (state, action) => {
                 //更新personalFiles
-                state.data = action.payload
+                state.responseData.data = action.payload
                 state.isLoading = false
                 console.log('setPersonalFilesAsync')
             })
-            .addCase(setPersonalFilesAsync.rejected, (state,error) => {
+            .addCase(setPersonalFilesAsync.rejected, (state, error) => {
                 state.isError = false
                 console.log('error', error)
             })

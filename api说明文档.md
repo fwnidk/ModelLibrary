@@ -29,7 +29,7 @@
 {
     "code": 1,
     "msg": "success",
-    "data": 									           "eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi5ZGo57uN5ZCbIiwiaWQiOjEsInVzZXJuYW1lIjoienNqIiwiZXhwIjoxNjgzODM2NDY4fQ.LoRPPqgxQQUomivcQjJu_fvAi5mwhZvbhPF1Ru2kyRg"
+    "data":"eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi5ZGo57uN5ZCbIiwiaWQiOjEsInVzZXJuYW1lIjoienNqIiwiZXhwIjoxNjgzODM2NDY4fQ.LoRPPqgxQQUomivcQjJu_fvAi5mwhZvbhPF1Ru2kyRg"
 }
 ```
 
@@ -58,16 +58,17 @@ header:
         "userName": "Margaret Hernandez",
         "team": "&efS4jb",
         "image": "...",
-    },
+        },
+    ]
 }
 
 ```
 
 ### 响应数据样例
-```
+```json
 {
-    "code": number,
-    "msg": string,
+    "code": 1,
+    "msg": "success",
     "data":[
         "personalInformation": {
         "userName": "Margaret Hernandez",
@@ -274,7 +275,7 @@ number
 ### /api/datasetLabel
 ### 响应数据：
 ```
-{
+{json
     "code": number,
     "msg": string,
     "data": {
@@ -286,7 +287,7 @@ number
 }
 ```
 ### 响应数据样例：
-```
+```json
 {
     "code": 1,
     "msg": "",

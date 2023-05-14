@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { verifyUsernameAsync } from '../../store/features/signUp/signUpSlice';
 import CompleteProfile from './CompleteProfile';
-import cookie from 'react-cookies'
 import { logInAsync } from '../../store/features/logIn/logInSlice';
 // import './index.scss'
 
@@ -15,9 +14,9 @@ export default function SignUp() {
     const navigate = useNavigate()
     //注册阶段
     const [signUpFirstStage, setSignUpFirstStage] = useState(true)
-    const [signUpStatus, logInStatus, form]: [number, number, any] = useSelector((state: RootState) => [state.signUpInformation.signUpStatus, state.logInInformation.data.logInStatus, state.signUpInformation.signUpForm])
+    const [signUpStatus, code, form]: [number, number, any] = useSelector((state: RootState) => [state.signUpInformation.signUpStatus, state.logIn.responseData.code, state.signUpInformation.signUpForm])
     useEffect(() => {
-        if (logInStatus === 1) {
+        if (code === 1) {
             navigate('/welcome')
         }
         console.log('signUpStatus', signUpStatus);
@@ -25,9 +24,9 @@ export default function SignUp() {
             setSignUpFirstStage(false)
         } else if (signUpStatus === 2) {
             dispatch(logInAsync(form.username, form.password))
-            cookie.save('userInfo', form.username, { path: '/' })
+            // localStorage.setItem('jwtToken', state.responseData.data);
         }
-    }, [logInStatus, navigate, signUpStatus, form, dispatch])
+    }, [code, navigate, signUpStatus, form, dispatch])
 
     const onFinish = (values: any) => {
         console.log(values);

@@ -3,25 +3,29 @@ import { fetchDatasetDetail } from './datasetDetailAPI';
 
 
 //初始值
-const initialState: { data: DatasetDetailType.DatasetDetail, isLoading: boolean, isError: boolean } = {
-    data: {
-        activeFilters: {
-            task: [],
-            size: [],
-            language: [],
-            other: [],
+const initialState: { responseData: ResponseDataType.ResponseData<DatasetDetailType.DatasetDetail>, isLoading: boolean, isError: boolean } = {
+    responseData: {
+        code: 0,
+        msg: "",
+        data: {
+            activeFilters: {
+                task: [],
+                size: [],
+                language: [],
+                other: [],
+            },
+            options: {
+                lastModified: "1970-01-01T00:00:00",
+                lastModifiedInformation: "",
+                name: "",
+                author: "",
+                downloads: 0,
+                id: "",
+                type: "",
+            },
+            filesTable: [],
+            activeMenu: "0"
         },
-        options: {
-            lastModified: "1970-01-01T00:00:00",
-            lastModifiedInformation: "",
-            name: "",
-            author: "",
-            downloads: 0,
-            id: "",
-            type: "",
-        },
-        filesTable: [],
-        activeMenu: "0"
     },
     isLoading: true,
     isError: false,
@@ -47,7 +51,7 @@ export const datasetDetailSlice = createSlice({
     //“reducers”字段允许我们定义reducers并生成相关操作
     reducers: {
         setActiveMenu: (state, action: PayloadAction<any>) => {
-            state.data.activeMenu = action.payload
+            state.responseData.data.activeMenu = action.payload
         },
     },
     // “extraReducers”字段允许切片处理其他地方定义的动作，
@@ -59,8 +63,8 @@ export const datasetDetailSlice = createSlice({
                 state.isLoading = true;
             }).addCase(getDatasetDetailAsync.fulfilled, (state, action) => {
                 //更新datasetDetail
-                for (let key in state.data) {
-                    (state.data as any)[key] = action.payload[key]
+                for (let key in state.responseData.data) {
+                    (state.responseData.data as any)[key] = action.payload[key]
                 }
                 state.isLoading = false;
                 //更新datasetDetail数量
@@ -73,13 +77,7 @@ export const datasetDetailSlice = createSlice({
 });
 
 export const { setActiveMenu } = datasetDetailSlice.actions;
-// export const { removeDatasetDetail } = datasetDetailSlice.actions;
-// export const { resetDatasetDetail } = datasetDetailSlice.actions;
 
-//下面的函数称为选择器，允许我们从中选择一个值
-// the state. Selectors选择器也可以在使用它们而不是
-//在切片文件中。例如：`useSelector（（state:RootState）=>state.datasetDetail.input）`
-// export const getDatasetDetailFromState = (state: RootState) => state.datasetDetail;
 
 //我们也可以手动编写thunk，它可能包含同步和异步逻辑。
 //下面是一个基于当前状态有条件地调度动作的示例。

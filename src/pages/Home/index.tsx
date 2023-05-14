@@ -8,7 +8,7 @@ import LoadingStatus from '../../components/LoadingStatus';
 import ErrorStatus from '../../components/ErrorStatus';
 
 export default function Home() {
-    const { data, isLoading, isError } = useSelector((state: RootState) => state.logInInformation)
+    const { responseData, isLoading, isError } = useSelector((state: RootState) => state.logIn)
     // const dispatch = useDispatch()
 
     // useEffect(() => {
@@ -22,7 +22,7 @@ export default function Home() {
         return <ErrorStatus />
     }
     return (
-        data.logInStatus === 1 ?
+        responseData.code === 1 ?
             <HomeLoggedIn /> :
             <h1>Home Not Logged In</h1>
     )

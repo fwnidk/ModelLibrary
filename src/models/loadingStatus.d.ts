@@ -1,6 +1,6 @@
 declare namespace LoadingStatusType {
-    interface Wrapper<T> {
-        data: T,
+    interface LoadingStatus<T> {
+        responseData: T,
         isLoading: boolean,
         isError: boolean,
     }

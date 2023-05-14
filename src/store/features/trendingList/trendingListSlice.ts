@@ -3,8 +3,12 @@ import { RootState } from '../../store';
 import { fetchTrendingList } from './trendingListAPI';
 
 //初始值
-const initialState: TrendingListType.List = {
-    list: []
+const initialState: ResponseDataType.ResponseData<TrendingListType.List> = {
+    code: 0,
+    msg: "",
+    data: {
+        list: []
+    },
 };
 
 //下面的函数称为thunk，允许我们执行异步逻辑。它
@@ -35,7 +39,7 @@ export const trendingListSlice = createSlice({
     extraReducers: (builder) => {
         builder
             //两个异步函数的成功和失败后的处理
-            .addCase(setTrendingListAsync.fulfilled, (state: TrendingListType.List, action) => {
+            .addCase(setTrendingListAsync.fulfilled, (state: ResponseDataType.ResponseData<TrendingListType.List>, action) => {
                 //更新trendingList
                 state = action.payload
                 console.log('setTrendingListAsync')

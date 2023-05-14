@@ -6,22 +6,19 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logInAsync } from '../../store/features/logIn/logInSlice';
 import { RootState } from '../../store/store';
-import cookie from 'react-cookies'
 
 export default function LogIn() {
     const dispatch = useDispatch()
-    const logInStatus: LogInType.LogInStatus = useSelector((state: RootState) => state.logInInformation.data.logInStatus)
+    const { code, msg } = useSelector((state: RootState) => state.logIn.responseData)
     const navigate = useNavigate()
     useEffect(() => {
-        console.log('logInStatus: ', logInStatus);
-        if (logInStatus === 1) {
+        if (code === 1) {
             navigate('/welcome')
         }
-    }, [logInStatus, navigate])
+    }, [code, navigate])
 
     const onFinish = async (values: any) => {
         await dispatch(logInAsync(values.username, values.password))
-        cookie.save('userInfo', values.username, { path: '/' })
     };
     const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);
@@ -71,8 +68,8 @@ export default function LogIn() {
                         />
                     </Form.Item>
 
-                    {(logInStatus === 2) && <Form.Item className="errorMessage">
-                        <Alert message="用户名或密码不正确。" type="error" />
+                    {code === 0 && msg !== 'no login' && <Form.Item className="errorMessage">
+                        <Alert message={msg} type="error" />
                     </Form.Item>}
 
                     <Form.Item>

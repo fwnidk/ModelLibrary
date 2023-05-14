@@ -75,7 +75,6 @@ export const setModelLabelAsync: any = createAsyncThunk(
     'modelList/setModelLabelAsync',
     async () => {
         const response: any = await fetchModelLabel();
-        console.log(response.data);
         return response.data;
     }
 )
@@ -97,6 +96,7 @@ export const modelListSlice: any = createSlice({
             if (!dispatchData.otherOptions.hasOwnProperty("pageIndex")) {
                 state.data.otherOptions.pageIndex = 1
             }
+
         },
         //去除activeFilter中的值
         removeModelList: (state, action: PayloadAction<any>) => {
@@ -164,54 +164,51 @@ export const modelListSlice: any = createSlice({
             })
             .addCase(setModelListAsync.fulfilled, (state, action) => {
                 //更新modelList
-                state.data.models = action.payload.modelList
+                state.data.models = action.payload.data.modelList
                 //更新modelList数量
-                if (action.payload.hasOwnProperty('numTotalItems')) {
-                    state.data.numTotalItems = action.payload.numTotalItems;
+                if (action.payload.data.hasOwnProperty('numTotalItems')) {
+                    state.data.numTotalItems = action.payload.data.numTotalItems;
                 }
                 state.isLoading1 = false;
                 console.log('setModelListAsync')
             })
             .addCase(removeModelListAsync.fulfilled, (state, action) => {
                 //更新modelList
-                state.data.models = action.payload.modelList
+                state.data.models = action.payload.data.modelList
                 //更新modelList数量             
-                state.data.numTotalItems = action.payload.numTotalItems;
+                state.data.numTotalItems = action.payload.data.numTotalItems;
                 state.isLoading1 = false;
                 console.log('removeModelListAsync')
             })
             .addCase(resetModelListAsync.fulfilled, (state, action) => {
                 //更新modelList
-                state.data.models = action.payload.modelList
+                state.data.models = action.payload.data.modelList
                 //更新modelList数量             
-                state.data.numTotalItems = action.payload.numTotalItems;
+                state.data.numTotalItems = action.payload.data.numTotalItems;
                 state.isLoading1 = false;
                 console.log('resetModelListAsync')
             })
             .addCase(setModelLabelAsync.fulfilled, (state, action) => {
-                state.data.allFilters = action.payload;
+                state.data.allFilters = action.payload.data;
                 state.isLoading2 = false;
                 console.log('setModelLabelAsync')
             })
-            .addCase(setModelListAsync.rejected, (state) => {
+            .addCase(setModelListAsync.rejected, (state, err) => {
                 state.isError = true;
-                console.log('error', state)
+                console.log('error', state, err)
             })
-            .addCase(removeModelListAsync.rejected, (state) => {
+            .addCase(removeModelListAsync.rejected, (state, err) => {
                 state.isError = true;
-                console.log('error', state)
+                console.log('error', state, err)
             })
-            .addCase(resetModelListAsync.rejected, (state) => {
+            .addCase(resetModelListAsync.rejected, (state, err) => {
                 state.isError = true;
-                console.log('error', state)
+                console.log('error', state, err)
             })
-            .addCase(setModelLabelAsync.rejected, (state) => {
+            .addCase(setModelLabelAsync.rejected, (state, err) => {
                 state.isError = true;
-                console.log('error', state)
+                console.log('error', state, err)
             })
-        // .addCase(clearAllModelListAsync.rejected, (state) => {
-        //     console.log('error', state)
-        // })
     },
 });
 

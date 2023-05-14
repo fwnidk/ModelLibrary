@@ -17,7 +17,7 @@ export default function Profile() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const { data, isLoading, isError } = useSelector((state: RootState) => state.personalFiles)
-    const personalInformation: LogInType.PersonalInformation = useSelector((state: RootState) => state.logInInformation.data.personalInformation)
+    const personalInformation = useSelector((state: RootState) => state.personalInformation.responseData.data.personalInformation)
     useEffect(() => {
         dispatch(setPersonalFilesAsync())
     }, [dispatch, personalInformation])

@@ -2,7 +2,7 @@
 // import "../../../app/icons/mock"
 import axios from 'axios';
 
-export async function fetchLogIn(logInInformation: LogInType.LogInForm | string) {
+export async function fetchLogIn(logInInformation: LogInType.LogInForm) {
     let message = await axios.post('/api/logIn', logInInformation)
     return message
 }
