@@ -3,6 +3,6 @@
 import axios from 'axios';
 
 export async function fetchLogIn(logInInformation: LogInType.LogInForm) {
-    let message = await axios.post('/api/logIn', logInInformation)
+    let message = await axios.post('/api/login', logInInformation)
     return message
 }

@@ -372,8 +372,9 @@ if (process.env.NODE_ENV === "development") {
         }
     )
 
-    const getJWT = Mock.mock("/api/logIn",
+    const getJWT = Mock.mock("/api/login",
         "post", function (postMessage) {
+            console.log('mock -- ', postMessage);
             let loginSuccess = Random.boolean(2, 1, true)
             let obj = loginSuccess ? {
                 "code": 1,

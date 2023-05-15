@@ -18,7 +18,7 @@ export default function LogIn() {
     }, [code, navigate])
 
     const onFinish = async (values: any) => {
-        await dispatch(logInAsync(values.username, values.password))
+        await dispatch(logInAsync(values))
     };
     const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);
