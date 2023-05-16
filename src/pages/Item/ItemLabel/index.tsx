@@ -1,21 +1,17 @@
 import React, { useCallback, useEffect, useState } from "react"
 import { Space, Button, Input } from "antd"
 import './index.scss'
-import TasksMainPage from "../../../components/TasksMainPage"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../store/store"
-// import "../../../app/mock"
 import LabelBlock from "../../../components/LabelBlock"
 import { labelConversionArray } from "../../../app/labelConversionArray"
 import { resetModelListAsync } from "../../../store/features/model/modelSlice"
 import { resetDatasetListAsync } from "../../../store/features/dataset/datasetSlice"
-import LoadingStatus from "../../../components/LoadingStatus"
 
 
 export default function ItemLabel(props: { locationState: any, type: string }) {
-    const { type } = props;
+    const { type,locationState } = props;
     const [allFiltersSearched, setAllFiltersSearched] = useState<any>(type === 'model' ? { task: [], library: [], dataset: [], other: [], language: [] } : { task: [], size: [], other: [], language: [] })
-    let { locationState } = props
     const [currCategory, setCurrCategory] = useState<any>(locationState ? locationState.currCategory : "task")
     const [inputValue, setInputValue] = useState<string>("")
     const dispatch = useDispatch();
