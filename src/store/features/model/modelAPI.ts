@@ -24,7 +24,7 @@ export async function fetchModelList(activeFilters: ModelType.ActiveFiltersPost,
             paramsArr.push(option + '=' + (otherOptions as any)[option])
         }
     }
-    let getParams = '?' + paramsArr.join('&')
+    let getParams = ('?' + paramsArr.join('&')).replace(' ', '-').toLocaleLowerCase()
     return await axios.get(`/api/modelList${getParams}`)
     // if (first) {
     //     return await axios.post("/api/modelList", postData)
