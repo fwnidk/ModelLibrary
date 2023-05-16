@@ -212,6 +212,7 @@ if (process.env.NODE_ENV === "development") {
     // )
     const createRandomModelListData = Mock.mock(/\/api\/modelList(\?.)?/,
         "get", function (params) {
+            console.log(params);
             return Mock.mock(wrapResponseData({
                 "modelList|30": [{
                     lastModified: "@timeString",

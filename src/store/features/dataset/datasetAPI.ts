@@ -9,17 +9,21 @@ export async function fetchDatasetList(activeFilters: DatasetType.ActiveFiltersP
     for (let filter in activeFilters) {
         let arr = (activeFilters as any)[filter]
         if (arr.length !== 0) {
-            let currParams = filter + '=' + arr.join(',');
+            let currParams = filter + '=' + arr.join(',').toLocaleLowerCase();
             paramsArr.push(currParams)
         }
     }
     for (let option in otherOptions) {
         if (!(option === 'filterByName' && (otherOptions as any)[option] === '')) {
-            paramsArr.push(option + '=' + (otherOptions as any)[option])
+            let str = (otherOptions as any)[option]
+            if (typeof (str) === 'string') {
+                str = str.toLocaleLowerCase()
+            }
+            paramsArr.push(option + '=' + str)
         }
     }
-    let getParams = '?' + paramsArr.join('&').replace(' ', '-').toLocaleLowerCase()
-    console.log(getParams);
+    let getParams = '?' + paramsArr.join('&').replace(' ', '-')
+    console.log('getParams: ', getParams);
     return await axios.get(`/api/datasetList${getParams}`)
 }
 

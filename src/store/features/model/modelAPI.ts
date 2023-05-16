@@ -15,16 +15,20 @@ export async function fetchModelList(activeFilters: ModelType.ActiveFiltersPost,
     for (let filter in activeFilters) {
         let arr = (activeFilters as any)[filter]
         if (arr.length !== 0) {
-            let currParams = filter + '=' + arr.join(',');
+            let currParams = filter + '=' + arr.join(',').toLocaleLowerCase();
             paramsArr.push(currParams)
         }
     }
     for (let option in otherOptions) {
         if (!(option === 'filterByName' && (otherOptions as any)[option] === '')) {
-            paramsArr.push(option + '=' + (otherOptions as any)[option])
+            let str = (otherOptions as any)[option]
+            if (typeof (str) === 'string') {
+                str = str.toLowerCase()
+            }
+            paramsArr.push(option + '=' + str)
         }
     }
-    let getParams = ('?' + paramsArr.join('&')).replace(' ', '-').toLocaleLowerCase()
+    let getParams = ('?' + paramsArr.join('&')).replace(' ', '-')
     return await axios.get(`/api/modelList${getParams}`)
     // if (first) {
     //     return await axios.post("/api/modelList", postData)
@@ -40,6 +44,3 @@ export async function fetchModelList(activeFilters: ModelType.ActiveFiltersPost,
 export async function fetchModelLabel() {
     return await axios.get("/api/modelLabel")
 }
-
-
-
