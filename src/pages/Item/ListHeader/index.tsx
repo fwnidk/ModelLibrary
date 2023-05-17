@@ -5,6 +5,7 @@ import { setDatasetListAsync } from '../../../store/features/dataset/datasetSlic
 import { setModelListAsync } from '../../../store/features/model/modelSlice';
 import { RootState } from '../../../store/store';
 import './index.scss'
+import { debounce } from '../../../app/debounce';
 
 const { Text } = Typography;
 export default function ListHeader(props: { type: string }) {
@@ -46,7 +47,7 @@ export default function ListHeader(props: { type: string }) {
             <Space size="large" wrap >
                 <Text className='fontSize20'>{type === 'model' ? 'Models' : 'Datasets'}</Text>
                 <Text type="secondary" className='fontSize20'> {(numTotalItems || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
-                <Input placeholder='Filter by name' onPressEnter={handleChange} className="inputStyle" ></Input>
+                <Input placeholder='Filter by name' onChange={debounce(handleChange, 500)} onPressEnter={handleChange} className="inputStyle" ></Input>
             </Space>
             <Dropdown menu={{ items, onClick }} placement="bottomLeft" className='dropdownStyle'>
                 <Button >Sort: {sortType}</Button>

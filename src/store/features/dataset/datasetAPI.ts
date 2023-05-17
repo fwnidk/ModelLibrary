@@ -14,16 +14,19 @@ export async function fetchDatasetList(activeFilters: DatasetType.ActiveFiltersP
         }
     }
     for (let option in otherOptions) {
-        if (!(option === 'filterByName' && (otherOptions as any)[option] === '')) {
-            let str = (otherOptions as any)[option]
-            if (typeof (str) === 'string') {
-                str = str.toLocaleLowerCase()
+        let str = (otherOptions as any)[option]
+        if (option === 'filterByName') {
+            if (str !== '') {
+                paramsArr.push(('name=' + str).replace(' ', '+'))
+            }
+        } else {
+            if (option === 'sortType') {
+                str = str.toLowerCase()
             }
             paramsArr.push(option + '=' + str)
         }
     }
     let getParams = '?' + paramsArr.join('&').replace(' ', '-')
-    console.log('getParams: ', getParams);
     return await axios.get(`/api/datasetList${getParams}`)
 }
 

@@ -15,14 +15,18 @@ export async function fetchModelList(activeFilters: ModelType.ActiveFiltersPost,
     for (let filter in activeFilters) {
         let arr = (activeFilters as any)[filter]
         if (arr.length !== 0) {
-            let currParams = filter + '=' + arr.join(',').toLocaleLowerCase();
+            let currParams = filter + '=' + arr.join(',')
             paramsArr.push(currParams)
         }
     }
     for (let option in otherOptions) {
-        if (!(option === 'filterByName' && (otherOptions as any)[option] === '')) {
-            let str = (otherOptions as any)[option]
-            if (typeof (str) === 'string') {
+        let str = (otherOptions as any)[option]
+        if (option === 'filterByName') {
+            if (str !== '') {
+                paramsArr.push(('name=' + str).replace(' ', '+'))
+            }
+        } else {
+            if (option === 'sortType') {
                 str = str.toLowerCase()
             }
             paramsArr.push(option + '=' + str)
@@ -30,16 +34,6 @@ export async function fetchModelList(activeFilters: ModelType.ActiveFiltersPost,
     }
     let getParams = ('?' + paramsArr.join('&')).replace(' ', '-')
     return await axios.get(`/api/modelList${getParams}`)
-    // if (first) {
-    //     return await axios.post("/api/modelList", postData)
-    // } else {
-    //     //非首次加载则判断是否为换页操作
-    //     if (resetPageIndex)
-    //         return await axios.post("/api/modelList", postData)
-    //     else {
-    //         return await axios.post("/api/modelListPage", postData)
-    //     }
-    // }
 }
 export async function fetchModelLabel() {
     return await axios.get("/api/modelLabel")

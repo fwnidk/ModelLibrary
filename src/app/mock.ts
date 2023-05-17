@@ -271,7 +271,8 @@ if (process.env.NODE_ENV === "development") {
 
     // 其他更新情况，会返回一个新的numTotalItems
     const createRandomDatasetListData = Mock.mock(/\/api\/datasetList(\?.)?/,
-        "get", function () {
+        "get", function (params) {
+            console.log(params);
             return Mock.mock(wrapResponseData({
                 "datasetList|30": [
                     {
