@@ -525,7 +525,7 @@ if (process.env.NODE_ENV === "development") {
     // /api/avatarPost
     const avatarPost = Mock.mock("/api/avatarPost",
         "post", function (postMessage) {
-            console.log('avatarPost:', postMessage.body)
+            console.log('avatarPost:', postMessage)
             console.log("avatarPost---使用mock");
             return true;
         }

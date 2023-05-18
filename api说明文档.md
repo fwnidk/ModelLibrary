@@ -1,6 +1,6 @@
 # 一、登录和注册
 ## 1. 登录信息
-### 请求路径：/api/logIn
+### 请求路径：/api/login
 ### 请求方式：post
 ### 请求参数：
 ```
@@ -33,20 +33,13 @@
 }
 ```
 
-## 2. 登录主页
-### 请求路径：/api/user
+## 2. 获取个人信息
+### 请求路径：/api/userInformation
 ### 请求方式：get
-### 请求参数：
+### 请求头：
 ```
 header:
 "token":"eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi5ZGo57uN5ZCbIiwiaWQiOjEsInVzZXJuYW1lIjoienNqIiwiZXhwIjoxNjgzODM2NDY4fQ.LoRPPqgxQQUomivcQjJu_fvAi5mwhZvbhPF1Ru2kyRg"
-```
-### 请求数据样例：
-```json
-{
-    "userName": "fwnidk",
-    "password": "fwnidkfwnidk"
-}
 ```
 ### 响应数据：
 ```
@@ -61,9 +54,7 @@ header:
         },
     ]
 }
-
 ```
-
 ### 响应数据样例
 ```json
 {
@@ -74,12 +65,10 @@ header:
         "userName": "Margaret Hernandez",
         "team": "&efS4jb",
         "image": "...",
-    },
-]
+        },
+    ]
 }
 ```
-
-
 ## 3. 验证注册用户，验证注册用户名是否重复
 
 ### 请求路径：/api/verifyUsername
@@ -106,8 +95,8 @@ number
 ```
 1
 ```
-## 3. 提交注册信息
-### 请求路径：/api/verifyUsername
+## 4. 提交注册信息
+### 请求路径：/api/signup
 ### 请求方式：post
 ### 请求参数：
 ```
@@ -131,11 +120,19 @@ number
 ```
 ### 响应数据：
 ```
-number
+{
+    "code": number,
+    "msg": string,
+    "data":string
+}
 ```
 ### 响应数据样例：
 ```
-2
+{
+    "code": 1,
+    "msg": "success",
+    "data":"eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi5ZGo57uN5ZCbIiwiaWQiOjEsInVzZXJuYW1lIjoienNqIiwiZXhwIjoxNjgzODM2NDY4fQ.LoRPPqgxQQUomivcQjJu_fvAi5mwhZvbhPF1Ru2kyRg"
+}
 ```
 # 二、模型主页和数据集主页
 ## 1. model的列表信息
@@ -275,7 +272,8 @@ number
 ### /api/datasetLabel
 ### 响应数据：
 ```
-{json
+{
+    json
     "code": number,
     "msg": string,
     "data": {
@@ -310,5 +308,4 @@ number
         ],
     }
 }
-
 ```

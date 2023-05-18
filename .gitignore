@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /.pnp
+/.VSCodeCounter
 .pnp.js
 
 # testing
