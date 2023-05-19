@@ -48,9 +48,9 @@ header:
     "msg": string,
     "data":[
         "personalInformation": {
-        "userName": "Margaret Hernandez",
-        "team": "&efS4jb",
-        "image": "...",
+        "userName": "string",
+        "team": "string",
+        "avatar": "...",
         },
     ]
 }
@@ -62,9 +62,9 @@ header:
     "msg": "success",
     "data":[
         "personalInformation": {
-        "userName": "Margaret Hernandez",
-        "team": "&efS4jb",
-        "image": "...",
+        "userName": "zsj",
+        "team": "iSS",
+        "avatar": "...",
         },
     ]
 }
@@ -83,8 +83,8 @@ header:
 ### 请求数据样例：
 ```json
 {
-    userName: "fwnidk",
-    password: "fwnidkfwnidk"
+    userName: "zsj",
+    password: "123456"
 }
 ```
 ### 响应数据：
@@ -93,7 +93,7 @@ number
 ```
 ### 响应数据样例：
 ```
-1
+0
 ```
 ## 4. 提交注册信息
 ### 请求路径：/api/signup
@@ -106,16 +106,22 @@ number
     avatar: any,
     researchInterests: string,
     team: string,
+    entrydate: LocalDate,
+    createTime: LocalDateTime,
+    updateTime: LocalDateTime,
 }
 ```
 ### 请求数据样例：
 ```json
 {
-    "userName": "fwnidk",
-    "password": "fwnidkfwnidk",
+    "userName": "zsj",
+    "password": "123456",
     "avatar": [...],
-    "researchInterests": "asdfasdfasdf",
-    "team": "asdf"
+    "researchInterests": "math",
+    "team": "iSS",
+    "entrydate": "2023-05-18",
+    "createTime": "2023-05-18 20:01:35",
+    "updateTime": "2023-05-18 20:11:35",        
 }
 ```
 ### 响应数据：
@@ -123,15 +129,15 @@ number
 {
     "code": number,
     "msg": string,
-    "data":string
-}
+    "data":[]
+}		
 ```
 ### 响应数据样例：
 ```
 {
     "code": 1,
     "msg": "success",
-    "data":"eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi5ZGo57uN5ZCbIiwiaWQiOjEsInVzZXJuYW1lIjoienNqIiwiZXhwIjoxNjgzODM2NDY4fQ.LoRPPqgxQQUomivcQjJu_fvAi5mwhZvbhPF1Ru2kyRg"
+         "data":"eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi5ZGo57uN5ZCbIiwiaWQiOjEsInVzZXJuYW1lIjoienNqIiwiZXhwIjoxNjgzODM2NDY4fQ.LoRPPqgxQQUomivcQjJu_fvAi5mwhZvbhPF1Ru2kyRg"
 }
 ```
 # 二、模型主页和数据集主页
