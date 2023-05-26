@@ -23,7 +23,7 @@ export async function fetchModelList(activeFilters: ModelType.ActiveFiltersPost,
         let str = (otherOptions as any)[option]
         if (option === 'filterByName') {
             if (str !== '') {
-                paramsArr.push(('name=' + str).replace(' ', '+'))
+                paramsArr.push(('name=' + str).replaceAll(' ', '+'))
             }
         } else {
             if (option === 'sortType') {
@@ -32,7 +32,8 @@ export async function fetchModelList(activeFilters: ModelType.ActiveFiltersPost,
             paramsArr.push(option + '=' + str)
         }
     }
-    let getParams = ('?' + paramsArr.join('&')).replace(' ', '-')
+    let getParams = ('?' + paramsArr.join('&')).replaceAll(' ', '-')
+    console.log(getParams);
     return await axios.get(`/api/modelList${getParams}`)
 }
 export async function fetchModelLabel() {

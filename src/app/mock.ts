@@ -186,7 +186,7 @@ if (process.env.NODE_ENV === "development") {
         //返回多条条models数据 
         Mock.mock(wrapResponseData({
             // "task|45-60": [["@string", "@tasksarr"]],
-            "task|45-60": ["@string"],
+            "task|45-60": ["@fileName"],
             "library|45-60": ["@string"],
             "dataset|45-60": ["@string"],
             "other|45-60": ["@string"],

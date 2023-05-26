@@ -17,7 +17,7 @@ export async function fetchDatasetList(activeFilters: DatasetType.ActiveFiltersP
         let str = (otherOptions as any)[option]
         if (option === 'filterByName') {
             if (str !== '') {
-                paramsArr.push(('name=' + str).replace(' ', '+'))
+                paramsArr.push(('name=' + str).replaceAll(' ', '+'))
             }
         } else {
             if (option === 'sortType') {
@@ -26,7 +26,7 @@ export async function fetchDatasetList(activeFilters: DatasetType.ActiveFiltersP
             paramsArr.push(option + '=' + str)
         }
     }
-    let getParams = '?' + paramsArr.join('&').replace(' ', '-')
+    let getParams = '?' + paramsArr.join('&').replaceAll(' ', '-')
     return await axios.get(`/api/datasetList${getParams}`)
 }
 
