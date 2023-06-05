@@ -25,10 +25,10 @@ export default function ListHeader(props: { type: string }) {
     // 初始化dropdown的信息
     const items: MenuProps['items'] = [{
         key: 'Most Downloads',
-        label: "Most Downloads",
+        label: "下载量",
     }, {
         key: 'Recently Updated',
-        label: "Recently Updated"
+        label: "最近更新"
     },]
     //dropdown点击事件，触发dispatch，发送
     const onClick: MenuProps['onClick'] = ({ key }) => {
@@ -41,16 +41,24 @@ export default function ListHeader(props: { type: string }) {
             }
         }
     }
+    const getLabel = (key: string): string => {
+        for (let i of items) {
+            if (i?.key === key) {
+                return (i as any).label
+            }
+        }
+        return ''
+    }
 
     return (
         <div className='listHeader'>
             <Space size="large" wrap >
-                <Text className='fontSize20'>{type === 'model' ? 'Models' : 'Datasets'}</Text>
+                <Text className='fontSize20'>{type === 'model' ? '模型' : '数据集'}</Text>
                 <Text type="secondary" className='fontSize20'> {(numTotalItems || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
                 <Input placeholder='Filter by name' onChange={debounce(handleChange, 500)} onPressEnter={handleChange} className="inputStyle" ></Input>
             </Space>
             <Dropdown menu={{ items, onClick }} placement="bottomLeft" className='dropdownStyle'>
-                <Button >Sort: {sortType}</Button>
+                <Button >排序方式：{getLabel(sortType)}</Button>
             </Dropdown>
         </div>
     )
