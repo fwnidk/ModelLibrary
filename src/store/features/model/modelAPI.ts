@@ -25,14 +25,10 @@ export async function fetchModelList(activeFilters: ModelType.ActiveFiltersPost,
             if (str !== '') {
                 paramsArr.push(('name=' + str).replaceAll(' ', '+'))
             }
-        } else {
-            if (option === 'sortType') {
-                str = str.toLowerCase()
-            }
-            paramsArr.push(option + '=' + str)
         }
+        paramsArr.push(option + '=' + str)
     }
-    let getParams = ('?' + paramsArr.join('&')).replaceAll(' ', '-')
+    let getParams = ('?' + paramsArr.join('&'))
     console.log(getParams);
     return await axios.get(`/api/modelList${getParams}`)
 }

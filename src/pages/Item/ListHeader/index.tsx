@@ -34,6 +34,7 @@ export default function ListHeader(props: { type: string }) {
     const onClick: MenuProps['onClick'] = ({ key }) => {
         if (key !== sortType) {
             setSortType(key);
+            key = key.toLowerCase().replaceAll(' ', '-')
             if (type === 'model') {
                 dispatch(setModelListAsync({ activeFilters: {}, otherOptions: { sortType: key }, first: false }))
             } else {

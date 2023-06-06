@@ -26,7 +26,7 @@ export async function fetchDatasetList(activeFilters: DatasetType.ActiveFiltersP
             paramsArr.push(option + '=' + str)
         }
     }
-    let getParams = '?' + paramsArr.join('&').replaceAll(' ', '-')
+    let getParams = '?' + paramsArr.join('&')
     return await axios.get(`/api/datasetList${getParams}`)
 }
 
