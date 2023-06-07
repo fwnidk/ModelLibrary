@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../store';
 import { fetchPersonalInformation } from './personalInformationAPI';
 
@@ -37,6 +37,17 @@ export const personalInformationSlice = createSlice({
     initialState,
     //“reducers”字段允许我们定义reducers并生成相关操作
     reducers: {
+        resetPersonalInformation: (state) => {
+            state.responseData = {
+                code: 0,
+                msg: 'no login',
+                data: {
+                    username: '',
+                    team: '',
+                    avatar: '',
+                }
+            }
+        },
         // setPersonalInformation: (state, action: PayloadAction<any>) => {
         // },
     },
@@ -60,6 +71,6 @@ export const personalInformationSlice = createSlice({
     },
 });
 
-// export const { setPersonalInformation } = PersonalInformationSlice.actions;
+export const { resetPersonalInformation } = personalInformationSlice.actions;
 
 export default personalInformationSlice.reducer;

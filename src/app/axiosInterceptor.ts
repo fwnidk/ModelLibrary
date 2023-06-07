@@ -23,7 +23,6 @@ axiosInstance.interceptors.request.use(
 );
 axiosInstance.interceptors.response.use(
     (response) => {
-        console.log(response.headers, response.headers.authorization);
         const { authorization } = response.headers
         authorization && localStorage.setItem("jwtToken", authorization)
         return response;

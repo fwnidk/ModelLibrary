@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logInAsync } from '../../store/features/logIn/logInSlice';
 import { RootState } from '../../store/store';
+import { getPersonalInformationAsync } from '../../store/features/personalInformation/personalInformationSlice';
 
 export default function LogIn() {
     const dispatch = useDispatch()
@@ -13,6 +14,7 @@ export default function LogIn() {
     const navigate = useNavigate()
     useEffect(() => {
         if (code === 1) {
+            dispatch(getPersonalInformationAsync())
             navigate('/welcome')
         }
     }, [code, navigate])
