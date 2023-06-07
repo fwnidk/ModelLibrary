@@ -26,6 +26,9 @@ export async function fetchModelList(activeFilters: ModelType.ActiveFiltersPost,
                 paramsArr.push(('name=' + str).replaceAll(' ', '+'))
             }
         } else {
+            if(option === "sortType") {
+                str = str.toLowerCase().replaceAll(' ', '-')
+            }
             paramsArr.push(option + '=' + str)
         }
     }

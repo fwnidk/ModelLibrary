@@ -20,6 +20,9 @@ export async function fetchDatasetList(activeFilters: DatasetType.ActiveFiltersP
                 paramsArr.push(('name=' + str).replaceAll(' ', '+'))
             }
         } else {
+            if (option === "sortType") {
+                str = str.toLowerCase().replaceAll(' ', '-')
+            }
             paramsArr.push(option + '=' + str)
         }
     }
