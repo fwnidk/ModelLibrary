@@ -3,7 +3,6 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeKatex from 'rehype-katex'
 import remarkMath from 'remark-math'
-import axios from 'axios'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism'
 // @ts-ignore
@@ -12,7 +11,7 @@ import MarkdownNavbar from 'markdown-navbar';
 import { Col, Row } from 'antd'
 import 'markdown-navbar/dist/navbar.css';
 import './index.scss'
-// import '../../../../app/mock'
+import { axiosInstance } from '../../../app/axiosInterceptor'
 
 //详情页面的模型/数据集简介，主要内容为readme.md的渲染
 export default function ModelCard() {
@@ -20,7 +19,7 @@ export default function ModelCard() {
     const [markdown, setMarkdown] = useState("")
     useEffect(() => {
         const getData = async () => {
-            axios.get(md).then(res => res.data).then(text => setMarkdown(text));
+            axiosInstance.get(md).then(res => res.data).then(text => setMarkdown(text));
         };
         getData().catch(console.error);
     }, [])

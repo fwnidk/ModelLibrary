@@ -1,12 +1,12 @@
 import { DatabaseFilled, EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Radio, RadioChangeEvent, Select, Space } from 'antd'
-import axios from 'axios';
 import React, { useState } from 'react'
 import {  useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import ModelIcon from '../../components/ModelIcon'
 import { RootState } from '../../store/store';
 import './index.scss'
+import { axiosInstance } from '../../app/axiosInterceptor';
 
 export default function CreateItem(props: { type: string }) {
     // radio存储公有私有信息
@@ -22,7 +22,7 @@ export default function CreateItem(props: { type: string }) {
     const onFinish = async (values: any) => {
         let postMessage = { ...values, type };
         console.log('Success:', postMessage);
-        await axios.post('/api/createItem', postMessage);
+        await axiosInstance.post('/api/createItem', postMessage);
         if(type === 'model'){
             navigate(`/model/${values.itemName}`)
         } else{

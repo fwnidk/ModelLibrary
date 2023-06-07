@@ -53,9 +53,9 @@ export const logInSlice: any = createSlice({
             })
             .addCase(logInAsync.fulfilled, (state, action) => {
                 state.responseData = action.payload;
-                if (state.responseData.code === 1) {
-                    localStorage.setItem('jwtToken', state.responseData.data);
-                }
+                // if (state.responseData.code === 1) {
+                //     localStorage.setItem('jwtToken', state.responseData.data);
+                // }
                 state.isLoading = false
                 console.log('logInAsync')
             })

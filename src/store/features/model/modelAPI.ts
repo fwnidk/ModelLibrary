@@ -1,5 +1,5 @@
 // A mock function to mimic making an async request for data
-import axios from 'axios';
+import { axiosInstance } from '../../../app/axiosInterceptor';
 // import { createRandomModelListData } from '../../../app/mock'
 
 // if (process.env.NODE_ENV === "development") {
@@ -25,13 +25,14 @@ export async function fetchModelList(activeFilters: ModelType.ActiveFiltersPost,
             if (str !== '') {
                 paramsArr.push(('name=' + str).replaceAll(' ', '+'))
             }
+        } else {
+            paramsArr.push(option + '=' + str)
         }
-        paramsArr.push(option + '=' + str)
     }
     let getParams = ('?' + paramsArr.join('&'))
     console.log(getParams);
-    return await axios.get(`/api/modelList${getParams}`)
+    return await axiosInstance.get(`/api/modelList${getParams}`)
 }
 export async function fetchModelLabel() {
-    return await axios.get("/api/modelLabel")
+    return await axiosInstance.get("/api/modelLabel")
 }

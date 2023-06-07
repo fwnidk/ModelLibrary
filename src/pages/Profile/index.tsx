@@ -9,7 +9,7 @@ import LoadingStatus from '../../components/LoadingStatus';
 import ModelIcon from '../../components/ModelIcon';
 import ModelListItem from '../../components/ModelListItem';
 import PersonalIcon from '../../components/PersonalIcon';
-import { setPersonalFilesAsync } from '../../store/features/personalFiles/personalFilesSlice';
+import { getPersonalFilesAsync } from '../../store/features/personalFiles/personalFilesSlice';
 import { RootState } from '../../store/store';
 import './index.scss'
 
@@ -19,7 +19,7 @@ export default function Profile() {
     const { data, isLoading, isError } = useSelector((state: RootState) => state.personalFiles)
     const personalInformation = useSelector((state: RootState) => state.personalInformation.responseData.data.personalInformation)
     useEffect(() => {
-        dispatch(setPersonalFilesAsync())
+        dispatch(getPersonalFilesAsync())
     }, [dispatch, personalInformation])
     const modelList = data.list.filter((item: any) => item.type === 'model')
     const datasetList = data.list.filter((item: any) => item.type === 'dataset')

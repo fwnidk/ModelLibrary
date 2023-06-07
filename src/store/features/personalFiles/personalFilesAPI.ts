@@ -1,8 +1,8 @@
 // A mock function to mimic making an async request for data
 // import "../../../app/icons/mock"
-import axios from 'axios';
+import { axiosInstance } from '../../../app/axiosInterceptor';
 
 
 export async function fetchPersonalFiles(postData: string) {
-    return await axios.post("/api/personalFiles", postData)
+    return await axiosInstance.post("/api/personalFiles", postData)
 }

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { getTimeAgoString } from '../../../app/getTimeAgoString'
-import { setPersonalFilesAsync } from '../../../store/features/personalFiles/personalFilesSlice'
+import { getPersonalFilesAsync } from '../../../store/features/personalFiles/personalFilesSlice'
 import { setTrendingListAsync } from '../../../store/features/trendingList/trendingListSlice'
 import { RootState } from '../../../store/store'
 import DatasetItem from '../../../components/DatasetItem'
@@ -16,7 +16,7 @@ import LoadingStatus from '../../../components/LoadingStatus'
 import ErrorStatus from '../../../components/ErrorStatus'
 
 export default function HomeLoggedIn() {
-    const personalInformation: LogInType.PersonalInformation = useSelector((state: RootState) => state.personalInformation.responseData.data.personalInformation)
+    const personalInformation: PersonalInformation.PersonalInformation = useSelector((state: RootState) => state.personalInformation.responseData.data)
     const { data, isError, isLoading } = useSelector((state: RootState) => state.personalFiles)
     const trendingList: Array<any> = useSelector((state: RootState) => state.trendingList.list)
     const [currCategory, setCurrCategory] = useState<number>(0)
@@ -25,7 +25,7 @@ export default function HomeLoggedIn() {
     const buttonArr2 = ["所有", "Models", "Datasets"];
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(setPersonalFilesAsync())
+        dispatch(getPersonalFilesAsync())
         dispatch(setTrendingListAsync())
         // console.log(data.list)
     }, [dispatch])
@@ -109,7 +109,7 @@ export default function HomeLoggedIn() {
                     </Dropdown>
                     <Space direction='vertical' size='small'>
                         <div className='homeLoggedIn1Title'>
-                            {personalInformation.userName}
+                            {personalInformation.username}
                         </div>
                         <NavLink to='/profile' style={{ display: 'flex', alignItems: 'center', color: "#000" }}>
                             <ProfileIcon style={{ width: 16, height: 16, marginLeft: -3, marginRight: 8, color: '#9599a0' }} />
@@ -129,7 +129,7 @@ export default function HomeLoggedIn() {
                 <div className='space0'>
                     <Space direction="horizontal" size="small" className='space0-1'>
                         <Avatar src={personalInformation.avatar} />
-                        {personalInformation.userName}的动态
+                        {personalInformation.username}的动态
                     </Space>
                     <Space direction="horizontal" size="small" className='space0-2'>
                         {buttonArr2.map((item, index) => {

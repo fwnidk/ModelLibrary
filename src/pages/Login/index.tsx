@@ -23,9 +23,6 @@ export default function LogIn() {
     const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);
     };
-    // const handleClickRegister = () => {
-    //     console.log("handle click register");
-    // }
     return (
         <div className='logInBackground' >
             <div className='logInFormCard'>

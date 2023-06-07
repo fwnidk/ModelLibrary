@@ -1,6 +1,6 @@
 // A mock function to mimic making an async request for data
 // import "../../../app/icons/mock"
-import axios from 'axios';
+import { axiosInstance } from '../../../app/axiosInterceptor';
 
 
 export async function fetchDatasetList(activeFilters: DatasetType.ActiveFiltersPost, otherOptions: DatasetType.OtherOptions) {
@@ -20,18 +20,15 @@ export async function fetchDatasetList(activeFilters: DatasetType.ActiveFiltersP
                 paramsArr.push(('name=' + str).replaceAll(' ', '+'))
             }
         } else {
-            if (option === 'sortType') {
-                str = str.toLowerCase()
-            }
             paramsArr.push(option + '=' + str)
         }
     }
     let getParams = '?' + paramsArr.join('&')
-    return await axios.get(`/api/datasetList${getParams}`)
+    return await axiosInstance.get(`/api/datasetList${getParams}`)
 }
 
 export async function fetchDatasetLabel() {
-    return await axios.get("/api/datasetLabel")
+    return await axiosInstance.get("/api/datasetLabel")
 }
 
 

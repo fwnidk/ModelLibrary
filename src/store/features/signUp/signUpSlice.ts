@@ -4,29 +4,29 @@ import { RootState } from '../../store';
 import { fetchSignUp, fetchVerifyUsername } from './signUpAPI';
 
 const initialState = {
-    signUpStatus: 0,
-    signUpForm: {
-        userName: '',
+    code: 0,
+    msg: 'no login',
+    data: {
+        username: '',
         password: '',
         avatar: '',
-        researchInterests: '',
         team: '',
     }
 }
 //验证用户名
 export const verifyUsernameAsync: any = createAsyncThunk(
     'signUp/verifyUsername',
-    async (signUpInformation: { userName: string, password: string }) => {
-        const response = await fetchVerifyUsername(signUpInformation.userName);
+    async (signUpInformation: { username: string, password: string }) => {
+        const response = await fetchVerifyUsername(signUpInformation.username);
         return response.data;
     }
 );
 //提交注册表单
 export const submitSignUpFormAsync: any = createAsyncThunk(
     'signUp/submitSignUpForm',
-    async (signUpInformation: SignUpType.SignUpFormSecond, action) => {
+    async (signUpInformation: any, action) => {
         action.dispatch(fillForm(signUpInformation));
-        let form = (action.getState() as RootState).signUpInformation.signUpForm
+        let form = (action.getState() as RootState).signUpInformation.data
         const response = await fetchSignUp(form);
         return response.data;
     }
@@ -38,10 +38,10 @@ export const signUpSlice: any = createSlice({
     //“reducers”字段允许我们定义reducers并生成相关操作
     reducers: {
         fillForm: (state, action) => {
-            state.signUpForm = { ...state.signUpForm, ...action.payload }
+            state.data = { ...state.data, ...action.payload }
         }
         // unMountSignUp: (state) => {
-        //     state.signUpStatus = 0;
+        //     state.code = 0;
         // }
         //使用PayloadAction类型声明`action.payload的内容`
     },
@@ -50,18 +50,18 @@ export const signUpSlice: any = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(verifyUsernameAsync.fulfilled, (state, action) => {
-                state.signUpStatus = action.payload;
-                if (state.signUpStatus === 1) {
-                    state.signUpForm.userName = action.meta.arg.userName;
-                    state.signUpForm.password = action.meta.arg.password;
+                state.code = action.payload;
+                if (state.code === 1 && state.msg === 'verification successful') {
+                    state.data.username = action.meta.arg.username;
+                    state.data.password = action.meta.arg.password;
                 }
                 console.log('signUpAsync')
             })
             .addCase(verifyUsernameAsync.rejected, (state) => {
                 console.log('error', state)
             })
-            .addCase(submitSignUpFormAsync.fulfilled, (state,action) => {
-                state.signUpStatus = action.payload;
+            .addCase(submitSignUpFormAsync.fulfilled, (state, action) => {
+                state = action.payload;
                 console.log('submitSignUpFormAsync')
             })
             .addCase(submitSignUpFormAsync.rejected, (state) => {

@@ -5,13 +5,14 @@ import { ConfigProvider, Layout } from 'antd';
 import { Outlet } from 'react-router';
 import { useDispatch } from 'react-redux';
 import './app/mock'
+import  { getPersonalInformationAsync } from './store/features/personalInformation/personalInformationSlice';
 
 const { Footer, Content } = Layout;
 
 function App() {
     const dispatch = useDispatch()
     useEffect(() => {
-
+        dispatch(getPersonalInformationAsync())
     }, [dispatch])
     return (
         <ConfigProvider theme={{

@@ -9,6 +9,7 @@ import signUpReducer from './features/signUp/signUpSlice';
 import personalFilesReducer from './features/personalFiles/personalFilesSlice';
 import trendingListReducer from './features/trendingList/trendingListSlice';
 import fileContentReducer from './features/fileContent/fileContentSlice';
+import personalInformationReducer from './features/personalInformation/personalInformationSlice';
 
 export const store: any = configureStore({
     reducer: {
@@ -22,6 +23,7 @@ export const store: any = configureStore({
         personalFiles: personalFilesReducer,
         trendingList: trendingListReducer,
         fileContent: fileContentReducer,
+        personalInformation:personalInformationReducer
     },
 });
 

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { verifyUsernameAsync } from '../../store/features/signUp/signUpSlice';
 import CompleteProfile from './CompleteProfile';
-import { logInAsync } from '../../store/features/logIn/logInSlice';
+import { getPersonalInformationAsync } from '../../store/features/personalInformation/personalInformationSlice';
 // import './index.scss'
 
 export default function SignUp() {
@@ -14,19 +14,16 @@ export default function SignUp() {
     const navigate = useNavigate()
     //注册阶段
     const [signUpFirstStage, setSignUpFirstStage] = useState(true)
-    const [signUpStatus, code, form]: [number, number, any] = useSelector((state: RootState) => [state.signUpInformation.signUpStatus, state.logIn.responseData.code, state.signUpInformation.signUpForm])
+    const { code, msg, data } = useSelector((state: RootState) => state.signUpIndataation)
     useEffect(() => {
-        if (code === 1) {
+        if (code === 1 && msg === 'registration completed') {
+            dispatch(getPersonalInformationAsync())
             navigate('/welcome')
         }
-        console.log('signUpStatus', signUpStatus);
-        if (signUpStatus === 1) {
+        if (code === 1 && msg === 'verification successful') {
             setSignUpFirstStage(false)
-        } else if (signUpStatus === 2) {
-            dispatch(logInAsync(form.username, form.password))
-            // localStorage.setItem('jwtToken', state.responseData.data);
         }
-    }, [code, navigate, signUpStatus, form, dispatch])
+    }, [navigate, code, data, dispatch, msg])
 
     const onFinish = (values: any) => {
         console.log(values);
@@ -68,7 +65,7 @@ export default function SignUp() {
                         >
                             <Input prefix={<UserOutlined />} placeholder="用户名" autoComplete="new-password" />
                         </Form.Item>
-                        {(signUpStatus === -1) && <Form.Item className="errorMessage">
+                        {(code === -1) && <Form.Item className="errorMessage">
                             <Alert message="用户名已被注册。" type="error" />
                         </Form.Item>}
                         <Form.Item
@@ -117,7 +114,7 @@ export default function SignUp() {
                             </Button>
                         </Form.Item>
                     </Form>
-                    {/* <Link to="" className="logIn-form-forgot">
+                    {/* <Link to="" className="logIn-data-forgot">
                     忘记密码？
                 </Link> */}
 

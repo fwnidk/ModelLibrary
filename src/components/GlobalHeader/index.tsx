@@ -13,7 +13,7 @@ import { logout } from '../../store/features/logIn/logInSlice';
 
 export default function GlobalHeader() {
     const navigate = useNavigate();
-    const {code} = useSelector((state: RootState) => state.logIn.responseData)
+    const { code, msg, data } = useSelector((state: RootState) => state.personalInformation.responseData)
     const dispatch = useDispatch()
 
     function handleEnter(e: any) {
@@ -63,7 +63,6 @@ export default function GlobalHeader() {
             label: (
                 <div
                     onClick={() => {
-                        localStorage.removeItem('token');
                         dispatch(logout())
                     }}>
                     登出账号

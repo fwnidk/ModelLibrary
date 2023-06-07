@@ -22,8 +22,8 @@ const initialState: LoadingStatusType.LoadingStatus<ResponseDataType.ResponseDat
 //通常用于发出异步请求。
 
 //getpersonalFilesAsyncRemove
-export const setPersonalFilesAsync: any = createAsyncThunk(
-    'personalFiles/setPersonalFilesAsync',
+export const getPersonalFilesAsync: any = createAsyncThunk(
+    'personalFiles/getPersonalFilesAsync',
     async (_, action) => {
         const userName: string = (action.getState() as RootState).logInInformation.data.personalInformation.userName
         const response: any = await fetchPersonalFiles(userName);
@@ -42,16 +42,16 @@ export const personalFilesSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(setPersonalFilesAsync.pending, (state, action) => {
+            .addCase(getPersonalFilesAsync.pending, (state, action) => {
                 state.isLoading = true
             })
-            .addCase(setPersonalFilesAsync.fulfilled, (state, action) => {
+            .addCase(getPersonalFilesAsync.fulfilled, (state, action) => {
                 //更新personalFiles
                 state.responseData.data = action.payload
                 state.isLoading = false
                 console.log('setPersonalFilesAsync')
             })
-            .addCase(setPersonalFilesAsync.rejected, (state, error) => {
+            .addCase(getPersonalFilesAsync.rejected, (state, error) => {
                 state.isError = false
                 console.log('error', error)
             })

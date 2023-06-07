@@ -9,8 +9,7 @@ import TextArea from 'antd/es/input/TextArea';
 
 export default function CompleteProfile() {
     const dispatch = useDispatch()
-    const onFinish = (values: SignUpType.SignUpFormSecond) => {
-        console.log(values);
+    const onFinish = (values: any) => {
         dispatch(submitSignUpFormAsync(values));
     };
     const onFinishFailed = (errorInfo: any) => {

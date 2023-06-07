@@ -530,7 +530,20 @@ if (process.env.NODE_ENV === "development") {
             return true;
         }
     )
-
+    // /api/avatarPost
+    const personalInformation = Mock.mock("/api/fetchPersonalInformation",
+        "get", function (postMessage) {
+            return {
+                code: 0,
+                msg: 'success',
+                data: {
+                    username: 'fwnidk',
+                    team: 'iSS',
+                    avatar: '3cd5fe9833ac4c766468d1e1f5157060',
+                }
+            };
+        }
+    )
     const filesPost = Mock.mock("/api/filesPost",
         "post", function (postMessage) {
             console.log("filePost---使用mock");
