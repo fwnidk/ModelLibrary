@@ -48,16 +48,8 @@ export const registerSlice: any = createSlice({
             state.responseData.data = { ...state.responseData.data, ...action.payload }
         },
         resetPersonalInformation: (state, action) => {
-            state.responseData = {
-                code: 0,
-                msg: 'no login',
-                data: {
-                    username: '',
-                    password: '',
-                    avatar: '',
-                    team: '',
-                }
-            }
+            state.responseData.code = 0;
+            state.responseData.msg = 'no login';
         },
         // unMountRegister: (state) => {
         //     state.code = 0;
