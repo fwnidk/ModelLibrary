@@ -17,7 +17,7 @@ export default function LogIn() {
             dispatch(getPersonalInformationAsync())
             navigate('/welcome')
         }
-    }, [code, navigate])
+    }, [code, dispatch, navigate])
 
     const onFinish = async (values: any) => {
         await dispatch(logInAsync(values))
@@ -32,7 +32,7 @@ export default function LogIn() {
                     <Typography.Title level={2}>
                         登录
                     </Typography.Title>
-                    <span style={{ color: "#66696c" }}>没有账号？<Link to="/signUp">注册</Link></span>
+                    <span style={{ color: "#66696c" }}>没有账号？<Link to="/register">注册</Link></span>
                 </Space>
                 <Form
                     name="normal_logIn"

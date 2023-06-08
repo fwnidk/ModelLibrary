@@ -5,7 +5,7 @@ import modelDetailReducer from './features/modelDetail/modelDetailSlice';
 import datasetListReducer from './features/dataset/datasetSlice';
 import datasetDetailReducer from './features/datasetDetail/datasetDetailSlice';
 import logInReducer from './features/logIn/logInSlice';
-import signUpReducer from './features/signUp/signUpSlice';
+import registerReducer from './features/register/registerSlice';
 import personalFilesReducer from './features/personalFiles/personalFilesSlice';
 import trendingListReducer from './features/trendingList/trendingListSlice';
 import fileContentReducer from './features/fileContent/fileContentSlice';
@@ -19,7 +19,7 @@ export const store: any = configureStore({
         modelDetail: modelDetailReducer,
         datasetDetail: datasetDetailReducer,
         logIn: logInReducer,
-        signUpInformation: signUpReducer,
+        register: registerReducer,
         personalFiles: personalFilesReducer,
         trendingList: trendingListReducer,
         fileContent: fileContentReducer,

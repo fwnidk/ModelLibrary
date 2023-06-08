@@ -52,7 +52,7 @@ export const personalFilesSlice = createSlice({
                 console.log('setPersonalFilesAsync')
             })
             .addCase(getPersonalFilesAsync.rejected, (state, error) => {
-                state.isError = false
+                state.isError = true
                 console.log('error', error)
             })
     },

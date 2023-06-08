@@ -416,8 +416,8 @@ if (process.env.NODE_ENV === "development") {
         }
     )
 
-    // '/api/signUp'
-    const submitSignUpForm = Mock.mock("/api/signUp",
+    // '/api/register'
+    const submitRegisterForm = Mock.mock("/api/register",
         "post", function () {
             return 2;
         }

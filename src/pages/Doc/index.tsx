@@ -12,5 +12,7 @@ export default function Doc() {
             }
         })
     })
-    return <h1>{docData}</h1>
+    return <>
+        <h1>{docData}</h1>
+    </>
 }

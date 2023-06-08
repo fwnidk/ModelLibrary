@@ -65,7 +65,7 @@ export const personalInformationSlice = createSlice({
                 console.log('getPersonalInformationAsync')
             })
             .addCase(getPersonalInformationAsync.rejected, (state, error) => {
-                state.isError = false
+                state.isError = true
                 console.log('error', error)
             })
     },

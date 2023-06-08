@@ -14,7 +14,7 @@ import Item from "../pages/Item";
 import ItemDetails from "../pages/ItemDetails";
 import ItemCard from "../pages/ItemDetails/ItemCard";
 import ItemFilesTable from "../pages/ItemDetails/ItemFilesTable";
-import SignUp from "../pages/SignUp";
+import Register from "../pages/Register";
 import Notification from "../pages/Notification";
 import NewFile from "../pages/ItemDetails/NewFile";
 import UploadFile from "../pages/ItemDetails/UploadFile";
@@ -85,8 +85,8 @@ const router = createBrowserRouter(
                     element: <LogIn />,
                 },
                 {
-                    path: "/signUp",
-                    element: <SignUp />,
+                    path: "/register",
+                    element: <Register />,
                 },
                 {
                     path: "/welcome",
