@@ -8,7 +8,7 @@ import { RcFile } from 'antd/es/upload';
 import TextArea from 'antd/es/input/TextArea';
 import { useEffect, useState } from 'react';
 
-export default function CompleteProfile() {
+export default function CompleteProfile(props: { handleBack: any }) {
     const [file, setFile] = useState<any>(null);
     const dispatch = useDispatch()
     useEffect(() => {
@@ -71,9 +71,10 @@ export default function CompleteProfile() {
     // };
 
     return (
-        <div className='logInFormCard'>
+        <>
             <Space direction='vertical' align="center">
-                <Typography.Title level={2}>
+
+                <Typography.Title className='completeProfileHeaderTitle' level={2}>
                     完善个人信息
                 </Typography.Title>
             </Space>
@@ -113,12 +114,15 @@ export default function CompleteProfile() {
                 >
                     <TextArea rows={4} placeholder="研究方向" autoComplete="new-password" />
                 </Form.Item>
-                <Form.Item>
-                    <Button type="default" htmlType="submit" className="logInButton">
-                        创建账号
-                    </Button>
+                <Form.Item >
+                    <div className='completeProfileFooter'>
+                        <Button className='backButton' onClick={props.handleBack}>上一步</Button>
+                        <Button type="default" htmlType="submit" className="logInButton">
+                            创建账号
+                        </Button>
+                    </div>
                 </Form.Item>
-            </Form>
-        </div>
+            </Form >
+        </>
     )
 }

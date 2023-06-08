@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { verifyUsernameAsync } from '../../store/features/register/registerSlice';
+import { resetPersonalInformation, verifyUsernameAsync } from '../../store/features/register/registerSlice';
 import CompleteProfile from './CompleteProfile';
 import { getPersonalInformationAsync } from '../../store/features/personalInformation/personalInformationSlice';
 import LoadingStatus from '../../components/LoadingStatus';
@@ -18,7 +18,6 @@ export default function Register() {
     const [registerFirstStage, setRegisterFirstStage] = useState(true)
     const { responseData, isLoading, isError } = useSelector((state: RootState) => state.register)
     useEffect(() => {
-        console.log(responseData)
         if (responseData.code === 1 && responseData.msg === 'registration completed') {
             dispatch(getPersonalInformationAsync())
             navigate('/welcome')
@@ -26,7 +25,10 @@ export default function Register() {
         if (responseData.code === 1 && responseData.msg === 'verification successful') {
             setRegisterFirstStage(false)
         }
-    }, [dispatch, navigate, responseData])
+        return () => {
+            dispatch(resetPersonalInformation())
+        }
+    }, [dispatch, navigate, responseData.code, responseData.msg])
 
     const onFinish = (values: any) => {
         console.log(values);
@@ -35,19 +37,22 @@ export default function Register() {
     const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);
     };
+    const handleBack: any = () => {
+        setRegisterFirstStage(true)
+    }
     // const handleClickRegister = () => {
     //     console.log("handle click register");
     // }
-    if (isLoading) {
-        return <LoadingStatus />
-    }
-    if (isError) {
-        return <ErrorStatus />
-    }
+    // if (isLoading) {
+    //     return <LoadingStatus />
+    // }
+    // if (isError) {
+    //     return <ErrorStatus />
+    // }
     return (
         <div className='logInBackground' >
-            {registerFirstStage ?
-                <div className='logInFormCard'>
+            <div className='logInFormCard'>
+                {registerFirstStage ? <>
                     <Space direction='vertical' align="center">
                         <Typography.Title level={2}>
                             注册账号
@@ -123,12 +128,11 @@ export default function Register() {
                             </Button>
                         </Form.Item>
                     </Form>
-                    {/* <Link to="" className="logIn-data-forgot">
-                    忘记密码？
-                </Link> */}
+                </>
+                    :
+                    <CompleteProfile handleBack={handleBack}></CompleteProfile>}
+            </div>
 
-                </div> :
-                <CompleteProfile></CompleteProfile>}
         </div>
     )
 }

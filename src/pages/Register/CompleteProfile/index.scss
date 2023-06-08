@@ -1,6 +1,24 @@
 .uploadItem {
     width: 200px;
 }
+
 .optionalFont {
     color: #999999;
+}
+
+.completeProfileFooter {
+    gap: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+
+    .completeProfileHeaderTitle {
+        // margin-left: auto;
+        margin-right: auto;
+    }
+
+    .completeProfileHeaderButton {
+        margin-right: auto;
+    }
 }

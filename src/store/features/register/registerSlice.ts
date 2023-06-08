@@ -46,7 +46,19 @@ export const registerSlice: any = createSlice({
     reducers: {
         fillForm: (state, action) => {
             state.responseData.data = { ...state.responseData.data, ...action.payload }
-        }
+        },
+        resetPersonalInformation: (state, action) => {
+            state.responseData = {
+                code: 0,
+                msg: 'no login',
+                data: {
+                    username: '',
+                    password: '',
+                    avatar: '',
+                    team: '',
+                }
+            }
+        },
         // unMountRegister: (state) => {
         //     state.code = 0;
         // }
@@ -89,5 +101,6 @@ export const registerSlice: any = createSlice({
     },
 });
 export const { fillForm } = registerSlice.actions;
+export const { resetPersonalInformation } = registerSlice.actions;
 
 export default registerSlice.reducer;

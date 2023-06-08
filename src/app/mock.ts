@@ -407,19 +407,16 @@ if (process.env.NODE_ENV === "development") {
         }
     )
     //1:第一步完成 2:第二步完成 -1:用户名重复
-    const verifyUsername = Mock.mock("/api/verifyUsername",
+    const verifyUsername = Mock.mock("/api/register/verifyUsername",
         "post", function () {
-            if (Random.boolean(1, 9, true)) {
-                return -1;
-            }
-            return 1;
+            return { code: 1, msg: 'verification successful', data: '' }
         }
     )
 
     // '/api/register'
-    const submitRegisterForm = Mock.mock("/api/register",
+    const submitRegisterForm = Mock.mock("/api/register/submitUserInfo",
         "post", function () {
-            return 2;
+            return { code: 1, msg: 'registration completed', data: '' };
         }
     )
 
