@@ -1,4 +1,4 @@
-import { Space, Input, Typography, Dropdown, Button, MenuProps } from 'antd'
+import { Input, Typography, Dropdown, Button, MenuProps } from 'antd'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setDatasetListAsync } from '../../../store/features/dataset/datasetSlice';
@@ -34,7 +34,7 @@ export default function ListHeader(props: { type: string }) {
     const onClick: MenuProps['onClick'] = ({ key }) => {
         if (key !== sortType) {
             setSortType(key);
-            
+
             if (type === 'model') {
                 dispatch(setModelListAsync({ activeFilters: {}, otherOptions: { sortType: key }, first: false }))
             } else {
@@ -53,14 +53,16 @@ export default function ListHeader(props: { type: string }) {
 
     return (
         <div className='listHeader'>
-            <Space size="large" wrap >
-                <Text className='fontSize20'>{type === 'model' ? '模型' : '数据集'}</Text>
-                <Text type="secondary" className='fontSize20'> {(numTotalItems || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
-                <Input placeholder='Filter by name' onChange={debounce(handleChange, 500)} onPressEnter={handleChange} className="inputStyle" ></Input>
-            </Space>
+            <div className='listHeaderText'>
+                <Text style={{ whiteSpace: 'nowrap' }} className='fontSize20'>{type === 'model' ? '模型' : '数据集'}</Text>
+                <Text style={{ whiteSpace: 'nowrap' }} type="secondary" className='fontSize20'> {(numTotalItems || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Text>
+            </div>
+            <div className='listHeaderRight'>
+            <Input placeholder='Filter by name' onChange={debounce(handleChange, 500)} onPressEnter={handleChange} className="listHeaderInput" ></Input>
             <Dropdown menu={{ items, onClick }} placement="bottomLeft" className='dropdownStyle'>
                 <Button >排序方式：{getLabel(sortType)}</Button>
             </Dropdown>
+            </div>
         </div>
     )
 }
