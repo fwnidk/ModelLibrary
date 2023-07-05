@@ -3,7 +3,7 @@ import { fetchDatasetDetail } from './datasetDetailAPI';
 
 
 //初始值
-const initialState: { responseData: ResponseDataType.ResponseData<DatasetDetailType.DatasetDetail>, isLoading: boolean, isError: boolean } = {
+const initialState: LoadingStatusType.LoadingStatus<ResponseDataType.ResponseData<DatasetDetailType.DatasetDetail>> = {
     responseData: {
         code: 0,
         msg: "",
@@ -14,17 +14,15 @@ const initialState: { responseData: ResponseDataType.ResponseData<DatasetDetailT
                 language: [],
                 other: [],
             },
-            options: {
-                lastModified: "1970-01-01T00:00:00",
-                lastModifiedInformation: "",
-                name: "",
-                author: "",
-                downloads: 0,
-                id: "",
-                type: "",
-            },
-            filesTable: [],
-            activeMenu: "0"
+            lastModified: "1970-01-01T00:00:00",
+            lastModifiedInformation: "",
+            name: "",
+            author: "",
+            avatar: "",
+            downloads: 0,
+            id: "",
+            type: "",
+            isPrivate: true
         },
     },
     isLoading: true,
@@ -50,9 +48,9 @@ export const datasetDetailSlice = createSlice({
     initialState,
     //“reducers”字段允许我们定义reducers并生成相关操作
     reducers: {
-        setActiveMenu: (state, action: PayloadAction<any>) => {
-            state.responseData.data.activeMenu = action.payload
-        },
+        // setActiveMenu: (state, action: PayloadAction<any>) => {
+        //     state.responseData.data.activeMenu = action.payload
+        // },
     },
     // “extraReducers”字段允许切片处理其他地方定义的动作，
     // 包括createAsyncThunk或其他切片中生成的动作。
@@ -64,7 +62,7 @@ export const datasetDetailSlice = createSlice({
             }).addCase(getDatasetDetailAsync.fulfilled, (state, action) => {
                 //更新datasetDetail
                 for (let key in state.responseData.data) {
-                    (state.responseData.data as any)[key] = action.payload[key]
+                    (state.responseData.data as any)[key] = action.payload["data"][key]
                 }
                 state.isLoading = false;
                 //更新datasetDetail数量
@@ -76,7 +74,7 @@ export const datasetDetailSlice = createSlice({
     },
 });
 
-export const { setActiveMenu } = datasetDetailSlice.actions;
+// export const { setActiveMenu } = datasetDetailSlice.actions;
 
 
 //我们也可以手动编写thunk，它可能包含同步和异步逻辑。

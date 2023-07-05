@@ -4,7 +4,7 @@ import { axiosInstance } from '../../../app/axiosInterceptor';
 
 
 export async function fetchModelDetail(name: string) {
-    return await axiosInstance.post("/api/modelDetail", name)
+    return await axiosInstance.get(`/api/model?name=${encodeURIComponent(name)}`)
 }
 
 

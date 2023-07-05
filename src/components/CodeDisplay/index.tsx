@@ -42,7 +42,7 @@ export default function CodeDisplay() {
     // }
 
     const fileName = useMemo(() => {
-        const locationArr = decodeURI(location).split('/')
+        const locationArr = decodeURIComponent(location).split('/')
         return locationArr[locationArr.length - 1]
     }, [location])
 

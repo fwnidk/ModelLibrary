@@ -13,15 +13,16 @@ import './index.scss'
 
 export default function ItemDetails(props: { type: string }) {
     const { type } = props;
-    // const [activeMenu, setActiveMenu] = useState("modelcard")
     const location = useLocation()
     const { search } = useParams()
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const { data, isLoading, isError } = useSelector((state: RootState) => type === 'model' ? state.modelDetail : state.datasetDetail)
+    const { responseData, isLoading, isError } = useSelector((state: RootState) => type === 'model' ? state.modelDetail : state.datasetDetail)
     const labelButtonArr = labelConversionArray(type)
     useEffect(() => {
-        console.log('type', type);
+        if (responseData.msg === "no such item") {
+            navigate('/404', { replace: true })
+        }
         if (type === 'model') {
             dispatch(getModelDetailAsync(search))
         } else {
@@ -55,7 +56,7 @@ export default function ItemDetails(props: { type: string }) {
         navigate(key)
     }, [navigate])
     const setActiveKey = useCallback(() => {
-        return location.pathname.length === (type === 'model' ? 7 : 9) + encodeURI(search as string).length ? "" : 'tree'
+        return location.pathname.length === (type === 'model' ? 7 : 9) + encodeURIComponent(search as string).length ? "" : 'tree'
     }, [location.pathname.length, search, type])
     const handleClickLabel = useCallback((filter: string, label: string) => {
         navigate(type === 'model' ? "/models" : "/datasets", {
@@ -85,10 +86,10 @@ export default function ItemDetails(props: { type: string }) {
             <div className='detail'>
                 <Typography.Title level={2} style={{ margin: 0 }}>
                     {search}
-                    {data.isPrivate && <Tag>私有</Tag>}
+                    {responseData.data.isPrivate && <Tag>私有</Tag>}
                 </Typography.Title>
                 <Space wrap size='large'>
-                    {Object.entries(data.activeFilters as any).map((item: any, index1) => {
+                    {Object.entries(responseData.data.activeFilters as any).map((item: any, index1) => {
                         return (
                             <Space key={index1}>
                                 <span>{getConversionArray(item[0])} :</span>

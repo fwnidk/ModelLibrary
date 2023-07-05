@@ -3,5 +3,5 @@
 import { axiosInstance } from '../../../app/axiosInterceptor';
 
 export async function fetchDatasetDetail(name: string) {
-    return await axiosInstance.post("/api/datasetDetail", name)
+    return await axiosInstance.get(`/api/dataset?name=${encodeURIComponent(name)}`)
 }

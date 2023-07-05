@@ -6,7 +6,7 @@ import './index.scss'
 export default function FileBreadCrumb() {
     const location = useLocation().pathname;
     const getBread = useMemo(() => {
-        const locationArr = decodeURI(location).split('/')
+        const locationArr = decodeURIComponent(location).split('/')
         const name = locationArr[2]
         const breadcrumbContent: Array<string> = locationArr.slice(5);
         // console.log(breadcrumbContent);

@@ -13,7 +13,7 @@ export default function DeleteFile() {
     const navigate = useNavigate()
     //测试时使用
     //更改后的代码
-    const locationArr = decodeURI(location).split('/')
+    const locationArr = decodeURIComponent(location).split('/')
     const filePathWithItemName = useMemo(() => {
         const arr = locationArr.slice(5);
         arr.unshift(locationArr[2]);

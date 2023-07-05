@@ -6,7 +6,7 @@ import { fetchModelDetail } from './modelDetailAPI';
 const initialState: LoadingStatusType.LoadingStatus<ResponseDataType.ResponseData<ModelDetailType.ModelDetail>> = {
     responseData: {
         code: 0,
-        msg: "",
+        msg: "no such item",
         data: {
             activeFilters: {
                 task: [],
@@ -15,19 +15,15 @@ const initialState: LoadingStatusType.LoadingStatus<ResponseDataType.ResponseDat
                 language: [],
                 other: [],
             },
-            options: {
-                lastModified: "1970-01-01T00:00:00",
-                lastModifiedInformation: "",
-                name: "",
-                author: "",
-                avatar: "",
-                downloads: 0,
-                id: "",
-                type: "",
-                isPrivate: true
-            },
-            filesTable: [],
-            activeMenu: "0"
+            lastModified: "1970-01-01T00:00:00",
+            lastModifiedInformation: "",
+            name: "",
+            author: "",
+            avatar: "",
+            downloads: 0,
+            id: "",
+            type: "",
+            isPrivate: true
         },
     },
     isLoading: true,
@@ -44,6 +40,7 @@ export const getModelDetailAsync: any = createAsyncThunk(
     'modelDetail/getmodelDetailAsync',
     async (name: string) => {
         const response = await fetchModelDetail(name);
+        // console.log(response.data)
         return response.data;
     }
 )
@@ -53,9 +50,10 @@ export const modelDetailSlice: any = createSlice({
     initialState,
     //“reducers”字段允许我们定义reducers并生成相关操作
     reducers: {
-        setActiveMenu: (state, action: PayloadAction<any>) => {
-            state.responseData.data.activeMenu = action.payload
-        },
+        // setActiveMenu: (state, action: PayloadAction<any>) => {
+        //     state.responseData.data.activeMenu = action.payload
+        // },
+
         // //去除activeFilter中的值
         // removeModelDetail: (state, action: PayloadAction<any>) => {
         //     let dispatchData = action.payload;
@@ -67,11 +65,32 @@ export const modelDetailSlice: any = createSlice({
         //     state.otherOptions.pageIndex = 1
         // },
         // //reset当前分类的activeFilter
-        // resetModelDetail: (state, action: PayloadAction<any>) => {
-        //     let dispatchData = action.payload;
-        //     //覆盖state的activeFilters
-        //     state.activeFilters[dispatchData as ModelDetailType.ActiveFiltersKey] = []
-        // },
+        resetModelDetail: (state) => {
+
+            //覆盖state的activeFilters
+            state.responseData = {
+                code: 0,
+                msg: "no such item",
+                data: {
+                    activeFilters: {
+                        task: [],
+                        library: [],
+                        dataset: [],
+                        language: [],
+                        other: [],
+                    },
+                    lastModified: "1970-01-01T00:00:00",
+                    lastModifiedInformation: "",
+                    name: "",
+                    author: "",
+                    avatar: "",
+                    downloads: 0,
+                    id: "",
+                    type: "",
+                    isPrivate: true
+                },
+            }
+        },
     },
     // “extraReducers”字段允许切片处理其他地方定义的动作，
     // 包括createAsyncThunk或其他切片中生成的动作。
@@ -83,8 +102,13 @@ export const modelDetailSlice: any = createSlice({
             })
             .addCase(getModelDetailAsync.fulfilled, (state, action) => {
                 //更新modelDetail
-                for (let key in state.responseData.data) {
-                    (state.responseData.data as any)[key] = action.payload[key]
+                if (action.payload.msg === "no such item") {
+                    console.log(action);
+                } else {
+                    state.responseData = action.payload
+                    // for (let key in state.responseData.data) {
+                    //     (state.responseData.data as any)[key] = action.payload.data[key]
+                    // }
                 }
                 state.isLoading = false;
                 //更新modelDetail数量
@@ -96,7 +120,7 @@ export const modelDetailSlice: any = createSlice({
     },
 });
 
-export const { setActiveMenu } = modelDetailSlice.actions;
+// export const { setActiveMenu } = modelDetailSlice.actions;
 // export const { removeModelDetail } = modelDetailSlice.actions;
 // export const { resetModelDetail } = modelDetailSlice.actions;
 

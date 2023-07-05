@@ -12,14 +12,6 @@ declare namespace ModelDetailType {
         isPrivate: boolean
     }
 
-    interface ActiveFilters {
-        task: Array<string>,
-        library: Array<string>,
-        dataset: Array<string>,
-        language: Array<string>,
-        other: Array<string>,
-    }
-
     type ActiveFiltersKey = keyof ActiveFilters;
 
     interface FilesItem {
@@ -34,12 +26,9 @@ declare namespace ModelDetailType {
 
     type FilesTable = Array<FilesItem>
 
-    interface ModelDetail {
+    interface ModelDetail extends Options {
         //dataset的字段（名字、更新日期、下载量、）
-        activeFilters: ActiveFilters,
-        options: Options,
-        filesTable: FilesTable,
-        activeMenu: string
+        activeFilters: ModelType.ActiveFilters,
     }
 
     type ModelDetailKey = keyof ModelDetail

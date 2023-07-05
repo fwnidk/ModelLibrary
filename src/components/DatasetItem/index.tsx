@@ -9,7 +9,7 @@ import { displayBigNumber } from '../../app/displayBigNumber'
 export default function DatasetItem(props: { item: DatasetType.DatasetItem }) {
     const navigate = useNavigate()
     const handleClickCard = useCallback((name: string) => {
-        navigate(`/dataset/${name}`, { replace: false })
+        navigate(`/dataset/${encodeURIComponent(name)}`, { replace: false })
     }, [navigate])
 
     return (

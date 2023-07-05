@@ -5,9 +5,11 @@ declare namespace DatasetDetailType {
         lastModifiedInformation: string,
         name: string,
         author: string,
+        avatar: string,
         downloads: number,
         id: string,
-        type: string
+        type: string,
+        isPrivate: boolean
     }
 
     interface FilesItem {
@@ -22,12 +24,9 @@ declare namespace DatasetDetailType {
 
     type FilesTable = Array<FilesItem>
 
-    interface DatasetDetail {
+    interface DatasetDetail extends Options {
         //dataset的字段（名字、更新日期、下载量、）
         activeFilters: DatasetType.ActiveFilters,
-        options: Options,
-        filesTable: FilesTable,
-        activeMenu: string
     }
 
     type DatasetDetailKey = keyof DatasetDetail

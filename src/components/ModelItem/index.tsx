@@ -11,7 +11,7 @@ export default function ModelItem(props: { item: ModelType.ModelItem }) {
     // const [hover, setHover] = React.useState(false)
     const navigate = useNavigate()
     const handleClickCard = useCallback((name: string) => {
-        navigate(`/model/${name}`, { replace: false })
+        navigate(`/model/${encodeURIComponent(name)}`, { replace: false })
     }, [navigate])
 
     return (

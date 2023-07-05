@@ -17,6 +17,7 @@ export default function ItemLabel(props: { locationState: any, type: string }) {
     const dispatch = useDispatch();
     const [activeFilters, allFilters, isLoading] = useSelector((state: RootState) => type === 'model' ?
         [state.modelList.data.activeFilters, state.modelList.data.allFilters, state.modelList.isLoading1] :
+
         [state.datasetList.data.activeFilters, state.datasetList.data.allFilters, state.datasetList.isLoading1])
     useEffect(() => {
         console.log('type changed');

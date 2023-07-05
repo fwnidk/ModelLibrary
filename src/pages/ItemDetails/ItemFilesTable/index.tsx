@@ -14,6 +14,7 @@ import FilesTableHeader from '../../../components/FilesTableHeader';
 import FileBreadCrumb from '../../../components/FileBreadcrumb';
 import LoadingStatus from '../../../components/LoadingStatus';
 import { NavLink } from 'react-router-dom';
+import { axiosInstance } from '../../../app/axiosInterceptor';
 //详情页面的文件展示表格
 export default function ItemFilesTable(props: { type: string }) {
     const { type } = props
@@ -22,12 +23,18 @@ export default function ItemFilesTable(props: { type: string }) {
     const navigate = useNavigate()
     const location = useLocation().pathname;
     const locationStr = location.split('/').slice(4).join('/');
-    const { lastModified, lastModifiedInformation } = useSelector((state: RootState) => type === 'model' ? state.modelDetail.data.options : state.datasetDetail.data.options)
+    const fileName = decodeURIComponent(location.split('/')[2])
+    const { data } = useSelector((state: RootState) => type === 'model' ? state.modelDetail.responseData : state.datasetDetail.responseData)
     useEffect(() => {
+        console.log('fileName: ', fileName);
         //获取表格数据
         const getData = async () => {
-            let response = await axios.post("/api/filesTable", location)
-            let result = response.data.filesTable.sort((a: any, b: any) => {
+            let fetchURL = `/api/filesTable?name=${fileName}&type=${type}`
+            console.log("fetchURL", fetchURL);
+            let response = await axiosInstance.get(fetchURL)
+            let responseData = response.data
+            // console.log(responseData)
+            let result = responseData.data.filesTable.sort((a: any, b: any) => {
                 if (!a.isAFolder && b.isAFolder) {
                     return 1;
                 }
@@ -36,8 +43,6 @@ export default function ItemFilesTable(props: { type: string }) {
             for (let index = 0; index < result.length; index++) {
                 result[index].lastModified = getTimeAgoString(result[index].lastModified)
             }
-            // console.log(result);
-            // console.log(response.data);
             setFilesTable(result)
             setIsLoading(false)
         };
@@ -90,9 +95,9 @@ export default function ItemFilesTable(props: { type: string }) {
                 return {
                     onClick: () => {
                         if (record.isAFolder) {
-                            navigate(`${location}/${encodeURI(record.fileName)}`)
+                            navigate(`${location}/${encodeURIComponent(record.fileName)}`)
                         } else {
-                            navigate(`../blob/${locationStr}/${encodeURI(record.fileName)}`)
+                            navigate(`../blob/${locationStr}/${encodeURIComponent(record.fileName)}`)
                         }
                     }
                 }
@@ -158,7 +163,7 @@ export default function ItemFilesTable(props: { type: string }) {
                 </Dropdown>
             </div>
             <div>
-                <FilesTableHeader lastModified={lastModified} lastModifiedInformation={lastModifiedInformation} />
+                <FilesTableHeader lastModified={data.lastModified} lastModifiedInformation={data.lastModifiedInformation} />
                 <Table
                     columns={columns}
                     dataSource={filesTable}

@@ -19,6 +19,8 @@ import Notification from "../pages/Notification";
 import NewFile from "../pages/ItemDetails/NewFile";
 import UploadFile from "../pages/ItemDetails/UploadFile";
 import DeleteFile from "../pages/ItemDetails/DeleteFile";
+import NotFoundPage from "../pages/NotFoundPage";
+import NotLoggedIn from "../pages/NotLoggedIn";
 
 const getChildrenArr = (type: string) => {
     return [
@@ -113,15 +115,23 @@ const router = createBrowserRouter(
                     element: < CreateItem type="dataset" />,
                 },
                 {
-                    path: "dataset/:search",
+                    path: "/dataset/:search",
                     element: <ItemDetails type='dataset' />,
                     children: getChildrenArr('dataset')
                 },
                 {
-                    path: "model/:search",
+                    path: "/model/:search",
                     element: <ItemDetails type='model' />,
                     children: getChildrenArr('model')
                 },
+                {
+                    path: "/notLoggedin",
+                    element: <NotLoggedIn/>,
+                },
+                {
+                    path: "*",
+                    element: <NotFoundPage/>,
+                }
             ]
         },
     ]

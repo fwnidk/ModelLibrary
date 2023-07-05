@@ -41,7 +41,7 @@ if (process.env.NODE_ENV === "development") {
 
     Random.extend({
         fileName: function () {
-            return Random.capitalize(Random.string('abcdefghijklmnopqrstuvwxyz -', 3, 9)) + " " + Random.capitalize(Random.string('abcdefghijklmnopqrstuvwxyz -', 3, 9))
+            return Random.capitalize(Random.string('abcdefghijklmnopqrstuvwxyz -', 3, 9)) + "/" + Random.capitalize(Random.string('abcdefghijklmnopqrstuvwxyz -', 3, 9))
         }
     })
     const fileType = ['.txt', '.py', '.md', '.json', '.bin', '.ot', '.js', '.ts', '.java']
@@ -288,40 +288,40 @@ if (process.env.NODE_ENV === "development") {
         }
     )
 
-    const createRandomDatsetDetailData = Mock.mock("/api/datasetDetail",
-        "post", function (post) {
+    const createRandomDatsetDetailData = Mock.mock(/\/api\/dataset(\?.)?/,
+        "get", function (params) {
+            console.log(params)
             let last = Random.last();
             let author = Random.first() + ' ' + last;
-            return Mock.mock(wrapResponseData({
+            let res = Mock.mock({
                 "activeFilters": {
                     "task|1-5": ["@string"],
                     "size": ["@datasetSize"],
                     "other|1-5": ["@string"],
                     "language": ["@string"],
                 },
-                options: {
-                    lastModified: "@timeString",
-                    lastModifiedInformation: "@lastModifiedInformation",
-                    name: post.body,
-                    // author:{
+                lastModified: "@timeString",
+                lastModifiedInformation: "@lastModifiedInformation",
+                name: '111',
+                author,
+                avatar: Random.dataImage('100x100', last),
+                downloads: "@natural(0,100000)",
+                id: "@string",
+                type: "dataset",
+                isPrivate: false
 
-                    // }
-                    author,
-                    avatar: Random.dataImage('100x100', last),
-                    downloads: "@natural(0,100000)",
-                    id: "@string",
-                    type: "dataset",
-                    isPrivate: false
-                },
-            }))
+            })
+            res = wrapResponseData(res)
+            console.log(res);
+            return res
         }
     )
 
-    const createRandomModelDetailData = Mock.mock("/api/modelDetail",
-        "post", function (post) {
+    const createRandomModelDetailData = Mock.mock(/\/api\/model(\?.)?/,
+        "get", function (params) {
             let last = Random.last();
             let author = Random.first() + ' ' + last;
-            return Mock.mock(wrapResponseData({
+            let res = Mock.mock({
                 "activeFilters": {
                     "task|1-5": ["@string"],
                     "library|1-5": ["@string"],
@@ -329,23 +329,24 @@ if (process.env.NODE_ENV === "development") {
                     "other|1-5": ["@string"],
                     "language": ["@string"],
                 },
-                options: {
-                    lastModified: "@timeString",
-                    lastModifiedInformation: "@lastModifiedInformation",
-                    name: post.body,
-                    author,
-                    avatar: Random.dataImage('100x100', last),
-                    downloads: "@natural(0,100000)",
-                    id: "@string",
-                    type: "model",
-                    isPrivate: false
-                },
-            }))
+                lastModified: "@timeString",
+                lastModifiedInformation: "@lastModifiedInformation",
+                name: '111',
+                author,
+                avatar: Random.dataImage('100x100', last),
+                downloads: "@natural(0,100000)",
+                id: "@string",
+                type: "model",
+                isPrivate: false
+            })
+            res = wrapResponseData(res)
+            console.log(res);
+            return res
         }
     )
 
-    const createRandomFilesTable = Mock.mock("/api/filesTable",
-        "post", function () {
+    const createRandomFilesTable = Mock.mock(/\/api\/filesTable(\?.)?/,
+        "get", function (params) {
             let folderArr = Mock.mock({
                 "filesTable|1-3": [{
                     key: "@string",

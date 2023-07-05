@@ -7,16 +7,16 @@ import { RootState } from '../../store/store'
 import PersonalIcon from '../PersonalIcon'
 import './index.scss'
 
-export default function FilesTableHeader(props: { lastModified: string, lastModifiedInformation: string}) {
-    const { lastModified, lastModifiedInformation} = props
+export default function FilesTableHeader(props: { lastModified: string, lastModifiedInformation: string }) {
+    const { lastModified, lastModifiedInformation } = props
     const type = useLocation().pathname.split('/')[1]
-    const { avatar, author, } = useSelector((state: RootState) => type === 'model' ? state.modelDetail.data.options : state.datasetDetail.data.options)
+    const { data } = useSelector((state: RootState) => type === 'model' ? state.modelDetail.responseData : state.datasetDetail.responseData)
     return (
         <div className='filesTableHeader'>
             <Space size='large' className='filesTableHeaderLeft'>
-                <span className='authorHeader'><PersonalIcon avatarURL={avatar} size={20} />{author}</span>
+                <span className='authorHeader'><PersonalIcon avatarURL={data.avatar} size={20} />{data.author}</span>
                 <span className='lastModifiedInformationHeader'>
-                    {lastModifiedInformation}   
+                    {lastModifiedInformation}
                 </span>
             </Space>
             <div className='filesTableHeaderRight'>{getTimeAgoString(lastModified)}</div>
