@@ -14,34 +14,40 @@ import NotLoggedIn from '../NotLoggedIn';
 export default function CreateItem(props: { type: string }) {
     // radio存储公有私有信息
     const [radio, setRadio] = useState<boolean>(false);
+    const [isTheSameName, setIsTheSameName] = useState<boolean>(false)
     const { responseData, isLoading, isError } = useSelector((state: RootState) => state.personalInformation);
-    // const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const { avatar, team, username } = responseData.data
     const { type } = props;
     const typeName = type === 'model' ? '模型' : '数据集';
     const typeIcon = type === 'model' ? <div className='colorful'><ModelIcon /></div> : <DatabaseFilled className='createDatasetIcon' />;
-    useEffect(() => {
-        console.log(responseData);
-        // if (!isLoading && responseData.data.code === 0) {
-        //     navigate("/notLoggedIn", { replace: true })
-        // }
-    })
+    // useEffect(() => {
+    //     console.log(responseData);
+    // })
     const onFinish = async (values: any) => {
-        let postMessage = { ...values, type };
-        console.log('Success:', postMessage);
-        // {
-        //     "itemName": "fwnidk",
-        //     "isPrivate": false,
-        //     "type": "model"
-        // }
-        if (type === 'model') {
-            await axiosInstance.post('/api/model', postMessage);
-            navigate(`/model/${values.itemName}`)
-        } else {
-            await axiosInstance.post('/api/dataset', postMessage);
-            navigate(`/dataset/${values.itemName}`)
+        let activeFilters = {
+            task: [],
+            library: [],
+            dataset: [],
+            language: [],
+            other: [],
         }
+        let postMessage = {
+            activeFilters,
+            avatar,
+            team,
+            type,
+            ...values,
+        };
+        console.log('Success:', postMessage);
+        let res = await axiosInstance.post(`/api/${type}`, postMessage);
+        if (res.data.msg === "item already exists") {
+            setIsTheSameName(true)
+        } else {
+            navigate(`/${type}/${values.name}`)
+        }
+
     };
     const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);
@@ -64,7 +70,7 @@ export default function CreateItem(props: { type: string }) {
                     size='large'
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
-                    initialValues={{ author: responseData.data.username, isPrivate: false }}
+                    initialValues={{ author: username, isPrivate: false }}
                     requiredMark={false}
                 >
                     <Form.Item >
@@ -76,7 +82,7 @@ export default function CreateItem(props: { type: string }) {
                             >
                                 <Select
                                     options={[
-                                        { label: responseData.data.username, value: responseData.data.username },
+                                        { label: username, value: username },
                                     ]}
                                 />
                             </Form.Item>
@@ -84,12 +90,18 @@ export default function CreateItem(props: { type: string }) {
                                 <div className='splitLine' >/</div>
                             </Form.Item>
                             <Form.Item
-                                name='itemName'
+                                name='name'
                                 label={<span style={{ fontSize: 16, marginBottom: -30 }}>{typeName}名称</span>}
                                 style={{ width: '60%' }}
-                                rules={[{ required: true, message: `请输入${typeName}名称!` }]}
+                                rules={
+                                    [{ required: true, message: `请输入${typeName}名称!` },
+                                    {
+                                        validator: () =>
+                                            isTheSameName ? Promise.reject(new Error(`${typeName}名称已存在`)) : Promise.resolve()
+                                    }]
+                                }
                             >
-                                <Input />
+                                <Input onPointerLeave={() => { setIsTheSameName(false) }} />
                             </Form.Item>
                         </div>
                     </Form.Item>

@@ -1,9 +1,19 @@
-.activeStyle {
-    background-color: rgba(59, 130, 246, 0.2)
+.defaultSpace {
+    .activeStyle {
+        background-color: rgba(59, 130, 246, 0.2)
+    }
+
+
 }
 
-.grayStyle {
-    background-color: rgba(0, 0, 0, 0);
-    border-color: rgba(0, 0, 0, 0.1);
-    color: #aaaaaa;
+.activeSpace {
+    .activeStyle {
+        background-color: rgba(59, 130, 246, 0.2)
+    }
+
+    .defaultStyle {
+        background-color: rgba(0, 0, 0, 0);
+        border-color: rgba(0, 0, 0, 0.1);
+        color: #aaaaaa;
+    }
 }

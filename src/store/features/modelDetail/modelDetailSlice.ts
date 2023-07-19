@@ -101,10 +101,9 @@ export const modelDetailSlice: any = createSlice({
                 state.isLoading = true;
             })
             .addCase(getModelDetailAsync.fulfilled, (state, action) => {
+                console.log(action.payload);
                 //更新modelDetail
-                if (action.payload.msg === "no such item") {
-                    console.log(action);
-                } else {
+                if (action.payload.msg !== "no such item") {
                     state.responseData = action.payload
                     // for (let key in state.responseData.data) {
                     //     (state.responseData.data as any)[key] = action.payload.data[key]
@@ -122,7 +121,7 @@ export const modelDetailSlice: any = createSlice({
 
 // export const { setActiveMenu } = modelDetailSlice.actions;
 // export const { removeModelDetail } = modelDetailSlice.actions;
-// export const { resetModelDetail } = modelDetailSlice.actions;
+export const { resetModelDetail } = modelDetailSlice.actions;
 
 //下面的函数称为选择器，允许我们从中选择一个值
 // the state. Selectors选择器也可以在使用它们而不是

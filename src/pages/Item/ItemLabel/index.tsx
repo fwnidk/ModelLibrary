@@ -10,7 +10,7 @@ import { resetDatasetListAsync } from "../../../store/features/dataset/datasetSl
 
 
 export default function ItemLabel(props: { locationState: any, type: string }) {
-    const { type,locationState } = props;
+    const { type, locationState } = props;
     const [allFiltersSearched, setAllFiltersSearched] = useState<any>(type === 'model' ? { task: [], library: [], dataset: [], other: [], language: [] } : { task: [], size: [], other: [], language: [] })
     const [currCategory, setCurrCategory] = useState<any>(locationState ? locationState.currCategory : "task")
     const [inputValue, setInputValue] = useState<string>("")
@@ -30,16 +30,16 @@ export default function ItemLabel(props: { locationState: any, type: string }) {
     // axios获取数据
     const labelButtonArr = labelConversionArray(type);
     //点击切换标签分类按钮
-    const handleClickCategory = useCallback((name: any) => {
+    const handleClickCategory = (name: any) => {
         return () => {
             setInputValue('')
             setAllFiltersSearched(allFilters)
             setCurrCategory(name);
         }
-    }, [allFilters])
+    }
 
     //input输入信息后过滤itemLabel
-    const inputOnChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
         setInputValue(value)
         let newExpandedKeys;
@@ -56,7 +56,7 @@ export default function ItemLabel(props: { locationState: any, type: string }) {
         // }
         setAllFiltersSearched({ ...allFiltersSearched, [currCategory]: newExpandedKeys })
         console.log(allFiltersSearched);
-    }, [currCategory, allFilters, allFiltersSearched])
+    }
 
     const resetActiveFilters = useCallback(() => {
         if (type === 'model') {
@@ -68,13 +68,13 @@ export default function ItemLabel(props: { locationState: any, type: string }) {
     }, [type, dispatch, currCategory])
 
     //根据当前点击的分类按钮渲染对应组件
-    const renderCurrCategory = useCallback((currCategory: any) => {
+    const renderCurrCategory = (currCategory: any) => {
         // if (currCategory === "task") {
         //     return <TasksMainPage type={type}>{allFiltersSearched[currCategory]}</TasksMainPage>
         // } else {
         return <LabelBlock type={type} value={currCategory}>{allFiltersSearched[currCategory]}</LabelBlock >
         // }
-    }, [allFiltersSearched, type])
+    }
     return ((activeFilters as any)[currCategory] ?
         <Space direction="vertical" size="large">
             <Space wrap>

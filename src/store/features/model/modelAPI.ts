@@ -33,7 +33,6 @@ export async function fetchModelList(activeFilters: ModelType.ActiveFiltersPost,
         }
     }
     let getParams = ('?' + paramsArr.join('&'))
-    console.log(getParams);
     return await axiosInstance.get(`/api/modelList${getParams}`)
 }
 export async function fetchModelLabel() {

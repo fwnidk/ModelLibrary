@@ -7,9 +7,10 @@ import { labelConversionArray } from '../../app/labelConversionArray';
 import ErrorStatus from '../../components/ErrorStatus';
 import LoadingStatus from '../../components/LoadingStatus';
 import { getDatasetDetailAsync } from '../../store/features/datasetDetail/datasetDetailSlice';
-import { getModelDetailAsync } from '../../store/features/modelDetail/modelDetailSlice';
+import { getModelDetailAsync, resetModelDetail } from '../../store/features/modelDetail/modelDetailSlice';
 import { RootState } from '../../store/store';
 import './index.scss'
+import NotFoundPage from '../NotFoundPage';
 
 export default function ItemDetails(props: { type: string }) {
     const { type } = props;
@@ -20,13 +21,13 @@ export default function ItemDetails(props: { type: string }) {
     const { responseData, isLoading, isError } = useSelector((state: RootState) => type === 'model' ? state.modelDetail : state.datasetDetail)
     const labelButtonArr = labelConversionArray(type)
     useEffect(() => {
-        if (responseData.msg === "no such item") {
-            navigate('/404', { replace: true })
-        }
         if (type === 'model') {
             dispatch(getModelDetailAsync(search))
         } else {
             dispatch(getDatasetDetailAsync(search))
+        }
+        return () => {
+            dispatch(resetModelDetail())
         }
         // Object.entries(data.activeFilters as any).map((item: any, index1) => {
         //     console.log('labelButtonArr: ', labelButtonArr);
@@ -82,7 +83,8 @@ export default function ItemDetails(props: { type: string }) {
         return <ErrorStatus />
     }
     return (
-        <>
+        responseData.msg === "no such item" ?
+            <NotFoundPage /> :
             <div className='detail'>
                 <Typography.Title level={2} style={{ margin: 0 }}>
                     {search}
@@ -91,12 +93,13 @@ export default function ItemDetails(props: { type: string }) {
                 <Space wrap size='large'>
                     {Object.entries(responseData.data.activeFilters as any).map((item: any, index1) => {
                         return (
-                            <Space key={index1}>
-                                <span>{getConversionArray(item[0])} :</span>
-                                {item[1].map((label: any, index2: any) => {
-                                    return (<Button className='detailButton' key={index2} onClick={() => handleClickLabel(item[0], label)}>{label}</Button>)
-                                })}
-                            </Space>
+                            item[1].length > 0 ?
+                                <Space key={index1}>
+                                    <span>{getConversionArray(item[0])} :</span>
+                                    {item[1].map((label: any, index2: any) => {
+                                        return (<Button className='detailButton' key={index2} onClick={() => handleClickLabel(item[0], label)}>{label}</Button>)
+                                    })}
+                                </Space> : <></>
                         )
                     })}
                 </Space>
@@ -108,6 +111,5 @@ export default function ItemDetails(props: { type: string }) {
                 />
                 <Outlet />
             </div>
-        </>
     )
 }

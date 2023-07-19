@@ -392,21 +392,7 @@ if (process.env.NODE_ENV === "development") {
             return obj
         }
     )
-    const getLogInStatus = Mock.mock("/api/getLogInStatus",
-        "post", function (postMessage) {
-            console.log('useMock', postMessage);
-            let obj = Mock.mock({
-                personalInformation: "@personalInformation",
-                logInStatus: "@logInInformation",
-            }
-                // {
-                // loggedIn: "@boolean",
-                // logInInformation: 
-            )
-            console.log(obj);
-            return obj
-        }
-    )
+
     //1:第一步完成 2:第二步完成 -1:用户名重复
     const verifyUsername = Mock.mock("/api/register/verifyUsername",
         "post", function () {
@@ -529,15 +515,15 @@ if (process.env.NODE_ENV === "development") {
         }
     )
     // /api/avatarPost
-    const personalInformation = Mock.mock("/api/fetchPersonalInformation",
+    const personalInformation = Mock.mock("/api/personalInformation",
         "get", function (postMessage) {
             return {
-                code: 0,
+                code: 1,
                 msg: 'success',
                 data: {
                     username: 'fwnidk',
                     team: 'iSS',
-                    avatar: '3cd5fe9833ac4c766468d1e1f5157060',
+                    avatar: Random.dataImage('100x100', 'fwnidk'),
                 }
             };
         }
