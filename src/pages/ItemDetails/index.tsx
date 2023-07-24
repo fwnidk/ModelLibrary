@@ -76,6 +76,11 @@ export default function ItemDetails(props: { type: string }) {
         }
         return null
     }
+    const setPrivateItem = () => {
+
+    }
+    const deleteItem = () => { }
+
     if (isLoading) {
         return <LoadingStatus />
     }
@@ -89,6 +94,10 @@ export default function ItemDetails(props: { type: string }) {
                 <Typography.Title level={2} style={{ margin: 0 }}>
                     {search}
                     {responseData.data.isPrivate && <Tag>私有</Tag>}
+                    <Space className='setItemButton' >
+                        <Button className='setPrivateButton' onClick={setPrivateItem}>设置为{responseData.data.isPrivate ? "公有" : "私有"}</Button>
+                        <Button className='deleteItemButton' onClick={deleteItem} danger>删除项目</Button>
+                    </Space>
                 </Typography.Title>
                 <Space wrap size='large'>
                     {Object.entries(responseData.data.activeFilters as any).map((item: any, index1) => {

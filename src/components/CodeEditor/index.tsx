@@ -16,7 +16,8 @@ import CodeEditBox from '../CodeEditBox';
 
 export default function CodeEditor() {
     const location = useLocation().pathname;
-    const { data, isLoading, isError } = useSelector((state: RootState) => state.fileContent)
+    const { responseData, isLoading, isError } = useSelector((state: RootState) => state.fileContent)
+    const { data } = responseData
     const navigate = useNavigate()
     //测试时使用
     const dispatch = useDispatch()

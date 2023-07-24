@@ -8,7 +8,7 @@ import LoadingStatus from '../../components/LoadingStatus';
 import ErrorStatus from '../../components/ErrorStatus';
 
 export default function Home() {
-    const { responseData, isLoading, isError } = useSelector((state: RootState) => state.logIn)
+    const { responseData, isLoading, isError } = useSelector((state: RootState) => state.personalInformation)
     // const dispatch = useDispatch()
 
     // useEffect(() => {
@@ -24,6 +24,6 @@ export default function Home() {
     return (
         responseData.code === 1 ?
             <HomeLoggedIn /> :
-            <h1>Home Not Logged In</h1>
+            <h1>您还没有登录</h1>
     )
 }

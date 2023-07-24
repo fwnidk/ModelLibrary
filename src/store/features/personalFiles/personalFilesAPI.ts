@@ -4,5 +4,6 @@ import { axiosInstance } from '../../../app/axiosInterceptor';
 
 
 export async function fetchPersonalFiles(postData: string) {
+    console.log(postData);
     return await axiosInstance.post("/api/personalFiles", postData)
 }

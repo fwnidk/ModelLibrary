@@ -3,6 +3,6 @@
 import { axiosInstance } from '../../../app/axiosInterceptor';
 
 
-export async function fetchTrendingList(postData: string) {
-    return await axiosInstance.post("/api/trendingList", postData)
+export async function fetchTrendingList() {
+    return await axiosInstance.get("/api/trendingList")
 }

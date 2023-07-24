@@ -17,8 +17,9 @@ import ErrorStatus from '../../../components/ErrorStatus'
 
 export default function HomeLoggedIn() {
     const personalInformation: PersonalInformation.PersonalInformation = useSelector((state: RootState) => state.personalInformation.responseData.data)
-    const { data, isError, isLoading } = useSelector((state: RootState) => state.personalFiles)
-    const trendingList: Array<any> = useSelector((state: RootState) => state.trendingList.list)
+    const { responseData, isError, isLoading } = useSelector((state: RootState) => state.personalFiles)
+    const { data } = responseData
+    const trendingList: Array<any> = useSelector((state: RootState) => state.trendingList.data.list)
     const [currCategory, setCurrCategory] = useState<number>(0)
     const [currTrendingCategory, setCurrTrendingCategory] = useState<number>(0)
     const buttonArr = ["所有", "Models", "Datasets", "组织"];

@@ -428,12 +428,12 @@ if (process.env.NODE_ENV === "development") {
     )
 
     const getTrendingList = Mock.mock("/api/trendingList",
-        "post", function (userName) {
+        "get", function () {
             let obj = Mock.mock({
                 "list|5-12": [{
                     lastModified: "@timeString",
                     name: "@fileName",
-                    author: userName.body,
+                    author: "@first @last",
                     downloads: "@natural(0,10000)",
                     id: "@string",
                     type: "@type"
@@ -445,7 +445,7 @@ if (process.env.NODE_ENV === "development") {
                 }
                 return b.lastModified - a.lastModified
             })
-            return obj;
+            return wrapResponseData(obj);
         }
     )
 
@@ -481,17 +481,15 @@ if (process.env.NODE_ENV === "development") {
             return arr;
         }
     )
-
-    const getBlob = Mock.mock("/api/getBlob",
-        "post", function (postMessage) {
-            console.log(postMessage.body);
-            let arr = postMessage.body.split('/');
+    const getBlob = Mock.mock(/\/api\/getBlob(\?.)?/,
+        "get", function (getMessage) {
+            let arr = decodeURIComponent(getMessage.url.split("?")[1].split("=")[1]).split('/');
             let fileNameArr = arr[arr.length - 1].split('.');
             let fileTpye = fileNameArr[fileNameArr.length - 1]
             let size = Random.fileSize();
             // let fileType = fileName.split('.')[1];
             // let displayable = size > 5000000000 ? false : true;
-            let displayable = false;
+            let displayable = true;
             let displayFileData = displayable ? { displayable, displayData: Random.getSomeCode(fileTpye) } : { displayable };
             let fileObj = Mock.mock({
                 // fileName: fileName,
@@ -502,7 +500,8 @@ if (process.env.NODE_ENV === "development") {
                 fileURL: "@image(200x200)",
                 ...displayFileData
             })
-            return fileObj;
+            console.log(fileObj);
+            return wrapResponseData(fileObj);
         }
     )
 

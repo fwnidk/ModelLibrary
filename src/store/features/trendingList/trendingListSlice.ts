@@ -20,8 +20,7 @@ const initialState: ResponseDataType.ResponseData<TrendingListType.List> = {
 export const setTrendingListAsync: any = createAsyncThunk(
     'trendingList/setTrendingListAsync',
     async (_, action) => {
-        const userName: string = (action.getState() as RootState).logInInformation.data.personalInformation.userName
-        const response: any = await fetchTrendingList(userName);
+        const response: any = await fetchTrendingList();
         // console.log(response.data);
         return response.data;
     }

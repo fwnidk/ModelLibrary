@@ -16,8 +16,9 @@ import './index.scss'
 export default function Profile() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const { data, isLoading, isError } = useSelector((state: RootState) => state.personalFiles)
-    const personalInformation = useSelector((state: RootState) => state.personalInformation.responseData.data.personalInformation)
+    const { responseData, isLoading, isError } = useSelector((state: RootState) => state.personalFiles)
+    const { data } = responseData
+    const personalInformation = useSelector((state: RootState) => state.personalInformation.responseData.data)
     useEffect(() => {
         dispatch(getPersonalFilesAsync())
     }, [dispatch, personalInformation])

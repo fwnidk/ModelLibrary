@@ -34,7 +34,7 @@ const getChildrenArr = (type: string) => {
             element: <ItemFilesTable type={type} />,
         },
         {
-            path: "commit",
+            path: "commit/*",
             element: <Commit />
         },
         {

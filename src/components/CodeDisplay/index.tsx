@@ -27,7 +27,8 @@ export default function CodeDisplay() {
     //     ?displayData
     // }
 
-    const { data, isLoading, isError } = useSelector((state: RootState) => state.fileContent)
+    const { responseData, isLoading, isError } = useSelector((state: RootState) => state.fileContent)
+    const { data } = responseData
     const dispatch = useDispatch()
     const location = useLocation().pathname
     const locationStr = location.split('/').slice(4).join('/');
@@ -90,7 +91,11 @@ export default function CodeDisplay() {
                     <Button
                         type='link'
                         className='codeToolbarButton'
-
+                        onClick={
+                            () => {
+                                navigate(`../commit/${locationStr}`)
+                            }
+                        }
                     ><HistoryOutlined />修改历史</Button>
                     {!data.displayable || <Button
                         type='link'

@@ -25,7 +25,7 @@ const initialState: LoadingStatusType.LoadingStatus<ResponseDataType.ResponseDat
 export const getPersonalFilesAsync: any = createAsyncThunk(
     'personalFiles/getPersonalFilesAsync',
     async (_, action) => {
-        const userName: string = (action.getState() as RootState).logInInformation.data.personalInformation.userName
+        const userName: string = (action.getState() as RootState).personalInformation.responseData.data.userName
         const response: any = await fetchPersonalFiles(userName);
         // console.log(response.data);
         return response.data;
